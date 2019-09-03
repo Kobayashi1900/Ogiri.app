@@ -73,6 +73,9 @@
                                 <state key="normal" title="次へ">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="AjT-LU-vke" kind="presentation" id="4If-CO-JVg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-bd-QKI">
                                 <rect key="frame" x="121.5" y="583" width="171" height="41"/>
@@ -116,7 +119,19 @@
                     <view key="view" contentMode="scaleToFill" id="P9C-Hf-nPn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nO9-0z-ria">
+                                <rect key="frame" x="191" y="437.5" width="32" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nO9-0z-ria" firstAttribute="centerX" secondItem="P9C-Hf-nPn" secondAttribute="centerX" id="VsQ-KO-LLp"/>
+                            <constraint firstItem="nO9-0z-ria" firstAttribute="centerY" secondItem="P9C-Hf-nPn" secondAttribute="centerY" id="XNy-5T-54V"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="RlH-cb-wlU"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="遊ぶ" id="7wn-zh-pQ6"/>
@@ -132,7 +147,19 @@
                     <view key="view" contentMode="scaleToFill" id="1rz-Sg-Xje">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyPage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qUC-EM-p85">
+                                <rect key="frame" x="176" y="437.5" width="62" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qUC-EM-p85" firstAttribute="centerX" secondItem="1rz-Sg-Xje" secondAttribute="centerX" id="49L-62-H8G"/>
+                            <constraint firstItem="qUC-EM-p85" firstAttribute="centerY" secondItem="1rz-Sg-Xje" secondAttribute="centerY" id="lEM-Zv-wLx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Sh8-Q1-3GB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" id="qw3-gz-mQ2"/>
@@ -148,7 +175,19 @@
                     <view key="view" contentMode="scaleToFill" id="l0C-sE-158">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeLine" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LtF-t5-d4j">
+                                <rect key="frame" x="172" y="437.5" width="70" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LtF-t5-d4j" firstAttribute="centerY" secondItem="l0C-sE-158" secondAttribute="centerY" id="402-T2-gKJ"/>
+                            <constraint firstItem="LtF-t5-d4j" firstAttribute="centerX" secondItem="l0C-sE-158" secondAttribute="centerX" id="HMO-3r-vZa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="XC9-ti-qE4"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="TimeLine" id="3OF-jl-gji"/>
