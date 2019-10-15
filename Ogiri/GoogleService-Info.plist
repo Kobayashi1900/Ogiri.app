@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>696209773612-98uale1fvvfjd7altmcb4r5joj0htipe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.696209773612-98uale1fvvfjd7altmcb4r5joj0htipe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDdicMmdmB9JYkKLLgkQg5SCEXK7-ZjjVs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>696209773612</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycmpany.Ogiri</string>
+	<key>PROJECT_ID</key>
+	<string>ogiri-d1811</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ogiri-d1811.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:696209773612:ios:b483580b2b542953b02d89</string>
+	<key>DATABASE_URL</key>
+	<string>https://ogiri-d1811.firebaseio.com</string>
+</dict>
+</plist>
