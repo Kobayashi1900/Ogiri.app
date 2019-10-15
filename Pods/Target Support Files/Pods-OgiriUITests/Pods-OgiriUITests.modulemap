@@ -1,0 +1,6 @@
+framework module Pods_OgiriUITests {
+  umbrella header "Pods-OgiriUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

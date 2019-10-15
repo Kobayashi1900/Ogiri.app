@@ -3,17 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		143AA663C6A924CE8072769C /* Pods_OgiriUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA700AA0FC334B1679A9CD9E /* Pods_OgiriUITests.framework */; };
+		2547D82BD42EF9167843EC7A /* Pods_OgiriTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */; };
+		3F89EBDE32302FBB507DB566 /* Pods_Ogiri.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AE5D7BAEA65D15AACBEFB7A /* Pods_Ogiri.framework */; };
+		BC0411F42353379C00517DA8 /* UserNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0411F32353379C00517DA8 /* UserNameViewController.swift */; };
 		BC5686E52313062400BB196C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5686E42313062400BB196C /* AppDelegate.swift */; };
-		BC5686E72313062400BB196C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5686E62313062400BB196C /* ViewController.swift */; };
 		BC5686EA2313062400BB196C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5686E82313062400BB196C /* Main.storyboard */; };
 		BC5686EC2313062500BB196C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC5686EB2313062500BB196C /* Assets.xcassets */; };
 		BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5686ED2313062500BB196C /* LaunchScreen.storyboard */; };
 		BC5686FA2313062500BB196C /* OgiriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5686F92313062500BB196C /* OgiriTests.swift */; };
 		BC5687052313062600BB196C /* OgiriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5687042313062600BB196C /* OgiriUITests.swift */; };
+		BC8B24322345C10300138327 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC8B24312345C10300138327 /* GoogleService-Info.plist */; };
+		BC8B2442234B138400138327 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2441234B138400138327 /* PlayViewController.swift */; };
+		BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2443234B266900138327 /* SignUpViewController.swift */; };
+		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
+		BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2447234CD23E00138327 /* TimeLineViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +42,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32B2A867CAACE5BC6673925B /* Pods-OgiriTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriTests.release.xcconfig"; path = "Target Support Files/Pods-OgiriTests/Pods-OgiriTests.release.xcconfig"; sourceTree = "<group>"; };
+		6687185436C471973E8C0639 /* Pods-Ogiri.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ogiri.release.xcconfig"; path = "Target Support Files/Pods-Ogiri/Pods-Ogiri.release.xcconfig"; sourceTree = "<group>"; };
+		7610E134B1E2FA9F2DCD339A /* Pods-Ogiri.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Ogiri.debug.xcconfig"; path = "Target Support Files/Pods-Ogiri/Pods-Ogiri.debug.xcconfig"; sourceTree = "<group>"; };
+		8AE5D7BAEA65D15AACBEFB7A /* Pods_Ogiri.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Ogiri.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F8AD70E10C466CA08BC3D8C /* Pods-OgiriUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriUITests.debug.xcconfig"; path = "Target Support Files/Pods-OgiriUITests/Pods-OgiriUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		AA700AA0FC334B1679A9CD9E /* Pods_OgiriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2A010E9DFFE825775123AAA /* Pods-OgiriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriUITests.release.xcconfig"; path = "Target Support Files/Pods-OgiriUITests/Pods-OgiriUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BC0411F32353379C00517DA8 /* UserNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameViewController.swift; sourceTree = "<group>"; };
 		BC5686E12313062400BB196C /* Ogiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ogiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5686E42313062400BB196C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BC5686E62313062400BB196C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BC5686E92313062400BB196C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC5686EB2313062500BB196C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC5686EE2313062500BB196C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +62,13 @@
 		BC5687002313062500BB196C /* OgiriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgiriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5687042313062600BB196C /* OgiriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OgiriUITests.swift; sourceTree = "<group>"; };
 		BC5687062313062600BB196C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC8B24312345C10300138327 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BC8B2441234B138400138327 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
+		BC8B2443234B266900138327 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
+		BC8B2447234CD23E00138327 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriTests.debug.xcconfig"; path = "Target Support Files/Pods-OgiriTests/Pods-OgiriTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F89EBDE32302FBB507DB566 /* Pods_Ogiri.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2547D82BD42EF9167843EC7A /* Pods_OgiriTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,12 +92,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				143AA663C6A924CE8072769C /* Pods_OgiriUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		712B123397DB150194E148FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8AE5D7BAEA65D15AACBEFB7A /* Pods_Ogiri.framework */,
+				E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */,
+				AA700AA0FC334B1679A9CD9E /* Pods_OgiriUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99CECFD33328598E8C7A3815 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7610E134B1E2FA9F2DCD339A /* Pods-Ogiri.debug.xcconfig */,
+				6687185436C471973E8C0639 /* Pods-Ogiri.release.xcconfig */,
+				F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */,
+				32B2A867CAACE5BC6673925B /* Pods-OgiriTests.release.xcconfig */,
+				8F8AD70E10C466CA08BC3D8C /* Pods-OgiriUITests.debug.xcconfig */,
+				B2A010E9DFFE825775123AAA /* Pods-OgiriUITests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		BC5686D82313062400BB196C = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +129,8 @@
 				BC5686F82313062500BB196C /* OgiriTests */,
 				BC5687032313062600BB196C /* OgiriUITests */,
 				BC5686E22313062400BB196C /* Products */,
+				99CECFD33328598E8C7A3815 /* Pods */,
+				712B123397DB150194E148FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,12 +147,12 @@
 		BC5686E32313062400BB196C /* Ogiri */ = {
 			isa = PBXGroup;
 			children = (
-				BC5686E42313062400BB196C /* AppDelegate.swift */,
-				BC5686E62313062400BB196C /* ViewController.swift */,
-				BC5686E82313062400BB196C /* Main.storyboard */,
-				BC5686EB2313062500BB196C /* Assets.xcassets */,
+				BC8B23E5234460BF00138327 /* Model */,
+				BC8B23E4234460B600138327 /* View */,
+				BC8B23E3234460A600138327 /* Controller */,
 				BC5686ED2313062500BB196C /* LaunchScreen.storyboard */,
 				BC5686F02313062500BB196C /* Info.plist */,
+				BC8B24312345C10300138327 /* GoogleService-Info.plist */,
 			);
 			path = Ogiri;
 			sourceTree = "<group>";
@@ -125,6 +175,35 @@
 			path = OgiriUITests;
 			sourceTree = "<group>";
 		};
+		BC8B23E3234460A600138327 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BC5686E42313062400BB196C /* AppDelegate.swift */,
+				BC8B2443234B266900138327 /* SignUpViewController.swift */,
+				BC8B2441234B138400138327 /* PlayViewController.swift */,
+				BC8B2445234C84C600138327 /* MypageViewController.swift */,
+				BC8B2447234CD23E00138327 /* TimeLineViewController.swift */,
+				BC0411F32353379C00517DA8 /* UserNameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BC8B23E4234460B600138327 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC5686E82313062400BB196C /* Main.storyboard */,
+				BC5686EB2313062500BB196C /* Assets.xcassets */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC8B23E5234460BF00138327 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,9 +211,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC5687092313062600BB196C /* Build configuration list for PBXNativeTarget "Ogiri" */;
 			buildPhases = (
+				4A5C908A59D656CEECBBD209 /* [CP] Check Pods Manifest.lock */,
 				BC5686DD2313062400BB196C /* Sources */,
 				BC5686DE2313062400BB196C /* Frameworks */,
 				BC5686DF2313062400BB196C /* Resources */,
+				9364AC346C540EB6E950C031 /* [CP] Embed Pods Frameworks */,
+				81881F31EA4D3311E73CE8C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC56870C2313062600BB196C /* Build configuration list for PBXNativeTarget "OgiriTests" */;
 			buildPhases = (
+				D0C9375B74A9CC9020DBC4FB /* [CP] Check Pods Manifest.lock */,
 				BC5686F12313062500BB196C /* Sources */,
 				BC5686F22313062500BB196C /* Frameworks */,
 				BC5686F32313062500BB196C /* Resources */,
@@ -167,6 +250,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC56870F2313062600BB196C /* Build configuration list for PBXNativeTarget "OgiriUITests" */;
 			buildPhases = (
+				8B9EC524395F770131AAAC73 /* [CP] Check Pods Manifest.lock */,
 				BC5686FC2313062500BB196C /* Sources */,
 				BC5686FD2313062500BB196C /* Frameworks */,
 				BC5686FE2313062500BB196C /* Resources */,
@@ -229,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC8B24322345C10300138327 /* GoogleService-Info.plist in Resources */,
 				BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */,
 				BC5686EC2313062500BB196C /* Assets.xcassets in Resources */,
 				BC5686EA2313062400BB196C /* Main.storyboard in Resources */,
@@ -251,13 +336,120 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4A5C908A59D656CEECBBD209 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Ogiri-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81881F31EA4D3311E73CE8C5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B9EC524395F770131AAAC73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OgiriUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9364AC346C540EB6E950C031 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Ogiri/Pods-Ogiri-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0C9375B74A9CC9020DBC4FB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OgiriTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BC5686DD2313062400BB196C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC5686E72313062400BB196C /* ViewController.swift in Sources */,
+				BC8B2442234B138400138327 /* PlayViewController.swift in Sources */,
 				BC5686E52313062400BB196C /* AppDelegate.swift in Sources */,
+				BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */,
+				BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */,
+				BC0411F42353379C00517DA8 /* UserNameViewController.swift in Sources */,
+				BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +622,7 @@
 		};
 		BC56870A2313062600BB196C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7610E134B1E2FA9F2DCD339A /* Pods-Ogiri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +641,7 @@
 		};
 		BC56870B2313062600BB196C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6687185436C471973E8C0639 /* Pods-Ogiri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -466,6 +660,7 @@
 		};
 		BC56870D2313062600BB196C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -487,6 +682,7 @@
 		};
 		BC56870E2313062600BB196C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32B2A867CAACE5BC6673925B /* Pods-OgiriTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -508,6 +704,7 @@
 		};
 		BC5687102313062600BB196C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F8AD70E10C466CA08BC3D8C /* Pods-OgiriUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -528,6 +725,7 @@
 		};
 		BC5687112313062600BB196C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2A010E9DFFE825775123AAA /* Pods-OgiriUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
