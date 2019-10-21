@@ -83,7 +83,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="emailTextField:" destination="ymZ-dC-HAY" eventType="editingDidEnd" id="n28-r0-jVg"/>
+                                    <action selector="emailEditChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="s5J-XR-ay0"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RTd-3u-VIi">
@@ -91,6 +91,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="passwordEditChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="r1W-jH-WQ6"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d1-bd-QKI">
                                 <rect key="frame" x="114" y="563" width="147" height="147"/>
@@ -103,7 +106,7 @@
                                     <segue destination="Qhz-ur-UIP" kind="presentation" modalPresentationStyle="fullScreen" id="SHY-Fx-boP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njc-V9-ZuI">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njc-V9-ZuI">
                                 <rect key="frame" x="89" y="489" width="196" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="image2">
@@ -119,7 +122,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="dbp-el-jAt" id="JYV-pH-A1g"/>
+                        <outlet property="emailTextField" destination="dbp-el-jAt" id="q77-QT-KLR"/>
+                        <outlet property="nextButton" destination="njc-V9-ZuI" id="raA-za-fPF"/>
                         <outlet property="passwordTextField" destination="RTd-3u-VIi" id="BLa-Z9-yBp"/>
                     </connections>
                 </viewController>
