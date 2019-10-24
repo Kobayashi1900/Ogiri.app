@@ -2,7 +2,7 @@
 //  PlayViewController.swift
 //  Ogiri
 //
-//  Created by kobayashi riku on 2019/10/07.
+//  Created by kobayashi on 2019/10/07.
 //  Copyright © 2019 kobayashi riku. All rights reserved.
 //
 

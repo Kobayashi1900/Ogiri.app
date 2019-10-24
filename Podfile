@@ -18,6 +18,7 @@ pod 'Firebase/Core'
 pod 'Firebase/Storage'
 pod 'Firebase/Auth'
 pod 'SVProgressHUD'
+pod 'Firebase/Firestore'
 
 
   target 'OgiriTests' do

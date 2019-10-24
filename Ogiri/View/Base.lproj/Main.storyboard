@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pF7-Ch-BVf">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pF7-Ch-BVf">
                                 <rect key="frame" x="89" y="435" width="196" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="image2">
@@ -40,7 +40,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="emailTextField:" destination="ymZ-dC-HAY" eventType="editingDidEnd" id="Hjp-XH-LTD"/>
+                                    <action selector="nameEditChanged:" destination="Sda-i3-eej" eventType="editingChanged" id="9Ag-Gy-0TZ"/>
                                 </connections>
                             </textField>
                         </subviews>
@@ -48,6 +48,7 @@
                         <viewLayoutGuide key="safeArea" id="OL7-Bd-tvR"/>
                     </view>
                     <connections>
+                        <outlet property="nextButton" destination="pF7-Ch-BVf" id="Bh3-bN-3Rk"/>
                         <outlet property="userNameTextField" destination="ONA-mg-rr9" id="uQz-pE-lZb"/>
                     </connections>
                 </viewController>
@@ -128,7 +129,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="ymZ-dC-HAY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1714.4000000000001" y="103.44827586206897"/>
         </scene>

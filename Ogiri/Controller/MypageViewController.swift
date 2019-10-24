@@ -2,7 +2,7 @@
 //  MypageViewController.swift
 //  Ogiri
 //
-//  Created by kobayashi riku on 2019/10/08.
+//  Created by kobayashi on 2019/10/08.
 //  Copyright © 2019 kobayashi riku. All rights reserved.
 //
 

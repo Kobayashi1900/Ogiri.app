@@ -2,23 +2,27 @@
 //  SignUpViewController.swift
 //  Ogiri
 //
-//  Created by kobayashi riku on 2019/08/26.
+//  Created by kobayashi on 2019/08/26.
 //  Copyright © 2019 kobayashi riku. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
+
 class SignUpViewController:
       UIViewController,
       UITextFieldDelegate {
+    
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
+    
     var emailText: String?
     var passwordText: String?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,36 +30,8 @@ class SignUpViewController:
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-//        //未入力の状態で「次へ」を押せなくする
-//        nextButton.isEnabled = false
-        
     }
- 
     
-
-//    //テキストフィールがタップされ、入力可能になったあと
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//        nextButton.isEnabled = false
-//
-//    }
-
-
-
-//    //キーボードを閉じたあと
-//    func textFieldDidEndEditing(_ textField:UITextField){
-//
-//        if emailTextField.text != "" && passwordTextField.text != "" {
-//
-//                            nextButton.isEnabled = true
-//
-//                    }else{
-//
-//                            nextButton.isEnabled = false
-//
-//                      }
-//
-//    }
     
     @IBAction func emailEditChanged(_ sender: UITextField) {
         
@@ -75,20 +51,8 @@ class SignUpViewController:
     
     @IBAction func next(_ sender: Any) {
         
-        //メアドとパスをアプリ内に保存
+        //メアドとパスでアカウント作成
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-            
-//            if error != nil{
-//
-//                print(error as Any)
-//
-//
-//            }else{
-//
-//                // 次の画面へ遷移
-//                self.performSegue(withIdentifier: "toUserNameVC", sender: nil)
-//
-//            }
             
         }
         
