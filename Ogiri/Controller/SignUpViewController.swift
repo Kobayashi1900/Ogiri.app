@@ -98,6 +98,17 @@ class SignUpViewController:
         
     }
     
+    //UserNameViewControllerに値を渡す
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let userNameVC = segue.destination as! UserNameViewController
+        
+        userNameVC.emailText2 = emailTextField.text
+        userNameVC.passwordText2 = passwordTextField.text
+        
+        
+    }
+    
     
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -20,6 +20,8 @@ class UserNameViewController:
     
     var nameText: String?
     let db = Firestore.firestore()
+    var emailText2: String?
+    var passwordText2: String?
     
     
     override func viewDidLoad() {
@@ -42,9 +44,11 @@ class UserNameViewController:
     
     @IBAction func next(_ sender: Any) {
         
-        addAdaLovelace()
-        addAlanTuring()
-        getCollection()
+          addProfile()
+          getCollection()
+//        addAdaLovelace()
+//        addAlanTuring()
+//        getCollection()
         
         
     }
@@ -73,65 +77,104 @@ class UserNameViewController:
     }
     
     
-    //Firestore  新しいコレクションとドキュメントを作成
-    private func addAdaLovelace() {
-
-        var ref: DocumentReference? = nil
-        
-        ref = db.collection("users").addDocument(data: [
-            "first": "Ada",
-            "last": "Lovelace",
-            "born": 1815
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-
-    }
+        //Firestore  新しいコレクションとドキュメントを作成
+        private func addProfile() {
     
-    //Firestore  別のドキュメントをusersコレクションに追加
-    private func addAlanTuring() {
-        
-        var ref: DocumentReference? = nil
-
-        ref = db.collection("users").addDocument(data: [
-            "first": "Alan",
-            "middle": "Mathison",
-            "last": "Turing",
-            "born": 1912
-        ]) { err in
-            if let err = err {
-                print("Error adding document: \(err)")
-            } else {
-                print("Document added with ID: \(ref!.documentID)")
-            }
-        }
-
-    }
+            var ref: DocumentReference? = nil
     
-    
-    //Firestore  コレクション全体を取得
-    private func getCollection() {
-
-        db.collection("users").getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    
-                    let data = document.data()
-                    let value = data["first"]
-                    print(data)
-                    print(value ?? "取得失敗")
+            ref = db.collection("users").addDocument(data: [
+                "emailAddress": emailText2,
+                "uid": passwordText2,
+                "userName": userNameTextField.text
+            ]) { err in
+                if let err = err {
+                    print("Error adding document: \(err)")
+                } else {
+                    print("Document added with ID: \(ref!.documentID)")
                 }
             }
+    
         }
-
-    }
+    
+    //Firestore  コレクション全体を取得
+        private func getCollection() {
+    
+            db.collection("users").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+    
+                        let data = document.data()
+                        let value = data["first"]
+                        print(data)
+                        print(value ?? "取得失敗")
+                    }
+                }
+            }
+    
+        }
+    
+//    //Firestore  新しいコレクションとドキュメントを作成
+//    private func addAdaLovelace() {
+//
+//        var ref: DocumentReference? = nil
+//
+//        ref = db.collection("users").addDocument(data: [
+//            "first": "Ada",
+//            "last": "Lovelace",
+//            "born": 1815
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+//
+//    }
+    
+//    //Firestore  別のドキュメントをusersコレクションに追加
+//    private func addAlanTuring() {
+//
+//        var ref: DocumentReference? = nil
+//
+//        ref = db.collection("users").addDocument(data: [
+//            "first": "Alan",
+//            "middle": "Mathison",
+//            "last": "Turing",
+//            "born": 1912
+//        ]) { err in
+//            if let err = err {
+//                print("Error adding document: \(err)")
+//            } else {
+//                print("Document added with ID: \(ref!.documentID)")
+//            }
+//        }
+//
+//    }
+    
+    
+//    //Firestore  コレクション全体を取得
+//    private func getCollection() {
+//
+//        db.collection("users").getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//
+//                    let data = document.data()
+//                    let value = data["first"]
+//                    print(data)
+//                    print(value ?? "取得失敗")
+//                }
+//            }
+//        }
+//
+//    }
 
     
     
