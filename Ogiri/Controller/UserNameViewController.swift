@@ -107,7 +107,7 @@ class UserNameViewController:
                         print("\(document.documentID) => \(document.data())")
     
                         let data = document.data()
-                        let value = data["first"]
+                        let value = data["emailAddress"]
                         print(data)
                         print(value ?? "取得失敗")
                     }

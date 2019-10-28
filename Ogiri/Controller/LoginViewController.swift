@@ -2,7 +2,7 @@
 //  LoginViewController.swift
 //  Ogiri
 //
-//  Created by kobayashi riku on 2019/10/27.
+//  Created by kobayashi riku on 2019/10/28.
 //  Copyright © 2019 kobayashi riku. All rights reserved.
 //
 
@@ -29,17 +29,18 @@ class LoginViewController: UIViewController {
     
         Auth.auth().signIn(withEmail: emailtextField.text!, password: passwordTextField.text!) { [weak self] user, error in
       guard let strongSelf = self else { return }
-      // [START_EXCLUDE]
-      strongSelf.hideSpinner {
-        if let error = error {
-          strongSelf.showMessagePrompt(error.localizedDescription)
-          return
-        }
-        strongSelf.navigationController?.popViewController(animated: true)
-      }
-      // [END_EXCLUDE]
+//      // [START_EXCLUDE]
+//      strongSelf.hideSpinner {
+//        if let error = error {
+//          strongSelf.showMessagePrompt(error.localizedDescription)
+//          return
+//        }
+//        strongSelf.navigationController?.popViewController(animated: true)
+//      }
+//      // [END_EXCLUDE]
     }
     
     }
     
 }
+
