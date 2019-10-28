@@ -54,6 +54,16 @@ class SignUpViewController:
         //メアドとパスでアカウント作成
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             
+            if error != nil {
+                
+                // エラー
+                
+            }
+            
+            let UserNameVC = self.storyboard?.instantiateViewController(withIdentifier: "unvc")  as! UserNameViewController
+            
+            self.navigationController?.pushViewController(UserNameVC, animated: true)
+            
         }
         
     }

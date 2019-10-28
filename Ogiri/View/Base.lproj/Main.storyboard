@@ -11,7 +11,7 @@
         <!--User Name View Controller-->
         <scene sceneID="TUg-0i-MbV">
             <objects>
-                <viewController id="Sda-i3-eej" customClass="UserNameViewController" customModule="Ogiri" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="unvc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sda-i3-eej" customClass="UserNameViewController" customModule="Ogiri" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1gq-48-uPw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -183,7 +183,7 @@
                         <outlet property="emailTextField" destination="dbp-el-jAt" id="q77-QT-KLR"/>
                         <outlet property="nextButton" destination="njc-V9-ZuI" id="raA-za-fPF"/>
                         <outlet property="passwordTextField" destination="RTd-3u-VIi" id="BLa-Z9-yBp"/>
-                        <segue destination="Sda-i3-eej" kind="show" id="fSg-yO-Vj6"/>
+                        <segue destination="Sda-i3-eej" kind="show" identifier="toUserNameVC" id="fSg-yO-Vj6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

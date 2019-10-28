@@ -81,10 +81,11 @@ class UserNameViewController:
         private func addProfile() {
     
             var ref: DocumentReference? = nil
+            let userID = Auth.auth().currentUser?.uid
     
             ref = db.collection("users").addDocument(data: [
                 "emailAddress": emailText2,
-                "uid": passwordText2,
+                "uid": userID,
                 "userName": userNameTextField.text
             ]) { err in
                 if let err = err {
