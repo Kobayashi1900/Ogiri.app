@@ -22,6 +22,7 @@
 		BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2443234B266900138327 /* SignUpViewController.swift */; };
 		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
 		BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2447234CD23E00138327 /* TimeLineViewController.swift */; };
+		BCAA570E2365B03F00162C41 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAA570D2365B03F00162C41 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		BC8B2443234B266900138327 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		BC8B2447234CD23E00138327 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		BCAA570D2365B03F00162C41 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriTests.debug.xcconfig"; path = "Target Support Files/Pods-OgiriTests/Pods-OgiriTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +186,7 @@
 				BC8B2445234C84C600138327 /* MypageViewController.swift */,
 				BC8B2447234CD23E00138327 /* TimeLineViewController.swift */,
 				BC0411F32353379C00517DA8 /* UserNameViewController.swift */,
+				BCAA570D2365B03F00162C41 /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCAA570E2365B03F00162C41 /* LoginViewController.swift in Sources */,
 				BC8B2442234B138400138327 /* PlayViewController.swift in Sources */,
 				BC5686E52313062400BB196C /* AppDelegate.swift in Sources */,
 				BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */,
