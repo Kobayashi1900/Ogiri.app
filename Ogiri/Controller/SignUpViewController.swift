@@ -60,6 +60,7 @@ class SignUpViewController:
                 
             }
             
+            //navigationControllerで画面遷移
             let UserNameVC = self.storyboard?.instantiateViewController(withIdentifier: "unvc")  as! UserNameViewController
             
             self.navigationController?.pushViewController(UserNameVC, animated: true)

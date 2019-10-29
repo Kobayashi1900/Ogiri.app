@@ -97,10 +97,11 @@ class UserNameViewController:
     
         }
     
-    //Firestore  コレクション全体を取得
+    //Firestore  コレクションから自分のuserドキュメントのみを取得
         private func getCollection() {
+            
     
-            db.collection("users").getDocuments() { (querySnapshot, err) in
+            db.collection("users").whereField("emailAddress", isEqualTo: emailText2).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
