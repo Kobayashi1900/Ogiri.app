@@ -63,6 +63,8 @@ class SignUpViewController:
             //navigationControllerで画面遷移
             let UserNameVC = self.storyboard?.instantiateViewController(withIdentifier: "unvc")  as! UserNameViewController
             
+            //値渡し
+            UserNameVC.emailText2 = self.emailText
             self.navigationController?.pushViewController(UserNameVC, animated: true)
             
         }
@@ -82,6 +84,15 @@ class SignUpViewController:
             print(anonymousUser)
 
         }
+        
+    }
+    
+    @IBAction func login(_ sender: Any) {
+        
+        //navigationControllerで画面遷移
+        let LoginVC = self.storyboard?.instantiateViewController(withIdentifier: "loginvc")  as! LoginViewController
+        
+        self.navigationController?.pushViewController(LoginVC, animated: true)
         
     }
     

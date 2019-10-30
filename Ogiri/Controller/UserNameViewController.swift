@@ -45,7 +45,6 @@ class UserNameViewController:
     @IBAction func next(_ sender: Any) {
         
           addProfile()
-          getCollection()
 //        addAdaLovelace()
 //        addAlanTuring()
 //        getCollection()
@@ -82,6 +81,9 @@ class UserNameViewController:
     
             var ref: DocumentReference? = nil
             let userID = Auth.auth().currentUser?.uid
+            
+            //emailText2をアンラップ
+            if let emailText2 = emailText2 {
     
             ref = db.collection("users").addDocument(data: [
                 "emailAddress": emailText2,
@@ -92,9 +94,10 @@ class UserNameViewController:
                     print("Error adding document: \(err)")
                 } else {
                     print("Document added with ID: \(ref!.documentID)")
+                    self.getCollection()
                 }
             }
-    
+          }
         }
     
     //Firestore  コレクションから自分のuserドキュメントのみを取得

@@ -28,19 +28,22 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: Any) {
     
         Auth.auth().signIn(withEmail: emailtextField.text!, password: passwordTextField.text!) { [weak self] user, error in
-      guard let strongSelf = self else { return }
-//      // [START_EXCLUDE]
-//      strongSelf.hideSpinner {
-//        if let error = error {
-//          strongSelf.showMessagePrompt(error.localizedDescription)
-//          return
-//        }
-//        strongSelf.navigationController?.popViewController(animated: true)
-//      }
-//      // [END_EXCLUDE]
+      
+            if error != nil {
+                
+                // エラー
+                
+            }
+            
+            //navigationControllerで画面遷移
+            let TimeLineVC = self?.storyboard?.instantiateViewController(withIdentifier: "tlvc")  as! TimeLineViewController
+            
+            
+            self?.navigationController?.pushViewController(TimeLineVC, animated: true)
+            
     }
     
-    }
+  }
     
 }
 
