@@ -85,6 +85,11 @@ class SignUpViewController:
 
         }
         
+        //navigationControllerで画面遷移
+        let PlayVC = self.storyboard?.instantiateViewController(withIdentifier: "playvc")  as! PlayViewController
+        
+        self.navigationController?.pushViewController(PlayVC, animated: true)
+        
     }
     
     @IBAction func login(_ sender: Any) {

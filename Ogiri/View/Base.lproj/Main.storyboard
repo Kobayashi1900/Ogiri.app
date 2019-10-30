@@ -172,7 +172,6 @@
                                 </state>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Jr5-h6-kBL"/>
-                                    <segue destination="Qhz-ur-UIP" kind="presentation" modalPresentationStyle="fullScreen" id="SHY-Fx-boP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aYc-G5-jRO">
@@ -216,7 +215,7 @@
         <!--遊ぶ-->
         <scene sceneID="b4b-Vc-O3s">
             <objects>
-                <viewController id="Qhz-ur-UIP" customClass="PlayViewController" customModule="Ogiri" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="playvc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qhz-ur-UIP" customClass="PlayViewController" customModule="Ogiri" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="P9C-Hf-nPn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,7 +414,4 @@
         <image name="image4" width="512" height="95"/>
         <image name="image5" width="426" height="79"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="pvd-JC-oIj"/>
-    </inferredMetricsTieBreakers>
 </document>

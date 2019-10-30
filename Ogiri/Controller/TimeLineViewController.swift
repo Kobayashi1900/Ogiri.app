@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class TimeLineViewController:
         UIViewController{
@@ -14,7 +16,7 @@ class TimeLineViewController:
 //      UITableViewDataSource {
 
 
-
+    var handle: AuthStateDidChangeListenerHandle?
 
     @IBOutlet weak var timeLineTableView: UITableView!
 
@@ -24,6 +26,17 @@ class TimeLineViewController:
 //        timeLineTableView.delegate = self
 //        timeLineTableView.dataSource = self
 
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        //認証状態をリッスン
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+          
+            
+            
+        }
+        
     }
 
     //セクションの数
