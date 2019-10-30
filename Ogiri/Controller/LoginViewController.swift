@@ -34,7 +34,14 @@ class LoginViewController: UIViewController {
                 print("ログインできませんでした")
                 
             }else {
+                
                 print("ログインできました")
+                
+                //navigationControllerで画面遷移
+                let TimeLineVC = self.storyboard?.instantiateViewController(withIdentifier: "tlvc")  as! TimeLineViewController
+
+                self.navigationController?.pushViewController(TimeLineVC, animated: true)
+
             }
             
         }
