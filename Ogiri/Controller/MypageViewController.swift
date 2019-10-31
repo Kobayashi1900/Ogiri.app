@@ -44,16 +44,14 @@ class MypageViewController:
     
     @IBAction func save(_ sender: Any) {
         
-        //DBの行き先(child)を決めていく
-        let myPageDB = Database.database().reference().child("myPage").childByAutoId()
+        // ログインされていること確認する
+        guard let user = Auth.auth().currentUser else { return }
         
         //ストレージサーバのURLを取得
         let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
         
-        //画像が入るフォルダを作る(""内がフォルダ名)
-        let key = myPageDB.child("ProfileImage").childByAutoId().key
-        
-        let imageRef = storage.child("profileImage").child("\(String(describing: key!)).jpeg")
+        // PATH: gs://ogiri-d1811.appspot.com/profileImage/{user.uid}.jpeg
+        let imageRef = storage.child("profileImage").child("\(user.uid).jpeg")
         
         //ProfileImageのデータを変数として持つ
         var ProfileImageData: Data = Data()
@@ -67,12 +65,12 @@ class MypageViewController:
         }
         
         //アップロードタスク(storageに画像を送信)
-        let uploadTask = imageRef.putData(ProfileImageData, metadata: nil) { (metaData, error) in
+        imageRef.putData(ProfileImageData, metadata: nil) { (metaData, error) in
             
             //エラーであれば
             if error != nil {
                 
-                print(error)
+                print(error.debugDescription)
                 return  //これより下にはいかないreturn
                 
             }
