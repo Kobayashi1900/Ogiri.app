@@ -16,8 +16,7 @@ class TimeLineViewController:
 //      UITableViewDataSource {
 
 
-    var handle: AuthStateDidChangeListenerHandle?
-
+    
     @IBOutlet weak var timeLineTableView: UITableView!
 
     override func viewDidLoad() {
@@ -29,15 +28,8 @@ class TimeLineViewController:
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        //認証状態をリッスン
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-          
-            
             
         }
-        
-    }
 
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {

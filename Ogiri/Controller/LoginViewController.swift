@@ -45,25 +45,6 @@ class LoginViewController: UIViewController {
             }
             
         }
-        
-//        if let email = emailtextField.text, let password = passwordTextField.text {
-//
-//        Auth.auth().signIn(withEmail: email, password: password) { [weak self] user, error in
-//
-//                //navigationControllerで画面遷移
-//                    let TimeLineVC = self?.storyboard?.instantiateViewController(withIdentifier: "tlvc")  as! TimeLineViewController
-//
-//
-//                    self?.navigationController?.pushViewController(TimeLineVC, animated: true)
-//
-//
-//        }
-//
-//        }
-    
-        
-        
-        
     
   }
     

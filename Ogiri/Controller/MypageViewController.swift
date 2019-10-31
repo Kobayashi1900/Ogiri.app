@@ -19,7 +19,12 @@ class MypageViewController:
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameTextField: UITextField!
-
+    
+//    //ストレージ サービスへの参照を取得
+//    let storage = Storage.storage()
+//    //参照を作成
+//    let storageRef = storage.reference()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +48,7 @@ class MypageViewController:
         let myPageDB = Database.database().reference().child("myPage").childByAutoId()
         
         //ストレージサーバのURLを取得
-        let storage = Storage.storage().reference(forURL: "")
+        let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
         
         //画像が入るフォルダを作る(""内がフォルダ名)
         let key = myPageDB.child("ProfileImage").childByAutoId().key
@@ -72,22 +77,21 @@ class MypageViewController:
                 
             }
             
-            //storageから画像が保存されているURLをダウンロードする
-            imageRef.downloadURL { (url, error) in
-                
-                //urlが存在すれば
-                if url != nil {
-                    
-                    //キーバリュー(辞書)型でDBへ送信するものを準備する
-                    //各キー値を元に受信していく (クロージャ内だから要self)
-//                    let timeLineInfo =
-                    
-                }
-                
-            }
+            //storageから画像が保存されているURLを返してもらう(ダウンロードする)
+//            imageRef.downloadURL { (url, error) in
+//
+//                //urlが存在すれば
+//                if url != nil {
+//
+//                    //DBへ送信するものを準備する
+//                    let myPageInfo = url?.absoluteString as Any
+//
+//                    myPageDB.updateChildValues (myPageInfo as! [AnyHashable : Any])
+//                }
+//
+//            }
             
         }
-
         
     }
     
