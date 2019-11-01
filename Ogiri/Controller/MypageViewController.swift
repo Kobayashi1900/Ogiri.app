@@ -158,10 +158,11 @@ class MypageViewController:
     //Firestore  ドキュメントのフィールドを更新
     private func updateProfile() {
         
-        let userNameRef = db.collection("users").document("")
+        guard let userId = Auth.auth().currentUser?.uid else { fatalError() }
+        let ref = db.collection("users").document(userId)
         
-        userNameRef.updateData([
-            "userName": userNameTextField.text
+        ref.updateData([
+            "userName": userNameTextField.text ?? "noname"
         ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
