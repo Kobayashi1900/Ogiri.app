@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseFirestore
 
 
 class MypageViewController:
@@ -18,18 +19,14 @@ class MypageViewController:
     
     
     @IBOutlet weak var profileImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var userNameTextField: UITextField!
     
-//    //ストレージ サービスへの参照を取得
-//    let storage = Storage.storage()
-//    //参照を作成
-//    let storageRef = storage.reference()
-    
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameTextField.delegate = self
+        userNameTextField.delegate = self
 
     }
     
@@ -74,20 +71,6 @@ class MypageViewController:
                 return  //これより下にはいかないreturn
                 
             }
-            
-            //storageから画像が保存されているURLを返してもらう(ダウンロードする)
-//            imageRef.downloadURL { (url, error) in
-//
-//                //urlが存在すれば
-//                if url != nil {
-//
-//                    //DBへ送信するものを準備する
-//                    let myPageInfo = url?.absoluteString as Any
-//
-//                    myPageDB.updateChildValues (myPageInfo as! [AnyHashable : Any])
-//                }
-//
-//            }
             
         }
         
@@ -169,6 +152,24 @@ class MypageViewController:
         
         //アラートを表示させる
         self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //Firestore  ドキュメントのフィールドを更新
+    private func updateProfile() {
+        
+        let userNameRef = db.collection("users").document("")
+        
+        userNameRef.updateData([
+            "userName": userNameTextField.text
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+
         
     }
     

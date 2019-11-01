@@ -27,8 +27,8 @@
                                     <segue destination="AjT-LU-vke" kind="presentation" modalPresentationStyle="fullScreen" id="glY-G4-KJV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ユーザーネーム" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5n-hQ-4Sr">
-                                <rect key="frame" x="56" y="289" width="122" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5n-hQ-4Sr">
+                                <rect key="frame" x="56" y="289" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -84,14 +84,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailEditChanged:" destination="L9B-HH-dRX" eventType="editingChanged" id="Y6E-cK-gRS"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PsR-WA-jlY">
                                 <rect key="frame" x="37" y="348" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="passwordEditChanged:" destination="L9B-HH-dRX" eventType="editingChanged" id="ssS-x2-DnG"/>
+                                </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4o-bx-wLL">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4o-bx-wLL">
                                 <rect key="frame" x="89" y="464" width="196" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="image5"/>
@@ -105,7 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="XRT-l4-yfe"/>
                     <connections>
-                        <outlet property="emailtextField" destination="yU6-U3-h4b" id="T2u-z7-3ww"/>
+                        <outlet property="emailTextField" destination="yU6-U3-h4b" id="Enj-FO-BBk"/>
                         <outlet property="loginButton" destination="R4o-bx-wLL" id="gtQ-ng-6Sx"/>
                         <outlet property="passwordTextField" destination="PsR-WA-jlY" id="bYg-js-Bw7"/>
                     </connections>
@@ -299,8 +305,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" id="qw3-gz-mQ2"/>
                     <connections>
-                        <outlet property="nameTextField" destination="Uhf-8R-zbf" id="jT0-ja-YhO"/>
                         <outlet property="profileImageView" destination="bhB-0V-kyW" id="hRf-ej-5rY"/>
+                        <outlet property="userNameTextField" destination="Uhf-8R-zbf" id="sfs-qd-cPv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Gx-hc-20Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
