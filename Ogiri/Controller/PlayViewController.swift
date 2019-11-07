@@ -41,11 +41,12 @@ class PlayViewController: UIViewController {
     func getImages() {
         
         let parameter: String = "\(wordsList.wordsA.randomElement()!)+\(wordsList.wordsB.randomElement()!)"
+        //"\(wordsList.wordsA.randomElement()!)+\(wordsList.wordsB.randomElement()!)"
         
         //APIKEY  13787747-8afd4e03ae250892260a92055
         let url = "https://pixabay.com/api/?key=13787747-8afd4e03ae250892260a92055&q=\(parameter)"
         
-        print(parameter)
+        print("parameter:\(parameter)")
         
         //Alamofireを使ってhttpリクエストをgetで投げる({}内の結果がresponseに入ってくる)
         Alamofire.request(url,
@@ -62,23 +63,24 @@ class PlayViewController: UIViewController {
                     let json :JSON = JSON(response.data as Any)
                     
                     //"totalHits"の値(数字)を取り出す
-                    var totalHitsNumber = json ["totalHits"].int
+//                    var totalHitsNumber = json ["totalHits"].int
+                    var totalHitsNumber = json ["hits"].array?.count
                     
-                    print("totalHitsNumber\(totalHitsNumber)")
+                    print("totalHitsNumber:\(totalHitsNumber)")
                     
                     var totalHitsRandomNumber = Int.random(in: 0..<totalHitsNumber!)
                     
-                    print("totalHitsRandomNumber\(totalHitsRandomNumber)")
+                    print("totalHitsRandomNumber:\(totalHitsRandomNumber)")
                     
                     //画像のURLをimageStringに入れる(配列hitsのキー値"webformatURL"で保存されている値を取ってくる)
                     var imageString = json ["hits"][totalHitsRandomNumber]["webformatURL"].string
-                
-                    //画像のURLが入ったimageStringをodaiImageViewに表示
-                    //string型のimageStringをURL型にキャストしなければいけない↓
-                    self.odaiImageView.sd_setImage(with: URL(string: imageString!), completed: nil)
-
                     
-
+                    print("imageString:\(imageString)")
+                    
+                        //画像のURLが入ったimageStringをodaiImageViewに表示
+                        //string型のimageStringをURL型にキャストしなければいけない↓
+                        self.odaiImageView.sd_setImage(with: URL(string: imageString!), completed: nil)
+                
                 //responseに値が入ってない時
                 case .failure(let error):
 
