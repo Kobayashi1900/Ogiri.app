@@ -80,6 +80,8 @@ class UserNameViewController:
         private func addProfile() {
     
             var ref: DocumentReference? = nil
+            
+            //let userIDに.uidを代入
             guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
             
             //emailText2をアンラップ
@@ -102,7 +104,7 @@ class UserNameViewController:
             }
         }
     
-    //Firestore  コレクションから自分のuserドキュメントのみを取得
+        //Firestore  コレクションから自分のuserドキュメントのみを取得
         private func getCollection() {
             
     
@@ -182,9 +184,8 @@ class UserNameViewController:
 //        }
 //
 //    }
-
     
-    
+   
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         

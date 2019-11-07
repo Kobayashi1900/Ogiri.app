@@ -27,7 +27,8 @@ class MypageViewController:
         super.viewDidLoad()
         
         userNameTextField.delegate = self
-
+        getCollection()
+        
     }
     
     
@@ -73,6 +74,9 @@ class MypageViewController:
             }
             
         }
+        
+        //ドキュメントのフィールド更新メソッド呼び出し
+        updateProfile()
         
     }
     
@@ -171,6 +175,31 @@ class MypageViewController:
             }
         }
 
+        
+    }
+    
+    
+    private func getCollection() {
+        
+        //let userIDに.uidを代入
+        guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
+        
+        //自分のユーザー情報を取得する(ドキュメントusersでkey("uid")のvalueがuserIDと一致するものを取得)
+        db.collection("users").whereField("uid", isEqualTo: userID).getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            print("\(document.documentID) => \(document.data())")
+        
+                            let data = document.data()
+                            let value = data["userName"]
+                            self.userNameTextField.text = value as! String
+                            print(data)
+                            print(value ?? "取得失敗")
+                        }
+                    }
+                }
         
     }
     

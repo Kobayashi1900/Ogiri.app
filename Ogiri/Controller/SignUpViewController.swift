@@ -133,7 +133,6 @@ class SignUpViewController:
         userNameVC.emailText2 = emailTextField.text
         userNameVC.passwordText2 = passwordTextField.text
         
-        
     }
     
     
