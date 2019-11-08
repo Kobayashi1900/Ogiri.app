@@ -63,12 +63,38 @@ class PlayViewController: UIViewController {
                     let json :JSON = JSON(response.data as Any)
                     
                     //"totalHits"の値(数字)を取り出す
-//                    var totalHitsNumber = json ["totalHits"].int
-                    var totalHitsNumber = json ["hits"].array?.count
+//                    var totalHitsCount = json ["totalHits"].int
+                    var totalHitsCount = json ["hits"].array?.count
                     
-                    print("totalHitsNumber:\(totalHitsNumber)")
+                    print("totalHitsCount:\(totalHitsCount)")
                     
-                    var totalHitsRandomNumber = Int.random(in: 0..<totalHitsNumber!)
+                    //////////////////////////totalHitsCountが0だった場合
+                    if totalHitsCount == 0 {
+
+                        let url = "https://pixabay.com/api/?key=13787747-8afd4e03ae250892260a92055&q=funny"
+
+                        Alamofire.request(url,
+                        method: .get,
+                        parameters: nil,
+                        encoding: JSONEncoding.default).responseJSON { (response) in
+
+                            switch response.result {
+
+                                case .success:
+                                        let json :JSON = JSON(response.data as Any)
+                                        var totalHitsCount = json ["hits"].array?.count
+                                        var totalHitsRandomNumber = Int.random(in: 0..<totalHitsCount!)
+                                        var imageString = json ["hits"][totalHitsRandomNumber]["webformatURL"].string
+
+                                        self.odaiImageView.sd_setImage(with: URL(string: imageString!), completed: nil)
+
+                                case .failure(let error):
+                                        print(error)
+                            }
+                        }
+                    }//////////////////////////totalHitsCountが0だった場合
+                    
+                    var totalHitsRandomNumber = Int.random(in: 0..<totalHitsCount!)
                     
                     print("totalHitsRandomNumber:\(totalHitsRandomNumber)")
                     
