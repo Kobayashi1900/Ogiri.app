@@ -2,8 +2,6 @@
 //  TimeLineViewController.swift
 //  Ogiri
 //
-//  Created by kobayashi on 2019/10/08.
-//  Copyright © 2019 kobayashi riku. All rights reserved.
 //
 
 import UIKit

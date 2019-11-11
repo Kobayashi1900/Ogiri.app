@@ -339,7 +339,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="453" id="Z6Z-fq-yyL">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Cell" rowHeight="453" id="Z6Z-fq-yyL" customClass="TableViewCell" customModule="Ogiri" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="453"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z6Z-fq-yyL" id="Jd9-2f-xrg">
@@ -371,6 +371,12 @@
                                                 </textView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentTextView" destination="PsF-vR-MoG" id="yYq-bf-lBf"/>
+                                            <outlet property="odaiImageView" destination="egX-Vv-8Cs" id="FCZ-JY-Jwd"/>
+                                            <outlet property="profileImageView" destination="cyv-e7-a7X" id="ieK-M0-ZUY"/>
+                                            <outlet property="userNameLabel" destination="H8n-M4-4O4" id="T8h-A8-fM6"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

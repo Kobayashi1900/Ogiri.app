@@ -23,7 +23,8 @@
 		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
 		BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2447234CD23E00138327 /* TimeLineViewController.swift */; };
 		BC94336723723A1700C2DD27 /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336623723A1700C2DD27 /* WordsList.swift */; };
-		BC943369237951DE00C2DD27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC943368237951DE00C2DD27 /* TableViewCell.swift */; };
+		BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336C23797CB400C2DD27 /* TableViewCell.swift */; };
+		BC94336F23797CB400C2DD27 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC94336D23797CB400C2DD27 /* TableViewCell.xib */; };
 		BCAA57102366F31B00162C41 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAA570F2366F31B00162C41 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,7 +72,8 @@
 		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		BC8B2447234CD23E00138327 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
 		BC94336623723A1700C2DD27 /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
-		BC943368237951DE00C2DD27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BC94336C23797CB400C2DD27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		BC94336D23797CB400C2DD27 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		BCAA570F2366F31B00162C41 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriTests.debug.xcconfig"; path = "Target Support Files/Pods-OgiriTests/Pods-OgiriTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -191,7 +193,8 @@
 				BC8B2447234CD23E00138327 /* TimeLineViewController.swift */,
 				BC0411F32353379C00517DA8 /* UserNameViewController.swift */,
 				BCAA570F2366F31B00162C41 /* LoginViewController.swift */,
-				BC943368237951DE00C2DD27 /* TableViewCell.swift */,
+				BC94336C23797CB400C2DD27 /* TableViewCell.swift */,
+				BC94336D23797CB400C2DD27 /* TableViewCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC8B24322345C10300138327 /* GoogleService-Info.plist in Resources */,
+				BC94336F23797CB400C2DD27 /* TableViewCell.xib in Resources */,
 				BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */,
 				BC5686EC2313062500BB196C /* Assets.xcassets in Resources */,
 				BC5686EA2313062400BB196C /* Main.storyboard in Resources */,
@@ -456,7 +460,7 @@
 				BCAA57102366F31B00162C41 /* LoginViewController.swift in Sources */,
 				BC8B2442234B138400138327 /* PlayViewController.swift in Sources */,
 				BC5686E52313062400BB196C /* AppDelegate.swift in Sources */,
-				BC943369237951DE00C2DD27 /* TableViewCell.swift in Sources */,
+				BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */,
 				BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */,
 				BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */,
 				BC94336723723A1700C2DD27 /* WordsList.swift in Sources */,
