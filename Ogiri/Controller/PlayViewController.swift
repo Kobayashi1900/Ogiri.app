@@ -14,11 +14,15 @@ import Photos
 
 class PlayViewController: UIViewController {
     
+    @IBOutlet weak var odaiLabel: UILabel!
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     
+    
     private let wordsList = WordsList()  //インスタンス生成、語群にアクセスできる
     private var count = 0
+    private var odaiNumber = 1
+    private var screenShotImagae = UIImage()  //スクショを入れる変数
     
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
@@ -26,6 +30,7 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()
+        odaiLabel.text = "\(odaiNumber)題名"
     }
     
     
@@ -112,6 +117,50 @@ class PlayViewController: UIViewController {
             print(err?.localizedDescription as Any)
         })  //コールバック
     }
+    
+    
+    
+    
+    private func odaiLabelIncrement() {
+        
+        switch odaiNumber {
+            
+            case 1:
+                odaiNumber = 2
+                odaiLabel.text = "\(odaiNumber)題目"
+            
+            case 2:
+                odaiNumber = 3
+                odaiLabel.text = "\(odaiNumber)題目"
+            
+            case 3:
+                odaiNumber = 4
+                odaiLabel.text = "\(odaiNumber)題目"
+            
+        default:
+            break
+        }
+        
+    }
+    
+    
+    func takeScreenShot() {
+        
+        //幅・高さを決める
+        let width = CGFloat(UIScreen.main.bounds.size.width)
+        let height = CGFloat(UIScreen.main.bounds.size.height)
+        let size  = CGSize(width: width, height: height)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        
+        //viewに書き出す
+        self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
+        screenShotImagae = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+    
+    }
+    
+    
 
 
     
@@ -119,6 +168,7 @@ class PlayViewController: UIViewController {
     @IBAction func next(_ sender: Any) {
         
         self.getPixabayImages()
+        odaiLabelIncrement()
         
     }
     
