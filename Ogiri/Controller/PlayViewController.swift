@@ -15,12 +15,14 @@ import Photos
 class PlayViewController: UIViewController {
     
     @IBOutlet weak var odaiLabel: UILabel!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     
     
     private let wordsList = WordsList()  //インスタンス生成、語群にアクセスできる
-    private var count = 0
+    var timer = Timer()  //timerクラスのインスタンス生成
+    private var count = 30
     private var odaiNumber = 1
     private var screenShotImagae = UIImage()  //スクショを入れる変数
     
@@ -30,7 +32,8 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()
-        odaiLabel.text = "\(odaiNumber)題名"
+        self.startTimer()
+        odaiLabel.text = "\(odaiNumber)題目"
     }
     
     
@@ -160,6 +163,36 @@ class PlayViewController: UIViewController {
     
     }
     
+    //時間制限
+    func startTimer() {
+        
+        //タイマーを回す
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCount), userInfo: nil, repeats: true)
+        //timeInterval: 何秒ごとに呼ぶのか
+        //target: どこのメソッドを呼ぶか
+        //selector: なんのメソッドを呼ぶのか
+        // ＝　1秒ごとに自身のクラスのtimerUpdateメソッドを呼ぶ
+        
+    }
+    
+    
+    //回答すると呼ばれるタイマーメソッド
+    @objc func timerCount() {
+        
+        if 1...30 ~= count {
+            
+            count = count - 1
+            
+        }else{
+            
+            count = 0
+            
+        }
+        
+        timerLabel.text = "\(count)秒"
+        
+    }
+    
     
 
 
@@ -169,6 +202,24 @@ class PlayViewController: UIViewController {
         
         self.getPixabayImages()
         odaiLabelIncrement()
+        commentTextView.text = ""
+        count = 30
+        startTimer()
+        
+    }
+    
+    
+    
+    //タッチでキーボードを閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        view.endEditing(true)
+    }
+    
+    //リターンでキーボードを閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
         
     }
     
