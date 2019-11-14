@@ -57,8 +57,8 @@ class MypageViewController:
         //プロフィール画像が存在すれば
         if profileImageView.image != nil {
             
-            //画像を圧縮
-            ProfileImageData = (profileImageView.image?.jpegData(compressionQuality: 0.01))!
+        //画像を圧縮
+        ProfileImageData = (profileImageView.image?.jpegData(compressionQuality: 0.01))!
             
         }
         
@@ -175,7 +175,6 @@ class MypageViewController:
             }
         }
 
-        
     }
     
     

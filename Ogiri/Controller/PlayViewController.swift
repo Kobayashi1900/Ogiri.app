@@ -29,6 +29,9 @@ class PlayViewController: UIViewController {
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()
@@ -204,6 +207,7 @@ class PlayViewController: UIViewController {
         odaiLabelIncrement()
         commentTextView.text = ""
         count = 30
+        timer.invalidate()
         startTimer()
         
     }
