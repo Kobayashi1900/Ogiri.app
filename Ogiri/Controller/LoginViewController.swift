@@ -43,9 +43,9 @@ class LoginViewController:
                 print("ログインできました")
                 
                 //navigationControllerで画面遷移
-                let TimeLineVC = self.storyboard?.instantiateViewController(withIdentifier: "tlvc")  as! TimeLineViewController
+                let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
 
-                self.navigationController?.pushViewController(TimeLineVC, animated: true)
+                self.navigationController?.pushViewController(tabbarController, animated: true)
 
             }
             

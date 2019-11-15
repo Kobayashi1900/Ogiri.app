@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WRx-TC-1H1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WRx-TC-1H1">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -267,7 +267,7 @@
                     <tabBarItem key="tabBarItem" title="遊ぶ" id="7wn-zh-pQ6"/>
                     <navigationItem key="navigationItem" id="0Dn-Im-dzo"/>
                     <connections>
-                        <outlet property="commentTextView" destination="urM-oW-TAB" id="GjI-T0-4tN"/>
+                        <outlet property="commentTextView" destination="urM-oW-TAB" id="aQh-fD-aYL"/>
                         <outlet property="odaiImageView" destination="CDP-QF-4eD" id="ZnJ-SE-t6q"/>
                         <outlet property="odaiLabel" destination="4kB-vg-avR" id="dT4-6v-kfx"/>
                         <outlet property="timerLabel" destination="Rt3-QS-dTo" id="lIv-9B-cHg"/>
@@ -405,7 +405,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="QMc-gU-pIk">
             <objects>
-                <tabBarController id="AjT-LU-vke" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarControllerID" id="AjT-LU-vke" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="6Ha-zv-JCo"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6EI-c4-KUQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
