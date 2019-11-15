@@ -11,6 +11,8 @@ import Alamofire
 import SwiftyJSON
 import SDWebImage
 import Photos
+import Firebase
+import FirebaseFirestore
 
 class PlayViewController: UIViewController {
     
@@ -25,6 +27,7 @@ class PlayViewController: UIViewController {
     private var count = 30
     private var odaiNumber = 1
     private var screenShotImagae = UIImage()  //スクショを入れる変数
+    let db = Firestore.firestore()
     
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
@@ -196,7 +199,32 @@ class PlayViewController: UIViewController {
         
     }
     
-    
+    //ドキュメントにコメントを追加する
+    func commentAdd() {
+        
+        var ref: DocumentReference? = nil
+        
+        // ログインされていること確認する
+        guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
+        
+        if case let commentTextView.text = commentTextView.text {
+            
+            ref = db.collection("users").document(userID)
+            
+            ref?.setData ([
+                "comment": commentTextView.text], merge: true) { error in
+                    
+                if let error = error {
+                    print("Error setData document: \(error)")
+                } else {
+                    print("Document successfully setData")
+                }
+                    
+            }
+            
+        }
+        
+    }
 
 
     
@@ -209,6 +237,7 @@ class PlayViewController: UIViewController {
         count = 30
         timer.invalidate()
         startTimer()
+        commentAdd()
         
     }
     
