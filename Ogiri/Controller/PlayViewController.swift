@@ -21,6 +21,8 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     
+    private var tempCommentText: String?
+    
     
     private let wordsList = WordsList()  //インスタンス生成、語群にアクセスできる
     var timer = Timer()  //timerクラスのインスタンス生成
@@ -40,6 +42,8 @@ class PlayViewController: UIViewController {
         self.getPixabayImages()
         self.startTimer()
         odaiLabel.text = "\(odaiNumber)題目"
+        
+        self.commentTextView.delegate = self
     }
     
     
@@ -207,12 +211,12 @@ class PlayViewController: UIViewController {
         // ログインされていること確認する
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
-        if case let commentTextView.text = commentTextView.text {
+        if let commentText = commentTextView.text {
             
             ref = db.collection("users").document(userID)
             
             ref?.setData ([
-                "comment": commentTextView.text], merge: true) { error in
+                "comment": commentText], merge: true) { error in
                     
                 if let error = error {
                     print("Error setData document: \(error)")
@@ -258,3 +262,11 @@ class PlayViewController: UIViewController {
     
 }
 
+
+// MARK: UITextViewDelegate
+extension PlayViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        self.commentTextView.text = textView.text
+        self.tempCommentText = textView.text
+    }
+}
