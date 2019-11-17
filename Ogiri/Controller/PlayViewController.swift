@@ -26,7 +26,7 @@ class PlayViewController: UIViewController {
     
     private let wordsList = WordsList()  //インスタンス生成、語群にアクセスできる
     var timer = Timer()  //timerクラスのインスタンス生成
-    private var count = 30
+    private var count = 31
     private var odaiNumber = 1
     private var screenShotImagae = UIImage()  //スクショを入れる変数
     let db = Firestore.firestore()
@@ -86,7 +86,7 @@ class PlayViewController: UIViewController {
     
     
     
-    
+    //配列"hits"のcountを取得し、0件とそうでない場合で処理を分ける
     private func result(response: DataResponse<Data>) {
         let json :JSON = JSON(response.data)
         let totalHitsCount = json ["hits"].array?.count
@@ -113,7 +113,7 @@ class PlayViewController: UIViewController {
     
     
     
-    
+    //totalHitsCountからランダムの数値を出し、totalHitsCount番目の画像を取得してodaiImageViewに反映する
     private func displayImage(data: Data) {
         let json :JSON = JSON(data as Any)
         let totalHitsCount = json ["hits"].array?.count
@@ -189,7 +189,7 @@ class PlayViewController: UIViewController {
     //回答すると呼ばれるタイマーメソッド
     @objc func timerCount() {
         
-        if 1...30 ~= count {
+        if 1...31 ~= count {
             
             count = count - 1
             
@@ -242,7 +242,6 @@ class PlayViewController: UIViewController {
         timer.invalidate()
         startTimer()
         commentAdd()
-        
     }
     
     

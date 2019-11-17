@@ -162,7 +162,10 @@ class MypageViewController:
     //Firestore  ドキュメントのフィールドを更新
     private func updateProfile() {
         
+        //別のVCでドキュメント名を.uidで作成しているので、userIdに.uidを代入
         guard let userId = Auth.auth().currentUser?.uid else { fatalError() }
+        
+        //ドキュメントのパスをrefに代入
         let ref = db.collection("users").document(userId)
         
         ref.updateData([
@@ -173,6 +176,7 @@ class MypageViewController:
             } else {
                 print("Document successfully updated")
             }
+            
         }
 
     }
@@ -180,7 +184,7 @@ class MypageViewController:
     
     private func getCollection() {
         
-        //let userIDに.uidを代入
+        //別のVCでドキュメント名を.uidで作成しているので、userIdに.uidを代入
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
         //自分のユーザー情報を取得する(ドキュメントusersでkey("uid")のvalueがuserIDと一致するものを取得)

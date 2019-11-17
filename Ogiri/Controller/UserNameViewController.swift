@@ -81,7 +81,7 @@ class UserNameViewController:
     
             var ref: DocumentReference? = nil
             
-            //let userIDに.uidを代入
+            //ドキュメント名を.uidで作成できるように.uidをuserIdに代入
             guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
             
             //emailText2をアンラップ
