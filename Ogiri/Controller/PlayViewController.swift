@@ -211,7 +211,7 @@ class PlayViewController: UIViewController {
         // ログインされていること確認する
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
-        if let commentText = commentTextView.text {
+        if let commentText = self.tempCommentText {
             
             ref = db.collection("users").document(userID)
             
