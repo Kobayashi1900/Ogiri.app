@@ -265,7 +265,6 @@ class PlayViewController: UIViewController {
 // MARK: UITextViewDelegate
 extension PlayViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        self.commentTextView.text = textView.text
         self.tempCommentText = textView.text
     }
 }
