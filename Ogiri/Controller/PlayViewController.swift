@@ -203,6 +203,45 @@ class PlayViewController: UIViewController {
         
     }
     
+    
+    func odaiImageAdd() {
+        
+        // ログインされていること確認する
+        guard let user = Auth.auth().currentUser else { return }
+        
+        //ストレージサーバのURLを取得
+        let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
+        
+        // パス
+        let imageRef = storage.child("odaiImage").child("\(user.uid).jpeg")
+        
+        //保存したい画像のデータを変数として持つ
+        var odaiImageData: Data = Data()
+        
+        if odaiImageView.image != nil {
+            
+        //画像を圧縮
+        odaiImageData = (odaiImageView.image?.jpegData(compressionQuality: 0.01))!
+            
+        }
+        
+        //storageに画像を送信
+        imageRef.putData(odaiImageData, metadata: nil) { (metaData, error) in
+            
+            //エラーであれば
+            if error != nil {
+                
+                print(error.debugDescription)
+                return  //これより下にはいかないreturn
+                
+            }
+            
+        }
+        
+    }
+    
+    
+    
     //ドキュメントにコメントを追加する
     func commentAdd() {
         
@@ -242,6 +281,7 @@ class PlayViewController: UIViewController {
         timer.invalidate()
         startTimer()
         commentAdd()
+        odaiImageAdd()
     }
     
     
