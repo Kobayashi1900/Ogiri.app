@@ -28,6 +28,8 @@ class PlayViewController: UIViewController {
     var timer = Timer()  //timerクラスのインスタンス生成
     private var count = 31
     private var odaiNumber = 1
+    var commentNumber = 0
+    var odaiImageNumber = 0
     private var screenShotImagae = UIImage()  //スクショを入れる変数
     let db = Firestore.firestore()
     
@@ -156,6 +158,50 @@ class PlayViewController: UIViewController {
         
     }
     
+    private func odaiImageNumberIncrement() {
+        
+        switch odaiImageNumber {
+            
+            case 0:
+                odaiImageNumber = 1
+            
+            case 1:
+                odaiImageNumber = 2
+            
+            case 2:
+                odaiImageNumber = 3
+            
+            case 3:
+                odaiImageNumber = 4
+            
+        default:
+            break
+        }
+        
+    }
+    
+    private func commentNumberIncrement() {
+        
+        switch commentNumber {
+            
+            case 0:
+                commentNumber = 1
+            
+            case 1:
+                commentNumber = 2
+            
+            case 2:
+                commentNumber = 3
+            
+            case 3:
+                commentNumber = 4
+            
+        default:
+            break
+        }
+        
+    }
+    
     
     func takeScreenShot() {
         
@@ -213,7 +259,7 @@ class PlayViewController: UIViewController {
         let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
         
         // パス
-        let imageRef = storage.child("odaiImage").child("\(user.uid).jpeg")
+        let imageRef = storage.child("odaiImageNumber\(odaiImageNumber)").child("\(user.uid).jpeg")
         
         //保存したい画像のデータを変数として持つ
         var odaiImageData: Data = Data()
@@ -255,7 +301,7 @@ class PlayViewController: UIViewController {
             ref = db.collection("users").document(userID)
             
             ref?.setData ([
-                "comment": commentText], merge: true) { error in
+                "commentNumber\(commentNumber)": commentText], merge: true) { error in
                     
                 if let error = error {
                     print("Error setData document: \(error)")
@@ -276,6 +322,8 @@ class PlayViewController: UIViewController {
         
         self.getPixabayImages()
         odaiLabelIncrement()
+        odaiImageNumberIncrement()
+        commentNumberIncrement()
         commentTextView.text = ""
         count = 30
         timer.invalidate()
