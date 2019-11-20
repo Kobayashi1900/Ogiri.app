@@ -326,10 +326,10 @@ class PlayViewController: UIViewController {
         commentNumberIncrement()
         commentTextView.text = ""
         count = 30
-        odaiImageAdd()
-        commentAdd()
         timer.invalidate()
         startTimer()
+        commentAdd()
+        odaiImageAdd()
         
     }
     
