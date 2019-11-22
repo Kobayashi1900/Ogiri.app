@@ -30,7 +30,10 @@ class PlayViewController: UIViewController {
     private var odaiNumber = 1
     var commentNumber = 0
     var odaiImageNumber = 0
-    private var screenShotImagae = UIImage() //スクショを入れる配列
+    private var screenShotImagae1 = UIImage() //スクショを入れる配列
+    private var screenShotImagae2 = UIImage() //スクショを入れる配列
+    private var screenShotImagae3 = UIImage() //スクショを入れる配列
+    private var screenShotImagae4 = UIImage() //スクショを入れる配列
     let db = Firestore.firestore()
     
     private let baseUrl = "https://pixabay.com/api/"
@@ -226,8 +229,26 @@ class PlayViewController: UIViewController {
         
         //viewに書き出す
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
-        screenShotImagae = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        switch odaiNumber {
+            case 1:
+                screenShotImagae1 = UIGraphicsGetImageFromCurrentImageContext()!
+            
+            case 2 :
+                screenShotImagae2 = UIGraphicsGetImageFromCurrentImageContext()!
+            
+            case 3 :
+                screenShotImagae3 = UIGraphicsGetImageFromCurrentImageContext()!
+            
+            case 4 :
+                screenShotImagae4 = UIGraphicsGetImageFromCurrentImageContext()!
+            
+            default:
+                break
+            }
+        
         UIGraphicsEndImageContext()
+        odaiLabelIncrement()
         commentTextView.text = ""
     
     }
@@ -236,7 +257,10 @@ class PlayViewController: UIViewController {
     //スクショをtwitterにシェア
     func share() {
         
-        let items = [screenShotImagae] as [Any]
+        let items = [screenShotImagae1,
+                     screenShotImagae2,
+                     screenShotImagae3,
+                     screenShotImagae4] as [Any]
         
         let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
@@ -251,7 +275,7 @@ class PlayViewController: UIViewController {
     func startTimer() {
         
         //4題答え終わったらodaiLabelとtimerLabelを消すため
-        if 1...4 ~= odaiNumber {
+        if 1...3 ~= odaiNumber {
         //タイマーを回す
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCount), userInfo: nil, repeats: true)
         //timeInterval: 何秒ごとに呼ぶのか
@@ -352,7 +376,7 @@ class PlayViewController: UIViewController {
     @IBAction func next(_ sender: Any) {
         
         self.getPixabayImages()
-        odaiLabelIncrement()
+//        odaiLabelIncrement()
         odaiImageNumberIncrement()
         commentNumberIncrement()
         count = 30
@@ -365,7 +389,6 @@ class PlayViewController: UIViewController {
         if odaiNumber == 5 {
             
             share()
-//            print("スクショの配列の数は\(screenShotImagae.count)")
             
         }
         
