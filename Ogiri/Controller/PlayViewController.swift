@@ -30,7 +30,7 @@ class PlayViewController: UIViewController {
     private var odaiNumber = 1
     var commentNumber = 0
     var odaiImageNumber = 0
-    private var screenShotImagae = UIImage()  //スクショを入れる変数
+    private var screenShotImagae = UIImage() //スクショを入れる配列
     let db = Firestore.firestore()
     
     private let baseUrl = "https://pixabay.com/api/"
@@ -128,9 +128,15 @@ class PlayViewController: UIViewController {
         
         guard let imageString = json ["hits"][totalHitsRandomNumber]["webformatURL"].string else { return }
         
-        self.odaiImageView.sd_setImage(with: URL(string: imageString), completed: { (image, err, cacheType, url) in
-            print(err?.localizedDescription as Any)
-        })  //コールバック
+        //4題答え終わったら新しい画像を表示しなくていいため
+        if 1...4 ~= odaiNumber {
+            
+            self.odaiImageView.sd_setImage(with: URL(string: imageString), completed: { (image, err, cacheType, url) in
+                print(err?.localizedDescription as Any)
+            })  //コールバック
+            
+        }
+        
     }
     
     
@@ -151,6 +157,12 @@ class PlayViewController: UIViewController {
             case 3:
                 odaiNumber = 4
                 odaiLabel.text = "\(odaiNumber)題目"
+            
+            //4題答え終わったらodaiLabelとtimerLabelを消すため。
+            case 4:
+                odaiNumber = 5
+                odaiLabel.text = ""
+                timerLabel.text = ""
             
         default:
             break
@@ -216,18 +228,37 @@ class PlayViewController: UIViewController {
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         screenShotImagae = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        commentTextView.text = ""
     
     }
+    
+    
+    //スクショをtwitterにシェア
+    func share() {
+        
+        let items = [screenShotImagae] as [Any]
+        
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        present(activityVC, animated: true, completion: nil)
+        
+    }
+    
+    
+    
     
     //時間制限
     func startTimer() {
         
+        //4題答え終わったらodaiLabelとtimerLabelを消すため
+        if 1...4 ~= odaiNumber {
         //タイマーを回す
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCount), userInfo: nil, repeats: true)
         //timeInterval: 何秒ごとに呼ぶのか
         //target: どこのメソッドを呼ぶか
         //selector: なんのメソッドを呼ぶのか
         // ＝　1秒ごとに自身のクラスのtimerUpdateメソッドを呼ぶ
+        }
         
     }
     
@@ -324,12 +355,19 @@ class PlayViewController: UIViewController {
         odaiLabelIncrement()
         odaiImageNumberIncrement()
         commentNumberIncrement()
-        commentTextView.text = ""
         count = 30
         timer.invalidate()
         startTimer()
         commentAdd()
         odaiImageAdd()
+        takeScreenShot()
+        
+        if odaiNumber == 5 {
+            
+            share()
+//            print("スクショの配列の数は\(screenShotImagae.count)")
+            
+        }
         
     }
     
