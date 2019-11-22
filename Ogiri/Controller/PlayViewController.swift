@@ -45,7 +45,7 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()
-        self.startTimer()
+//        self.startTimer()
         odaiLabel.text = "\(odaiNumber)題目"
         
         self.commentTextView.delegate = self
@@ -137,6 +137,8 @@ class PlayViewController: UIViewController {
             self.odaiImageView.sd_setImage(with: URL(string: imageString), completed: { (image, err, cacheType, url) in
                 print(err?.localizedDescription as Any)
             })  //コールバック
+            
+            startTimer()
             
         }
         
@@ -275,7 +277,7 @@ class PlayViewController: UIViewController {
     func startTimer() {
         
         //4題答え終わったらodaiLabelとtimerLabelを消すため
-        if 1...3 ~= odaiNumber {
+        if 1...4 ~= odaiNumber {
         //タイマーを回す
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCount), userInfo: nil, repeats: true)
         //timeInterval: 何秒ごとに呼ぶのか
@@ -376,12 +378,10 @@ class PlayViewController: UIViewController {
     @IBAction func next(_ sender: Any) {
         
         self.getPixabayImages()
-//        odaiLabelIncrement()
         odaiImageNumberIncrement()
         commentNumberIncrement()
-        count = 30
+        count = 31
         timer.invalidate()
-        startTimer()
         commentAdd()
         odaiImageAdd()
         takeScreenShot()
