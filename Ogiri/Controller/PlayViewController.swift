@@ -20,6 +20,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var nextButton: UIButton!
     
     private var tempCommentText: String?
     
@@ -396,6 +397,8 @@ class PlayViewController: UIViewController {
     
     
     
+    
+    
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -411,10 +414,42 @@ class PlayViewController: UIViewController {
     
 }
 
+private func validate() {
+    
+    // nilの場合は「次へ」を非活性に
+    guard let tempCommentText = self.tempCommentText else {
+                
+                self.nextButton = false
+                  return
+                  
+        }
+    
+        // 文字数が0の場合(""空文字)次へを非活性に
+    if tempCommentText.count == 0 {
+          
+            self.nextButton.isEnabled = false
+            return
+          
+        }
+        
+        // nilでないかつ0文字以上は次へを活性に
+        self.nextButton.isEnabled = true
+    
+}
+
+
 
 // MARK: UITextViewDelegate
 extension PlayViewController: UITextViewDelegate {
+    
     func textViewDidChange(_ textView: UITextView) {
         self.tempCommentText = textView.text
+    }
+    
+    func EditChanged(_ sender: UITextView) {
+        
+        self.tempCommentText = sender.text
+        self.validate()
+        
     }
 }
