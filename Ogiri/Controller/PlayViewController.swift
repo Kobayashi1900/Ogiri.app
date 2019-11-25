@@ -302,6 +302,13 @@ class PlayViewController: UIViewController {
             
         }
         
+        if count == 0 {
+            
+            //タイムオーバーしたら強制的に次の問題に行く
+            self.next(nextButton as Any)
+                        
+        }
+        
         timerLabel.text = "\(count)秒"
         
     }
@@ -371,8 +378,8 @@ class PlayViewController: UIViewController {
         }
         
     }
-
-
+    
+    
     
     
     @IBAction func next(_ sender: Any) {
