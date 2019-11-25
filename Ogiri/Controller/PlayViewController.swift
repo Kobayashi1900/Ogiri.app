@@ -46,10 +46,9 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()
-//        self.startTimer()
         odaiLabel.text = "\(odaiNumber)題目"
-        
         self.commentTextView.delegate = self
+        
     }
     
     
@@ -386,6 +385,7 @@ class PlayViewController: UIViewController {
         commentAdd()
         odaiImageAdd()
         takeScreenShot()
+        self.nextButton.isEnabled = false
         
         if odaiNumber == 5 {
             
@@ -412,28 +412,6 @@ class PlayViewController: UIViewController {
         
     }
     
-}
-
-private func validate() {
-    
-    // nilの場合は「次へ」を非活性に
-    guard let tempCommentText = self.tempCommentText else {
-                
-                self.nextButton = false
-                  return
-                  
-        }
-    
-        // 文字数が0の場合(""空文字)次へを非活性に
-    if tempCommentText.count == 0 {
-          
-            self.nextButton.isEnabled = false
-            return
-          
-        }
-        
-        // nilでないかつ0文字以上は次へを活性に
-        self.nextButton.isEnabled = true
     
 }
 
@@ -443,13 +421,19 @@ private func validate() {
 extension PlayViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
+        
         self.tempCommentText = textView.text
+        
+        if tempCommentText!.count == 0 {
+        
+            self.nextButton.isEnabled = false
+                
+        }else{
+            
+            self.nextButton.isEnabled = true
+            
+        }
+        
     }
     
-    func EditChanged(_ sender: UITextView) {
-        
-        self.tempCommentText = sender.text
-        self.validate()
-        
-    }
 }
