@@ -184,7 +184,7 @@ class MypageViewController:
         //別のVCでドキュメント名を.uidで作成しているので、userIdに.uidを代入
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
-        //自分のユーザー情報を取得する(ドキュメントusersでkey("uid")のvalueがuserIDと一致するものを取得)
+        //自分のユーザー情報を取得(ドキュメントusersでkey(uid)のvalueがuserIDと一致するものを取得)して、key(userName)に新名入れる
         db.collection("users").whereField("uid", isEqualTo: userID).getDocuments() { (querySnapshot, err) in
                     if let err = err {
                         print("Error getting documents: \(err)")
@@ -200,6 +200,12 @@ class MypageViewController:
                         }
                     }
                 }
+        
+        //profileImageViewに登録した画像があればそれを表示
+        //StorageのURLを参照
+        let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(userID).jpeg")
+
+        profileImageView.sd_setImage(with: storageref)
         
     }
     

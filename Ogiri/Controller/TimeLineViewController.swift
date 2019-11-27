@@ -54,8 +54,28 @@ class TimeLineViewController:
     //セルをどうやって構築するか(必須)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        //.dequeueReusableCell - 識別子がついたセルのサイズを変更する
+        //識別子がついたセルのサイズを変更する
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        //Outlet接続できないため、タグでコンテンツを管理する(このメソッド内でのみ有効)
+        let profileImageView = cell.viewWithTag(1) as! UIImageView
+        
+        //ログインされていることを確認する
+        if let user = Auth.auth().currentUser {
+
+        //StorageのURLを参照
+        let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
+
+        profileImageView.sd_setImage(with: storageref)
+
+        }
+        
+        let userNameLabel = cell.viewWithTag(2) as! UILabel
+        
+        let odaiImageView = cell.viewWithTag(3) as! UIImageView
+        
+        let commentTextView = cell.viewWithTag(4) as! UITextView
+        
 
         return cell
         
