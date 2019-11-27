@@ -119,9 +119,6 @@ class MypageViewController:
             //let selectedImageに画像データを入れる
             let selectedImage = info[.originalImage] as! UIImage
             
-            //選択された画像を圧縮してアプリ内に保存
-            //UserDefaults.standard.set(selectedImage.jpegData(compressionQuality: 0.1), forKey: "userImage")
-            
             //profileImageViewに反映させる
             profileImageView.image = selectedImage
             

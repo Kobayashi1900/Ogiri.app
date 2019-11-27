@@ -12,6 +12,8 @@ class TimeLineViewController:
       UIViewController,
       UITableViewDelegate,
       UITableViewDataSource {
+    
+    
 
 
     
@@ -65,7 +67,6 @@ class TimeLineViewController:
         return view.frame.size.height/2
         
     }
-
 
 
 }
