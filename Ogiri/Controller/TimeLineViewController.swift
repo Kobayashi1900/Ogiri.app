@@ -7,6 +7,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
 
 class TimeLineViewController:
       UIViewController,
@@ -67,11 +68,16 @@ class TimeLineViewController:
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
         
-            ////profileImageViewに表示////
+            ////profileImageViewとodaiImageViewに表示////
             let storageref1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
 
             profileImageView.sd_setImage(with: storageref1)
             print("storageref1:\(storageref1)")
+            
+            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
+
+            odaiImageView.sd_setImage(with: storageref2)
+            print("storageref2:\(storageref2)")
             
             ////userNameLabelとcommentTextView////
             db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
@@ -93,11 +99,6 @@ class TimeLineViewController:
                         }
                     }
             
-            ////odaiImageView////
-            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
-
-            odaiImageView.sd_setImage(with: storageref2)
-            print("storageref2:\(storageref2)")
          }
         
         

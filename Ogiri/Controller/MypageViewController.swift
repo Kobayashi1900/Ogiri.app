@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseFirestore
+import FirebaseStorage
 
 class MypageViewController:
       UIViewController,
@@ -24,9 +25,14 @@ class MypageViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         userNameTextField.delegate = self
         getCollection()
+        
+        if profileImageView.image == nil {
+            
+            profileImageView.image = UIImage(named: "Default")
+            
+        }
         
     }
     
@@ -65,8 +71,15 @@ class MypageViewController:
             
         }
         
+        let meta = StorageMetadata()
+        
+        meta.contentType = "image/jpeg"
+        
+        //新しい画像を送る前に以前の画像削除
+        deletePreviousProfileImage()
+        
         //アップロードタスク(storageに画像を送信)
-        imageRef.putData(ProfileImageData, metadata: nil) { (metaData, error) in
+        imageRef.putData(ProfileImageData, metadata: meta) { (metaData, error) in
             
             //エラーであれば
             if error != nil {
@@ -184,7 +197,7 @@ class MypageViewController:
     
     private func getCollection() {
         
-        //別のVCでドキュメント名を.uidで作成しているので、userIdに.uidを代入
+        //別のVCでドキュメント名を.uidで作成しているので、userIDに.uidを代入
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
         //自分のユーザー情報を取得(ドキュメントusersでkey(uid)のvalueがuserIDと一致するものを取得)して、key(userName)に新名入れる
@@ -207,11 +220,30 @@ class MypageViewController:
         //profileImageViewに登録した画像があればそれを表示
         //StorageのURLを参照
         let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(userID).jpeg")
-
-        profileImageView.sd_setImage(with: storageref)
-        print("storageref:\(storageref)")
         
+            profileImageView.sd_setImage(with: storageref)
+            print("storageref:\(storageref)")
+                    
     }
     
+    //プロフィール画像を更新する前に以前の画像を消す
+    func deletePreviousProfileImage () {
+        
+        // ログインされていること確認する
+        guard let user = Auth.auth().currentUser else { return }
+        
+        let desertRef = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
+        let desertImageRef = desertRef.child("profileImage").child("\(user.uid).jpeg")
+        
+        desertImageRef.delete {error in
+            if let error = error {
+              print("画像を削除でエラー")
+            } else {
+              print("画像を削除成功")
+            }
+            
+        }
+        
+    }
     
 }
