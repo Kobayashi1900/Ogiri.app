@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-
 class MypageViewController:
       UIViewController,
       UIImagePickerControllerDelegate,
@@ -30,6 +29,10 @@ class MypageViewController:
         getCollection()
         
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        getCollection()
+//    }
     
     
     @IBAction func imageSetting(_ sender: Any) {
@@ -206,6 +209,7 @@ class MypageViewController:
         let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(userID).jpeg")
 
         profileImageView.sd_setImage(with: storageref)
+        print("storageref:\(storageref)")
         
     }
     

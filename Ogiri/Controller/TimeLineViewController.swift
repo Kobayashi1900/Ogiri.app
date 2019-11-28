@@ -13,12 +13,9 @@ class TimeLineViewController:
       UITableViewDelegate,
       UITableViewDataSource {
     
-    
-
-
-    
     @IBOutlet weak var timeLineTableView: UITableView!
     
+    let db = Firestore.firestore()
     
     
    
@@ -60,21 +57,50 @@ class TimeLineViewController:
         //Outlet接続できないため、タグでコンテンツを管理する(このメソッド内でのみ有効)
         let profileImageView = cell.viewWithTag(1) as! UIImageView
         
-        //ログインされていることを確認する
-        if let user = Auth.auth().currentUser {
-
-        //StorageのURLを参照
-        let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
-
-        profileImageView.sd_setImage(with: storageref)
-
-        }
-        
         let userNameLabel = cell.viewWithTag(2) as! UILabel
         
         let odaiImageView = cell.viewWithTag(3) as! UIImageView
         
         let commentTextView = cell.viewWithTag(4) as! UITextView
+        
+        /////////////各UI部品に反映する///////////////
+        //ログインされていることを確認する
+        if let user = Auth.auth().currentUser {
+        
+            ////profileImageViewに表示////
+            let storageref1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
+
+            profileImageView.sd_setImage(with: storageref1)
+            print("storageref1:\(storageref1)")
+            
+            ////userNameLabelとcommentTextView////
+            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in querySnapshot!.documents {
+                                print("\(document.documentID) => \(document.data())")
+            
+                                let data = document.data()
+                                let userNameValue = data["userName"]
+                                let commentTextValue = data["commentNumber1"]
+                                print(data)
+                                print(userNameValue ?? "取得失敗")
+                                print(commentTextValue ?? "取得失敗")
+                                userNameLabel.text = userNameValue as? String
+                                commentTextView.text = commentTextValue as? String
+                            }
+                        }
+                    }
+            
+            ////odaiImageView////
+            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
+
+            odaiImageView.sd_setImage(with: storageref2)
+            print("storageref2:\(storageref2)")
+         }
+        
+        
         
 
         return cell
