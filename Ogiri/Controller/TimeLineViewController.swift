@@ -31,6 +31,8 @@ class TimeLineViewController:
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        self.timeLineTableView.reloadData()
             
         }
 
@@ -67,11 +69,21 @@ class TimeLineViewController:
         /////////////各UI部品に反映する///////////////
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
-        
+            
             ////profileImageViewとodaiImageViewに表示////
             let storageref1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
+            
+            storageref1.downloadURL(completion: { url, err in
+                profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
+                    
+                    print(url)
+                    print(imageUrl)
+                    print()
+                    
+                })
+            })
 
-            profileImageView.sd_setImage(with: storageref1)
+//            profileImageView.sd_setImage(with: storageref1)
             print("storageref1:\(storageref1)")
             
             let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")

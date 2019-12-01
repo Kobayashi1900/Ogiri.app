@@ -75,8 +75,8 @@ class MypageViewController:
         
         meta.contentType = "image/jpeg"
         
-        //新しい画像を送る前に以前の画像削除
-        deletePreviousProfileImage()
+//        //新しい画像を送る前に以前の画像削除
+//        deletePreviousProfileImage()
         
         //アップロードタスク(storageに画像を送信)
         imageRef.putData(ProfileImageData, metadata: meta) { (metaData, error) in
