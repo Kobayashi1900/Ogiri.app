@@ -221,8 +221,19 @@ class MypageViewController:
         //StorageのURLを参照
         let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(userID).jpeg")
         
-            profileImageView.sd_setImage(with: storageref)
-            print("storageref:\(storageref)")
+        storageref.downloadURL(completion: { url, error in
+            
+//            self.profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
+//
+//                print("url:\(url)")
+//                print("imageUrl:\(imageUrl)")
+//                print()
+//
+//            })
+            
+            self.profileImageView.sd_setImage(with: url, completed: nil)
+            
+        })
                     
     }
     

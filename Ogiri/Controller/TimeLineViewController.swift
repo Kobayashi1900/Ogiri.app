@@ -73,23 +73,29 @@ class TimeLineViewController:
             ////profileImageViewとodaiImageViewに表示////
             let storageref1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
             
+            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
+            
             storageref1.downloadURL(completion: { url, err in
                 profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
                     
-                    print(url)
-                    print(imageUrl)
+                    print("url:\(url)")
+                    print("imageUrl:\(imageUrl)")
                     print()
                     
                 })
             })
-
-//            profileImageView.sd_setImage(with: storageref1)
-            print("storageref1:\(storageref1)")
             
-            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
-
-            odaiImageView.sd_setImage(with: storageref2)
-            print("storageref2:\(storageref2)")
+            storageref2.downloadURL(completion: { url, err in
+                odaiImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
+                    
+                    print("url:\(url)")
+                    print("imageUrl:\(imageUrl)")
+                    print()
+                    
+                })
+            })
+            
+            
             
             ////userNameLabelとcommentTextView////
             db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
