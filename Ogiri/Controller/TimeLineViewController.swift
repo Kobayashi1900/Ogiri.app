@@ -62,9 +62,11 @@ class TimeLineViewController:
         
         let userNameLabel = cell.viewWithTag(2) as! UILabel
         
-        let odaiImageView = cell.viewWithTag(3) as! UIImageView
+        let createAtLabel = cell.viewWithTag(3) as! UILabel
         
-        let commentTextView = cell.viewWithTag(4) as! UITextView
+        let odaiImageView = cell.viewWithTag(4) as! UIImageView
+        
+        let commentTextView = cell.viewWithTag(5) as! UITextView
         
         /////////////各UI部品に反映する///////////////
         //ログインされていることを確認する
@@ -97,7 +99,7 @@ class TimeLineViewController:
             
             
             
-            ////userNameLabelとcommentTextView////
+            ////userNameLabelとcommentTextViewXXXとcreatedAt////
             db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
                         if let err = err {
                             print("Error getting documents: \(err)")
@@ -108,16 +110,21 @@ class TimeLineViewController:
                                 let data = document.data()
                                 let userNameValue = data["userName"]
                                 let commentTextValue = data["commentNumber1"]
+                                let createdAtValue = data["createdAt"]
                                 print(data)
                                 print(userNameValue ?? "取得失敗")
                                 print(commentTextValue ?? "取得失敗")
+                                print(createdAtValue ?? "取得失敗")
+
                                 userNameLabel.text = userNameValue as? String
                                 commentTextView.text = commentTextValue as? String
+                                createAtLabel.text = createdAtValue as? String
+                               
                             }
                         }
                     }
-            
-         }
+         
+        }
         
         
         
@@ -132,6 +139,5 @@ class TimeLineViewController:
         return view.frame.size.height/2
         
     }
-
 
 }

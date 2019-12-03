@@ -356,6 +356,13 @@ class PlayViewController: UIViewController {
     func commentAdd() {
         
         var ref: DocumentReference? = nil
+        //時刻を取得する
+        let dt = Date()
+        let dateFormatter = DateFormatter()
+        //日付の書式＆日本時間にする
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
+        
+        var date = dateFormatter.string(from: dt)
         
         // ログインされていること確認する
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
@@ -375,11 +382,23 @@ class PlayViewController: UIViewController {
                     
             }
             
+            ref?.setData ([
+                "createdAt": date], merge: true) { error in
+
+                if let error = error {
+                    print("Error setData document: \(error)")
+                } else {
+                    print("Document successfully setData")
+                }
+
+            }
+            
         }
         
     }
     
     
+
     
     
     @IBAction func next(_ sender: Any) {
