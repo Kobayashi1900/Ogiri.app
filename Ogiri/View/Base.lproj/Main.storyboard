@@ -378,7 +378,7 @@
                                                     <rect key="frame" x="15" y="79" width="345" height="235"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" text="コメント" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="PsF-vR-MoG">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="5" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="コメント" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PsF-vR-MoG">
                                                     <rect key="frame" x="75" y="322" width="224" height="115"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

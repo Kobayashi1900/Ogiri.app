@@ -22,6 +22,7 @@
 		BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2443234B266900138327 /* SignUpViewController.swift */; };
 		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
 		BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2447234CD23E00138327 /* TimeLineViewController.swift */; };
+		BC91984F239AAAEE00340F9B /* Kaitou.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC91984E239AAAEE00340F9B /* Kaitou.swift */; };
 		BC94336723723A1700C2DD27 /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336623723A1700C2DD27 /* WordsList.swift */; };
 		BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336C23797CB400C2DD27 /* TableViewCell.swift */; };
 		BC94336F23797CB400C2DD27 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC94336D23797CB400C2DD27 /* TableViewCell.xib */; };
@@ -71,6 +72,7 @@
 		BC8B2443234B266900138327 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
 		BC8B2447234CD23E00138327 /* TimeLineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineViewController.swift; sourceTree = "<group>"; };
+		BC91984E239AAAEE00340F9B /* Kaitou.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kaitou.swift; sourceTree = "<group>"; };
 		BC94336623723A1700C2DD27 /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
 		BC94336C23797CB400C2DD27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BC94336D23797CB400C2DD27 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				BC94336623723A1700C2DD27 /* WordsList.swift */,
+				BC91984E239AAAEE00340F9B /* Kaitou.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -463,6 +466,7 @@
 				BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */,
 				BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */,
 				BC8B2448234CD23E00138327 /* TimeLineViewController.swift in Sources */,
+				BC91984F239AAAEE00340F9B /* Kaitou.swift in Sources */,
 				BC94336723723A1700C2DD27 /* WordsList.swift in Sources */,
 				BC0411F42353379C00517DA8 /* UserNameViewController.swift in Sources */,
 				BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */,

@@ -362,7 +362,7 @@ class PlayViewController: UIViewController {
         //日付の書式＆日本時間にする
         dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
         
-        var date = dateFormatter.string(from: dt)
+        let date = dateFormatter.string(from: dt)
         
         // ログインされていること確認する
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
