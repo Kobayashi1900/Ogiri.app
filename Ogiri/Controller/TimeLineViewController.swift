@@ -8,6 +8,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseStorage
+import SDWebImage
 
 class TimeLineViewController:
       UIViewController,
@@ -58,8 +59,7 @@ class TimeLineViewController:
     //セクションの中のセルの数(必須)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 1
-//        return kaitouArray.count
+        return kaitouArray.count
 
     }
 
@@ -94,9 +94,9 @@ class TimeLineViewController:
             ////↓odaiImageNumber1~4取得↓////
             let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
             
-            storageRefOdaiImage1.downloadURL(completion: { url, err in
+            storageRefOdaiImage1.downloadURL { url, err in
                 self.XodaiImage1 = url
-            })
+            }
             
             let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
             
