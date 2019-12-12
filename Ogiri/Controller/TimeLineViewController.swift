@@ -59,7 +59,8 @@ class TimeLineViewController:
     //セクションの中のセルの数(必須)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return kaitouArray.count
+//        return kaitouArray.count
+        return 1
 
     }
 
