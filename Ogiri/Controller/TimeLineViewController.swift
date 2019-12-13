@@ -44,6 +44,61 @@ class TimeLineViewController:
     
     override func viewWillAppear(_ animated: Bool) {
         
+        if let user = Auth.auth().currentUser {
+
+        ////↓odaiImageNumber1~4取得↓////
+        let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
+
+        storageRefOdaiImage1.downloadURL { url, err in
+
+            if url != nil {
+                self.XodaiImage1 = url
+            }
+
+        }
+
+        let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
+
+        storageRefOdaiImage2.downloadURL(completion: { url, err in
+            self.XodaiImage2 = url
+        })
+        
+        let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3").child("\(user.uid).jpeg")
+
+        storageRefOdaiImage3.downloadURL(completion: { url, err in
+            self.XodaiImage3 = url
+        })
+
+        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4").child("\(user.uid).jpeg")
+
+        storageRefOdaiImage4.downloadURL(completion: { url, err in
+            self.XodaiImage4 = url
+        })
+        ////↑odaiImageNumber1~4取得↑////
+        
+        
+        
+        ////↓commentNumber1~4取得↓////
+        db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
+                            let data = document.data()
+                            let commentTextValue1 = data["commentNumber1"]
+                            let commentTextValue2 = data["commentNumber2"]
+                            let commentTextValue3 = data["commentNumber3"]
+                            let commentTextValue4 = data["commentNumber4"]
+                            self.XcommentNumber1 = (commentTextValue1 as? String)!
+                            self.XcommentNumber2 = (commentTextValue2 as? String)!
+                            self.XcommentNumber3 = (commentTextValue3 as? String)!
+                            self.XcommentNumber4 = (commentTextValue4 as? String)!
+                        }
+                    }
+                }
+        }
+        ////↑commentNumber1~4取得↑////
+        
         self.timeLineTableView.reloadData()
             
         }
@@ -61,6 +116,7 @@ class TimeLineViewController:
 
 //        return kaitouArray.count
         return 1
+//        return 2
 
     }
 
@@ -89,73 +145,73 @@ class TimeLineViewController:
         
         
         /////////////↓各UI部品に反映する↓///////////////
-        //ログインされていることを確認する
-        if let user = Auth.auth().currentUser {
-            
-            ////↓odaiImageNumber1~4取得↓////
-            let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
-            
-            storageRefOdaiImage1.downloadURL { url, err in
-                
-                if url != nil {
-                    self.XodaiImage1 = url
-                }
-                                
-            }
-            
-            let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
-            
-            storageRefOdaiImage2.downloadURL(completion: { url, err in
-                self.XodaiImage2 = url
-            })
-            
-            let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3").child("\(user.uid).jpeg")
-            
-            storageRefOdaiImage3.downloadURL(completion: { url, err in
-                self.XodaiImage3 = url
-            })
-            
-            let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4").child("\(user.uid).jpeg")
-            
-            storageRefOdaiImage4.downloadURL(completion: { url, err in
-                self.XodaiImage4 = url
-            })
-            ////↑odaiImageNumber1~4取得↑////
-            
-            
-            
-            ////↓commentNumber1~4取得↓////
-            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            for document in querySnapshot!.documents {
-                                let data = document.data()
-                                let commentTextValue1 = data["commentNumber1"]
-                                let commentTextValue2 = data["commentNumber2"]
-                                let commentTextValue3 = data["commentNumber3"]
-                                let commentTextValue4 = data["commentNumber4"]
-                                self.XcommentNumber1 = (commentTextValue1 as? String)!
-                                self.XcommentNumber2 = (commentTextValue2 as? String)!
-                                self.XcommentNumber3 = (commentTextValue3 as? String)!
-                                self.XcommentNumber4 = (commentTextValue4 as? String)!
-                            }
-                        }
-                    }
-            ////↑commentNumber1~4取得↑////
+//        //ログインされていることを確認する
+//        if let user = Auth.auth().currentUser {
+//
+//            ////↓odaiImageNumber1~4取得↓////
+//            let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
+//
+//            storageRefOdaiImage1.downloadURL { url, err in
+//
+//                if url != nil {
+//                    self.XodaiImage1 = url
+//                }
+//
+//            }
+//
+//            let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
+//
+//            storageRefOdaiImage2.downloadURL(completion: { url, err in
+//                self.XodaiImage2 = url
+//            })
+//
+//            let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3").child("\(user.uid).jpeg")
+//
+//            storageRefOdaiImage3.downloadURL(completion: { url, err in
+//                self.XodaiImage3 = url
+//            })
+//
+//            let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4").child("\(user.uid).jpeg")
+//
+//            storageRefOdaiImage4.downloadURL(completion: { url, err in
+//                self.XodaiImage4 = url
+//            })
+//            ////↑odaiImageNumber1~4取得↑////
+//
+//
+//
+//            ////↓commentNumber1~4取得↓////
+//            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
+//                        if let err = err {
+//                            print("Error getting documents: \(err)")
+//                        } else {
+//                            for document in querySnapshot!.documents {
+//                                let data = document.data()
+//                                let commentTextValue1 = data["commentNumber1"]
+//                                let commentTextValue2 = data["commentNumber2"]
+//                                let commentTextValue3 = data["commentNumber3"]
+//                                let commentTextValue4 = data["commentNumber4"]
+//                                self.XcommentNumber1 = (commentTextValue1 as? String)!
+//                                self.XcommentNumber2 = (commentTextValue2 as? String)!
+//                                self.XcommentNumber3 = (commentTextValue3 as? String)!
+//                                self.XcommentNumber4 = (commentTextValue4 as? String)!
+//                            }
+//                        }
+//                    }
+//            ////↑commentNumber1~4取得↑////
             
             //(odaiImage/comment)Number1~4をstructに入れる
-            
-            if XodaiImage1 != nil {
+            if (XodaiImage1 != nil && XodaiImage2 != nil) {
                 
                 let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
                 let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
                 let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
                 let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
             
-            kaitouArray += [XXX1, XXX2, XXX3, XXX4]
+                kaitouArray += [XXX1, XXX2, XXX3, XXX4]
+                print("kaitouArray.count:\(kaitouArray.count)")
             
-            odaiImageView.sd_setImage(with: XXX1.odaiImage1, completed: {_, _, _, imageUrl in
+                odaiImageView.sd_setImage(with: XXX1.odaiImage1, completed: {_, _, _, imageUrl in
             
                                 print("XXX1.odaiImage1:\(XXX1.odaiImage1)")
                                 print("imageUrl:\(imageUrl)")
@@ -163,9 +219,12 @@ class TimeLineViewController:
             
                             })
                 
+                commentTextView.text = XcommentNumber1
+                print("XXX1.commentNumber1:\(XXX1.commentNumber1)")
+                
             }
              
-            }
+//            }
             /////////////↑各UI部品に反映する↑///////////////
             
             
