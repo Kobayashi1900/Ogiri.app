@@ -96,7 +96,11 @@ class TimeLineViewController:
             let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
             
             storageRefOdaiImage1.downloadURL { url, err in
-                self.XodaiImage1 = url
+                
+                if url != nil {
+                    self.XodaiImage1 = url
+                }
+                                
             }
             
             let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
@@ -141,10 +145,13 @@ class TimeLineViewController:
             ////↑commentNumber1~4取得↑////
             
             //(odaiImage/comment)Number1~4をstructに入れる
-            let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
-            let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
-            let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
-            let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
+            
+            if XodaiImage1 != nil {
+                
+                let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
+                let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
+                let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
+                let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
             
             kaitouArray += [XXX1, XXX2, XXX3, XXX4]
             
@@ -155,6 +162,8 @@ class TimeLineViewController:
                                 print()
             
                             })
+                
+            }
              
             }
             /////////////↑各UI部品に反映する↑///////////////
