@@ -95,6 +95,18 @@ class TimeLineViewController:
                 }
         }
         ////↑commentNumber1~4取得↑////
+        
+        //(odaiImage/comment)Number1~4をstructに入れる
+            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
+                
+                let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
+                let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
+                let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
+                let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
+            
+                kaitouArray += [XXX1, XXX2, XXX3, XXX4]
+                print("kaitouArray.count:\(kaitouArray.count)")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,9 +124,9 @@ class TimeLineViewController:
     //セクションの中のセルの数(必須)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return kaitouArray.count
+//        return kaitouArray.count
 //        return 1
-//        return 4
+        return 4
         
     }
 
@@ -131,30 +143,28 @@ class TimeLineViewController:
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
-            //(odaiImage/comment)Number1~4をstructに入れる
-            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
-                
-                let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
-                let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
-                let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
-                let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
+//            //(odaiImage/comment)Number1~4をstructに入れる
+//            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
+//
+//                let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
+//                let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
+//                let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
+//                let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
+//
+//                kaitouArray += [XXX1, XXX2, XXX3, XXX4]
+//                print("kaitouArray.count:\(kaitouArray.count)")
+//        }
             
-                kaitouArray += [XXX1, XXX2, XXX3, XXX4]
-                print("kaitouArray.count:\(kaitouArray.count)")
-            
-                odaiImageView.sd_setImage(with: XXX1.odaiImage1, completed: {_, _, _, imageUrl in
-            
-                                print("XXX1.odaiImage1:\(XXX1.odaiImage1)")
-                                print("imageUrl:\(imageUrl)")
-                                print()
-            
-                            })
-                
-                commentTextView.text = XcommentNumber1
-                print("XXX1.commentNumber1:\(XXX1.commentNumber1)")
-                
-            }
-            
+//                odaiImageView.sd_setImage(with: XXX1.odaiImage1, completed: {_, _, _, imageUrl in
+//
+//                                print("XXX1.odaiImage1:\(XXX1.odaiImage1)")
+//                                print("imageUrl:\(imageUrl)")
+//                                print()
+//
+//                            })
+//
+//                commentTextView.text = XcommentNumber1
+//                print("XXX1.commentNumber1:\(XXX1.commentNumber1)")
             
             
             
