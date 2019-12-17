@@ -155,15 +155,15 @@ class TimeLineViewController:
 //                print("kaitouArray.count:\(kaitouArray.count)")
 //        }
             
-//                odaiImageView.sd_setImage(with: XXX1.odaiImage1, completed: {_, _, _, imageUrl in
-//
-//                                print("XXX1.odaiImage1:\(XXX1.odaiImage1)")
-//                                print("imageUrl:\(imageUrl)")
-//                                print()
-//
-//                            })
-//
-//                commentTextView.text = XcommentNumber1
+        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row].odaiImage1, completed: {_, _, _, imageUrl in
+
+                                print("XXX1.odaiImage1:\(XXX1.odaiImage1)")
+                                print("imageUrl:\(imageUrl)")
+                                print()
+
+                            })
+
+                commentTextView.text = kaitouArray[indexPath.row].commentNumber1
 //                print("XXX1.commentNumber1:\(XXX1.commentNumber1)")
             
             
