@@ -28,7 +28,8 @@ class TimeLineViewController:
     var XcommentNumber3:String = ""  //
     var XcommentNumber4:String = ""  //
     
-    var kaitouArray = [Any]()
+//    var kaitouArray = [Any]()
+    var kaitouArray: [Kaitou] = []
     
     
    
@@ -99,12 +100,12 @@ class TimeLineViewController:
         //(odaiImage/comment)Number1~4をstructに入れる
             if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
                 
-                let XXX1 = kaitou1(odaiImage1: XodaiImage1!,commentNumber1: XcommentNumber1)
-                let XXX2 = kaitou2(odaiImage2: XodaiImage2!,commentNumber2: XcommentNumber2)
-                let XXX3 = kaitou3(odaiImage3: XodaiImage3!,commentNumber3: XcommentNumber3)
-                let XXX4 = kaitou4(odaiImage4: XodaiImage4!,commentNumber4: XcommentNumber4)
+                let XXX1 = Kaitou(odaiImage: XodaiImage1!,commentNumber: XcommentNumber1)
+                let XXX2 = Kaitou(odaiImage: XodaiImage2!,commentNumber: XcommentNumber2)
+                let XXX3 = Kaitou(odaiImage: XodaiImage3!,commentNumber: XcommentNumber3)
+                let XXX4 = Kaitou(odaiImage: XodaiImage4!,commentNumber: XcommentNumber4)
             
-                kaitouArray += [XXX1, XXX2, XXX3, XXX4]
+                kaitouArray = [XXX1, XXX2, XXX3, XXX4]
                 print("kaitouArray.count:\(kaitouArray.count)")
         }
     }

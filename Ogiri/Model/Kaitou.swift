@@ -8,38 +8,9 @@
 
 import Foundation
 
-struct kaitou1 {
-    
-    var odaiImage1:URL
-    var commentNumber1:String
-    
-    
-}
+//構造体は値型(値への参照ではなく値そのものを表す)
 
-
-struct kaitou2 {
-    
-    var odaiImage2:URL
-    var commentNumber2:String
-    
-    
-}
-
-
-struct kaitou3 {
-    
-    var odaiImage3:URL
-    var commentNumber3:String
-    
-    
-}
-
-
-struct kaitou4 {
-    
-    var odaiImage4:URL
-    var commentNumber4:String
-    
-    
-    
+struct Kaitou {
+    var odaiImage: URL
+    var commentNumber: String
 }
