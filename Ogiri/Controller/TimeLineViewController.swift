@@ -9,6 +9,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SDWebImage
+import GSS
 
 class TimeLineViewController:
       UIViewController,
