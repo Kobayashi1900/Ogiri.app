@@ -81,7 +81,7 @@ class SignUpViewController:
         Auth.auth().signInAnonymously() { (authResult, error) in
 
             let anonymousUser = authResult?.user
-            print(anonymousUser)
+            print(anonymousUser as Any)
 
         }
         

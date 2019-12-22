@@ -210,7 +210,7 @@ class MypageViewController:
         
                             let data = document.data()
                             let value = data["userName"]
-                            self.userNameTextField.text = value as! String
+                            self.userNameTextField.text = value as? String
                             print(data)
                             print(value ?? "取得失敗")
                         }

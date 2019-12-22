@@ -93,7 +93,7 @@ class PlayViewController: UIViewController {
     
     //配列"hits"のcountを取得し、0件とそうでない場合で処理を分ける
     private func result(response: DataResponse<Data>) {
-        let json :JSON = JSON(response.data)
+        let json :JSON = JSON(response.data as Any)
         let totalHitsCount = json ["hits"].array?.count
         
         print("totalHitsCount1=\(totalHitsCount)")

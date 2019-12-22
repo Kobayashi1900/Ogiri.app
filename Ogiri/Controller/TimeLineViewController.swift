@@ -9,7 +9,6 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import SDWebImage
-import GSS
 
 class TimeLineViewController:
       UIViewController,
@@ -96,26 +95,28 @@ class TimeLineViewController:
                     }
                 }
         }
-        ////↑commentNumber1~4取得↑////
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         //(odaiImage/comment)Number1~4をstructに入れる
             if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
-                
+
                 let XXX1 = Kaitou(odaiImage: XodaiImage1!,commentNumber: XcommentNumber1)
                 let XXX2 = Kaitou(odaiImage: XodaiImage2!,commentNumber: XcommentNumber2)
                 let XXX3 = Kaitou(odaiImage: XodaiImage3!,commentNumber: XcommentNumber3)
                 let XXX4 = Kaitou(odaiImage: XodaiImage4!,commentNumber: XcommentNumber4)
-            
+
                 kaitouArray = [XXX1, XXX2, XXX3, XXX4]
                 print("kaitouArray.count:\(kaitouArray.count)")
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
+
         self.timeLineTableView.reloadData()
-            
+
         }
+    
+    
 
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
