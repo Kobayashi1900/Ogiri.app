@@ -93,7 +93,7 @@ class TimeLineViewController:
                             self.XcommentNumber4 = (commentTextValue4 as? String)!
                         }
                     }
-                }
+                }////↑commentNumber1~4取得↑////
         }
     }
     
