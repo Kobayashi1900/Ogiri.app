@@ -29,7 +29,7 @@ class TimeLineViewController:
     var XcommentNumber4:String = ""  //
     
 //    var kaitouArray = [Any]()
-    var kaitouArray: [Kaitou] = []
+    var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
     
     
    
@@ -40,7 +40,6 @@ class TimeLineViewController:
 
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
-        kaitouArray:[Kaitou?] = [nil, nil, nil, nil]  //配列の初期化
         
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
@@ -209,16 +208,16 @@ class TimeLineViewController:
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
-        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row].odaiImage, completed: {_, _, _, imageUrl in
+        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
 
-            print("odaiImage:\(self.kaitouArray[indexPath.row].odaiImage)")
+            print("odaiImage:\(self.kaitouArray[indexPath.row]?.odaiImage)")
                                 print("imageUrl:\(imageUrl)")
                                 print()
 
                             })
 
-                commentTextView.text = kaitouArray[indexPath.row].commentNumber
-        print("commentNumber:\(kaitouArray[indexPath.row].commentNumber)")
+        commentTextView.text = kaitouArray[indexPath.row]?.commentNumber
+        print("commentNumber:\(kaitouArray[indexPath.row]?.commentNumber)")
             
             
             
