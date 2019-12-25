@@ -40,6 +40,7 @@ class TimeLineViewController:
 
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
+        kaitouArray:[Kaitou?] = [nil, nil, nil, nil]  //配列の初期化
         
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
@@ -51,27 +52,55 @@ class TimeLineViewController:
 
             if url != nil {
                 self.XodaiImage1 = url
+                if url != nil && !self.XcommentNumber1.isEmpty {
+                    // 構造体を所定の場所に保存
+                    self.kaitouArray[0] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber1)
+                    // データが埋まったので再描画をリクエスト
+                    self.timeLineTableView.reloadData()
+                }
             }
-
         }
 
         let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
 
-        storageRefOdaiImage2.downloadURL(completion: { url, err in
-            self.XodaiImage2 = url
-        })
+        storageRefOdaiImage2.downloadURL { url, err in
+            
+            if url != nil {
+                self.XodaiImage2 = url
+                if url != nil && !self.XcommentNumber2.isEmpty {
+                    // 構造体を所定の場所に保存
+                    self.kaitouArray[1] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber2)
+                    // データが埋まったので再描画をリクエスト
+                    self.timeLineTableView.reloadData()
+                }
+            }
+        }
         
         let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3").child("\(user.uid).jpeg")
 
-        storageRefOdaiImage3.downloadURL(completion: { url, err in
+        storageRefOdaiImage3.downloadURL { url, err in
+            
             self.XodaiImage3 = url
-        })
+            if url != nil && !self.XcommentNumber3.isEmpty {
+                // 構造体を所定の場所に保存
+                self.kaitouArray[2] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
+                // データが埋まったので再描画をリクエスト
+                self.timeLineTableView.reloadData()
+            }
+        }
 
         let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4").child("\(user.uid).jpeg")
 
-        storageRefOdaiImage4.downloadURL(completion: { url, err in
+        storageRefOdaiImage4.downloadURL { url, err in
+            
             self.XodaiImage4 = url
-        })
+            if url != nil && !self.XcommentNumber4.isEmpty {
+                // 構造体を所定の場所に保存
+                self.kaitouArray[3] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
+                // データが埋まったので再描画をリクエスト
+                self.timeLineTableView.reloadData()
+            }
+        }
         ////↑odaiImageNumber1~4取得↑////
         
         
@@ -87,10 +116,38 @@ class TimeLineViewController:
                             let commentTextValue2 = data["commentNumber2"]
                             let commentTextValue3 = data["commentNumber3"]
                             let commentTextValue4 = data["commentNumber4"]
+                            
                             self.XcommentNumber1 = (commentTextValue1 as? String)!
+                            if self.XodaiImage1 != nil && !self.XcommentNumber1.isEmpty {
+                                // 構造体を所定の場所に保存
+                                self.kaitouArray[0] = Kaitou(odaiImage: self.XodaiImage1!,commentNumber: self.XcommentNumber1)
+                                // データが埋まったので再描画をリクエスト
+                                self.timeLineTableView.reloadData()
+                            }
+                            
                             self.XcommentNumber2 = (commentTextValue2 as? String)!
+                            if self.XodaiImage2 != nil && !self.XcommentNumber2.isEmpty {
+                                // 構造体を所定の場所に保存
+                                self.kaitouArray[1] = Kaitou(odaiImage: self.XodaiImage2!,commentNumber: self.XcommentNumber2)
+                                // データが埋まったので再描画をリクエスト
+                                self.timeLineTableView.reloadData()
+                            }
+                            
                             self.XcommentNumber3 = (commentTextValue3 as? String)!
+                            if self.XodaiImage3 != nil && !self.XcommentNumber3.isEmpty {
+                                // 構造体を所定の場所に保存
+                                self.kaitouArray[2] = Kaitou(odaiImage: self.XodaiImage3!,commentNumber: self.XcommentNumber3)
+                                // データが埋まったので再描画をリクエスト
+                                self.timeLineTableView.reloadData()
+                            }
+                            
                             self.XcommentNumber4 = (commentTextValue4 as? String)!
+                            if self.XodaiImage4 != nil && !self.XcommentNumber4.isEmpty {
+                                // 構造体を所定の場所に保存
+                                self.kaitouArray[3] = Kaitou(odaiImage: self.XodaiImage4!,commentNumber: self.XcommentNumber4)
+                                // データが埋まったので再描画をリクエスト
+                                self.timeLineTableView.reloadData()
+                            }
                         }
                     }
                 }////↑commentNumber1~4取得↑////
@@ -101,18 +158,18 @@ class TimeLineViewController:
         super.viewWillAppear(animated)
 
         //(odaiImage/comment)Number1~4をstructに入れる
-            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
-
-                let XXX1 = Kaitou(odaiImage: XodaiImage1!,commentNumber: XcommentNumber1)
-                let XXX2 = Kaitou(odaiImage: XodaiImage2!,commentNumber: XcommentNumber2)
-                let XXX3 = Kaitou(odaiImage: XodaiImage3!,commentNumber: XcommentNumber3)
-                let XXX4 = Kaitou(odaiImage: XodaiImage4!,commentNumber: XcommentNumber4)
-
-                kaitouArray = [XXX1, XXX2, XXX3, XXX4]
-                print("kaitouArray.count:\(kaitouArray.count)")
-        }
-
-        self.timeLineTableView.reloadData()
+//            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
+//
+//                let XXX1 = Kaitou(odaiImage: XodaiImage1!,commentNumber: XcommentNumber1)
+//                let XXX2 = Kaitou(odaiImage: XodaiImage2!,commentNumber: XcommentNumber2)
+//                let XXX3 = Kaitou(odaiImage: XodaiImage3!,commentNumber: XcommentNumber3)
+//                let XXX4 = Kaitou(odaiImage: XodaiImage4!,commentNumber: XcommentNumber4)
+//
+//                kaitouArray = [XXX1, XXX2, XXX3, XXX4]
+//                print("kaitouArray.count:\(kaitouArray.count)")
+//        }
+//
+//        self.timeLineTableView.reloadData()
 
         }
     
@@ -138,6 +195,12 @@ class TimeLineViewController:
 
         //識別子がついたセルのサイズを変更する
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
+        
+        //配列が空の時
+        if kaitouArray[indexPath.row] == nil {
+            // データが存在していないので、セルに何もせずそのまま返却して終了。
+            return cell
+        }
         
         //Outlet接続できないため、タグでコンテンツを管理する(このメソッド内でのみ有効)
         let profileImageView = cell.viewWithTag(1) as! UIImageView
