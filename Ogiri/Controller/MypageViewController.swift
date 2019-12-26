@@ -28,12 +28,6 @@ class MypageViewController:
         userNameTextField.delegate = self
         getCollection()
         
-        if profileImageView.image == nil {
-            
-            profileImageView.image = UIImage(named: "Default")
-            
-        }
-        
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -217,44 +211,39 @@ class MypageViewController:
                     }
                 }
         
+        
+        
         //profileImageViewに登録した画像があればそれを表示
         //StorageのURLを参照
         let storageref = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(userID).jpeg")
-        
-        storageref.downloadURL(completion: { url, error in
-            
-//            self.profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
-//
-//                print("url:\(url)")
-//                print("imageUrl:\(imageUrl)")
-//                print()
-//
-//            })
-            
-            self.profileImageView.sd_setImage(with: url, completed: nil)
-            
-        })
+                
+            storageref.downloadURL(completion: { url, error in
+                
+                if url != nil {
                     
+                    self.profileImageView.sd_setImage(with: url, completed: nil)
+                    
+                }else{
+                    self.profileImageView.image = UIImage(named: "Default")
+                }
+            })
     }
     
-    //プロフィール画像を更新する前に以前の画像を消す
-    func deletePreviousProfileImage () {
-        
-        // ログインされていること確認する
-        guard let user = Auth.auth().currentUser else { return }
-        
-        let desertRef = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
-        let desertImageRef = desertRef.child("profileImage").child("\(user.uid).jpeg")
-        
-        desertImageRef.delete {error in
-            if let error = error {
-              print("画像を削除でエラー")
-            } else {
-              print("画像を削除成功")
-            }
-            
-        }
-        
-    }
-    
+//    //プロフィール画像を更新する前に以前の画像を消す
+//    func deletePreviousProfileImage () {
+//
+//        // ログインされていること確認する
+//        guard let user = Auth.auth().currentUser else { return }
+//
+//        let desertRef = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
+//        let desertImageRef = desertRef.child("profileImage").child("\(user.uid).jpeg")
+//
+//        desertImageRef.delete {error in
+//            if let error = error {
+//              print("画像を削除でエラー")
+//            } else {
+//              print("画像を削除成功")
+//            }
+//        }
+//    }
 }

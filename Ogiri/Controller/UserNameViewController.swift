@@ -43,13 +43,13 @@ class UserNameViewController:
     
     
     @IBAction func next(_ sender: Any) {
-        
           addProfile()
-//        addAdaLovelace()
-//        addAlanTuring()
-//        getCollection()
         
-        
+        //navigationControllerでPlayViewControllerへ画面遷移
+        let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
+        tabbarController.selectedIndex = 1
+        self.navigationController?.pushViewController(tabbarController, animated: true)
+//        self.navigationController?.pushViewController(tabbarController, animated: true)
     }
     
     private func validate() {
@@ -59,7 +59,6 @@ class UserNameViewController:
                     
                     self.nextButton.isEnabled = false
                       return
-                      
             }
         
             // 文字数が0の場合(""空文字)次へを非活性に
@@ -67,12 +66,10 @@ class UserNameViewController:
               
                 self.nextButton.isEnabled = false
                 return
-              
             }
             
             // nilでないかつ0文字以上は次へを活性に
             self.nextButton.isEnabled = true
-        
     }
     
     
@@ -121,69 +118,7 @@ class UserNameViewController:
                     }
                 }
             }
-    
         }
-    
-//    //Firestore  新しいコレクションとドキュメントを作成
-//    private func addAdaLovelace() {
-//
-//        var ref: DocumentReference? = nil
-//
-//        ref = db.collection("users").addDocument(data: [
-//            "first": "Ada",
-//            "last": "Lovelace",
-//            "born": 1815
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-//
-//    }
-    
-//    //Firestore  別のドキュメントをusersコレクションに追加
-//    private func addAlanTuring() {
-//
-//        var ref: DocumentReference? = nil
-//
-//        ref = db.collection("users").addDocument(data: [
-//            "first": "Alan",
-//            "middle": "Mathison",
-//            "last": "Turing",
-//            "born": 1912
-//        ]) { err in
-//            if let err = err {
-//                print("Error adding document: \(err)")
-//            } else {
-//                print("Document added with ID: \(ref!.documentID)")
-//            }
-//        }
-//
-//    }
-    
-    
-//    //Firestore  コレクション全体を取得
-//    private func getCollection() {
-//
-//        db.collection("users").getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//
-//                    let data = document.data()
-//                    let value = data["first"]
-//                    print(data)
-//                    print(value ?? "取得失敗")
-//                }
-//            }
-//        }
-//
-//    }
-    
    
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

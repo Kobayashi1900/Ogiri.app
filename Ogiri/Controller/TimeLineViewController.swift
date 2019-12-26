@@ -47,7 +47,6 @@ class TimeLineViewController:
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
             
-            
             //profileImageの取得
             storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
             
@@ -66,9 +65,6 @@ class TimeLineViewController:
                         print(data)
                         print(self.userNameValue ?? "取得失敗")
                         print(self.createdAtValue ?? "取得失敗")
-
-//                        userNameLabel.text = userNameValue as? String
-//                        createAtLabel.text = createdAtValue as? String
                     }
                 }
             }
@@ -231,9 +227,12 @@ class TimeLineViewController:
             
         //profileImageViewへの表示
         storagerefProfileImage?.downloadURL(completion: { url, err in
+//            if url == nil {
+//                profileImageView.image = UIImage(named: "Default")
+//            }
                 profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
 
-                    print("url:\(url)")
+                    print("profileurl:\(url)")
                     print("imageUrl:\(imageUrl)")
                 })
             })
