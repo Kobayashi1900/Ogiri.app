@@ -27,6 +27,9 @@ class TimeLineViewController:
     var XcommentNumber2:String = ""  //
     var XcommentNumber3:String = ""  //
     var XcommentNumber4:String = ""  //
+    var storagerefProfileImage:StorageReference? = nil  //プロフィール画像を取得するための変数
+    var userNameValue:Any?  //ユーザーネームを取得するための変数
+    var createdAtValue:Any? //投稿時間を取得するための変数
     
 //    var kaitouArray = [Any]()
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
@@ -43,6 +46,33 @@ class TimeLineViewController:
         
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
+            
+            
+            //profileImageの取得
+            storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
+            
+            
+            //userNameとcreateAtの取得
+            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+
+                        let data = document.data()
+                        self.userNameValue = data["userName"]
+                        self.createdAtValue = data["createdAt"]
+                        print(data)
+                        print(self.userNameValue ?? "取得失敗")
+                        print(self.createdAtValue ?? "取得失敗")
+
+//                        userNameLabel.text = userNameValue as? String
+//                        createAtLabel.text = createdAtValue as? String
+                    }
+                }
+            }
+            
 
         ////↓odaiImageNumber1~4取得↓////
         let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
@@ -99,8 +129,7 @@ class TimeLineViewController:
                 // データが埋まったので再描画をリクエスト
                 self.timeLineTableView.reloadData()
             }
-        }
-        ////↑odaiImageNumber1~4取得↑////
+        }////↑odaiImageNumber1~4取得↑////
         
         
         
@@ -208,50 +237,32 @@ class TimeLineViewController:
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
+        //odaiImageViewへの表示
         odaiImageView.sd_setImage(with: kaitouArray[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
 
             print("odaiImage:\(self.kaitouArray[indexPath.row]?.odaiImage)")
                                 print("imageUrl:\(imageUrl)")
-                                print()
-
                             })
-
+        
+        //commentTextViewへの表示
         commentTextView.text = kaitouArray[indexPath.row]?.commentNumber
         print("commentNumber:\(kaitouArray[indexPath.row]?.commentNumber)")
             
+            //profileImageViewへの表示
+        storagerefProfileImage?.downloadURL(completion: { url, err in
+                profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
+
+                    print("url:\(url)")
+                    print("imageUrl:\(imageUrl)")
+                })
+            })
+            
+        //userNameLabelとcreateAtLabelへの表示
+        userNameLabel.text = userNameValue as? String
+        createAtLabel.text = createdAtValue as? String
             
             
-            
-            
-            
-//            ////profileImageViewとodaiImageViewに表示////
-//            let storageref1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
-//
-//            let storageref2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
-//
-//            storageref1.downloadURL(completion: { url, err in
-//                profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
-//
-//                    print("url:\(url)")
-//                    print("imageUrl:\(imageUrl)")
-//                    print()
-//
-//                })
-//            })
-//
-//            storageref2.downloadURL(completion: { url, err in
-//                odaiImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
-//
-//                    print("url:\(url)")
-//                    print("imageUrl:\(imageUrl)")
-//                    print()
-//
-//                })
-//            })
-            
-            
-            
-//            ////userNameLabelとcommentTextViewXXXとcreatedAt////
+            ////userNameLabelとcommentTextViewXXXとcreatedAt////
 //            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
 //                        if let err = err {
 //                            print("Error getting documents: \(err)")
@@ -261,23 +272,17 @@ class TimeLineViewController:
 //
 //                                let data = document.data()
 //                                let userNameValue = data["userName"]
-//                                let commentTextValue = data["commentNumber1"]
 //                                let createdAtValue = data["createdAt"]
 //                                print(data)
 //                                print(userNameValue ?? "取得失敗")
-//                                print(commentTextValue ?? "取得失敗")
 //                                print(createdAtValue ?? "取得失敗")
 //
 //                                userNameLabel.text = userNameValue as? String
-//                                commentTextView.text = commentTextValue as? String
 //                                createAtLabel.text = createdAtValue as? String
 //
 //                            }
 //                        }
 //                    }
-//
-//        }
-        
 
         return cell
         
