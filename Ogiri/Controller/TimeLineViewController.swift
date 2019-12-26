@@ -184,21 +184,6 @@ class TimeLineViewController:
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        //(odaiImage/comment)Number1~4をstructに入れる
-//            if (XodaiImage1 != nil && XodaiImage2 != nil && XodaiImage3 != nil && XodaiImage4 != nil) {
-//
-//                let XXX1 = Kaitou(odaiImage: XodaiImage1!,commentNumber: XcommentNumber1)
-//                let XXX2 = Kaitou(odaiImage: XodaiImage2!,commentNumber: XcommentNumber2)
-//                let XXX3 = Kaitou(odaiImage: XodaiImage3!,commentNumber: XcommentNumber3)
-//                let XXX4 = Kaitou(odaiImage: XodaiImage4!,commentNumber: XcommentNumber4)
-//
-//                kaitouArray = [XXX1, XXX2, XXX3, XXX4]
-//                print("kaitouArray.count:\(kaitouArray.count)")
-//        }
-//
-//        self.timeLineTableView.reloadData()
-
         }
     
     
@@ -211,11 +196,7 @@ class TimeLineViewController:
 
     //セクションの中のセルの数(必須)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return kaitouArray.count
-//        return 1
-//        return 4
-        
     }
 
     //セルをどうやって構築するか(必須)
@@ -248,7 +229,7 @@ class TimeLineViewController:
         commentTextView.text = kaitouArray[indexPath.row]?.commentNumber
         print("commentNumber:\(kaitouArray[indexPath.row]?.commentNumber)")
             
-            //profileImageViewへの表示
+        //profileImageViewへの表示
         storagerefProfileImage?.downloadURL(completion: { url, err in
                 profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
 
@@ -261,31 +242,7 @@ class TimeLineViewController:
         userNameLabel.text = userNameValue as? String
         createAtLabel.text = createdAtValue as? String
             
-            
-            ////userNameLabelとcommentTextViewXXXとcreatedAt////
-//            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
-//                        if let err = err {
-//                            print("Error getting documents: \(err)")
-//                        } else {
-//                            for document in querySnapshot!.documents {
-//                                print("\(document.documentID) => \(document.data())")
-//
-//                                let data = document.data()
-//                                let userNameValue = data["userName"]
-//                                let createdAtValue = data["createdAt"]
-//                                print(data)
-//                                print(userNameValue ?? "取得失敗")
-//                                print(createdAtValue ?? "取得失敗")
-//
-//                                userNameLabel.text = userNameValue as? String
-//                                createAtLabel.text = createdAtValue as? String
-//
-//                            }
-//                        }
-//                    }
-
         return cell
-        
     }
     
     //セルの高さ
