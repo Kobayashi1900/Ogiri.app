@@ -227,14 +227,15 @@ class TimeLineViewController:
             
         //profileImageViewへの表示
         storagerefProfileImage?.downloadURL(completion: { url, err in
-//            if url == nil {
-//                profileImageView.image = UIImage(named: "Default")
-//            }
+            if url != nil {
                 profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
 
                     print("profileurl:\(url)")
                     print("imageUrl:\(imageUrl)")
                 })
+            }else{
+                profileImageView.image = UIImage(named: "Default")
+            }
             })
             
         //userNameLabelとcreateAtLabelへの表示
