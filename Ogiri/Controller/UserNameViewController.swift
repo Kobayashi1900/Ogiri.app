@@ -49,7 +49,6 @@ class UserNameViewController:
         let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
         tabbarController.selectedIndex = 1
         self.navigationController?.pushViewController(tabbarController, animated: true)
-//        self.navigationController?.pushViewController(tabbarController, animated: true)
     }
     
     private func validate() {
