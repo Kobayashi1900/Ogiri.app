@@ -8,7 +8,7 @@
 
 import UIKit
 import Firebase
-//import FirebaseFirestore
+import FirebaseFirestore
 
 
 class SignUpViewController:
@@ -86,22 +86,23 @@ class SignUpViewController:
             let anonymousUser = authResult?.user
             print(anonymousUser as Any)
             
-//            var ref: DocumentReference? = nil
-//
-//            // ログインされていること確認する
-//            guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
-//
-//                ref = self.db.collection("users").document(userID)
-//
-//                //TLで匿名ユーザーのみを取得するために「"Anonymous": true」というフィールドを追加
-//                ref?.setData (["Anonymous": true], merge: true) { error in
-//
-//                    if let error = error {
-//                        print("Error setData document: \(error)")
-//                    } else {
-//                        print("Document successfully setData")
-//                    }
-//                }
+            let db = Firestore.firestore()  //匿名ユーザーのドキュメントを追加するために定義(これで匿名ユーザーをTLで取得できるようになる)
+            var ref: DocumentReference? = nil
+
+            // ログインされていること確認する
+            guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
+
+                ref = db.collection("users").document(userID)
+
+                //TLで匿名ユーザーのみを取得するために「"Anonymous": true」というフィールドを追加
+                ref?.setData (["Anonymous": true], merge: true) { error in
+
+                    if let error = error {
+                        print("Error setData document: \(error)")
+                    } else {
+                        print("Document successfully setData")
+                    }
+                }
         }
         
         //navigationControllerで画面遷移
