@@ -249,4 +249,30 @@ class TimeLineViewController:
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.size.height/2
     }
+    
+    
+    
+//    private func anonymousUserDisplay() {
+//
+//        //createAtの取得
+//        db.collection("users").whereField("emailAddress", isEqualTo: nil).getDocuments() { (querySnapshot, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                for document in querySnapshot!.documents {
+//                    print("\(document.documentID) => \(document.data())")
+//
+//                    let data = document.data()
+//                    self.userNameValue = data["userName"]
+//                    self.createdAtValue = data["createdAt"]
+//                    print(data)
+//                    print(self.userNameValue ?? "取得失敗")
+//                    print(self.createdAtValue ?? "取得失敗")
+//                }
+//            }
+//        }
+//    }
+    
+    
+    
 }

@@ -82,7 +82,7 @@
                                 <rect key="frame" x="37" y="198" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 <connections>
                                     <action selector="emailEditChanged:" destination="L9B-HH-dRX" eventType="editingChanged" id="Y6E-cK-gRS"/>
                                 </connections>
@@ -91,7 +91,7 @@
                                 <rect key="frame" x="37" y="348" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordEditChanged:" destination="L9B-HH-dRX" eventType="editingChanged" id="ssS-x2-DnG"/>
                                 </connections>
@@ -145,7 +145,7 @@
                                 <rect key="frame" x="37.666666666666629" y="225" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 <connections>
                                     <action selector="emailEditChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="s5J-XR-ay0"/>
                                 </connections>
@@ -154,7 +154,7 @@
                                 <rect key="frame" x="37.666666666666629" y="317" width="300" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="passwordEditChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="r1W-jH-WQ6"/>
                                 </connections>

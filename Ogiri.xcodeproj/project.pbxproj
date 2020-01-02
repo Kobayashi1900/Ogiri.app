@@ -17,7 +17,6 @@
 		BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5686ED2313062500BB196C /* LaunchScreen.storyboard */; };
 		BC5686FA2313062500BB196C /* OgiriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5686F92313062500BB196C /* OgiriTests.swift */; };
 		BC5687052313062600BB196C /* OgiriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5687042313062600BB196C /* OgiriUITests.swift */; };
-		BC8B24322345C10300138327 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC8B24312345C10300138327 /* GoogleService-Info.plist */; };
 		BC8B2442234B138400138327 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2441234B138400138327 /* PlayViewController.swift */; };
 		BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2443234B266900138327 /* SignUpViewController.swift */; };
 		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
@@ -26,6 +25,7 @@
 		BC94336723723A1700C2DD27 /* WordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336623723A1700C2DD27 /* WordsList.swift */; };
 		BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC94336C23797CB400C2DD27 /* TableViewCell.swift */; };
 		BC94336F23797CB400C2DD27 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC94336D23797CB400C2DD27 /* TableViewCell.xib */; };
+		BC9CF55323BDD49C00BA022E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC9CF55223BDD49C00BA022E /* GoogleService-Info.plist */; };
 		BCAA57102366F31B00162C41 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAA570F2366F31B00162C41 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +67,6 @@
 		BC5687002313062500BB196C /* OgiriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgiriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5687042313062600BB196C /* OgiriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OgiriUITests.swift; sourceTree = "<group>"; };
 		BC5687062313062600BB196C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC8B24312345C10300138327 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC8B2441234B138400138327 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		BC8B2443234B266900138327 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +75,7 @@
 		BC94336623723A1700C2DD27 /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
 		BC94336C23797CB400C2DD27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BC94336D23797CB400C2DD27 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		BC9CF55223BDD49C00BA022E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCAA570F2366F31B00162C41 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F4749C0E2A615D5D035FA9 /* Pods-OgiriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriTests.debug.xcconfig"; path = "Target Support Files/Pods-OgiriTests/Pods-OgiriTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 				BC8B23E3234460A600138327 /* Controller */,
 				BC5686ED2313062500BB196C /* LaunchScreen.storyboard */,
 				BC5686F02313062500BB196C /* Info.plist */,
-				BC8B24312345C10300138327 /* GoogleService-Info.plist */,
+				BC9CF55223BDD49C00BA022E /* GoogleService-Info.plist */,
 			);
 			path = Ogiri;
 			sourceTree = "<group>";
@@ -328,11 +328,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC8B24322345C10300138327 /* GoogleService-Info.plist in Resources */,
 				BC94336F23797CB400C2DD27 /* TableViewCell.xib in Resources */,
 				BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */,
 				BC5686EC2313062500BB196C /* Assets.xcassets in Resources */,
 				BC5686EA2313062400BB196C /* Main.storyboard in Resources */,
+				BC9CF55323BDD49C00BA022E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
