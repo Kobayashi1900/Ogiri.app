@@ -23,7 +23,6 @@ class SignUpViewController:
     
     var emailText: String?
     var passwordText: String?
-//    let db = Firestore.firestore()  //匿名ユーザーのドキュメントを追加するために定義(これで匿名ユーザーをTLで取得できるようになる)
     
     
     override func viewDidLoad() {
@@ -86,7 +85,7 @@ class SignUpViewController:
             let anonymousUser = authResult?.user
             print(anonymousUser as Any)
             
-            let db = Firestore.firestore()  //匿名ユーザーのドキュメントを追加するために定義(これで匿名ユーザーをTLで取得できるようになる)
+            let db = Firestore.firestore()  //匿名ユーザーのドキュメントを追加するために定義(匿名ユーザーをTLで取得するために)
             var ref: DocumentReference? = nil
 
             // ログインされていること確認する

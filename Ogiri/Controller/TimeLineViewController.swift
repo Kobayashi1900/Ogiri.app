@@ -19,11 +19,11 @@ class TimeLineViewController:
     
     let db = Firestore.firestore()
     
-    var XodaiImage1:URL? = nil  //firebaseからDLした画像urlを代入する変数↓
+    var XodaiImage1:URL? = nil  //firebaseからDLした画像urlを代入する変数↓(登録済みカレントユーザー用)
     var XodaiImage2:URL? = nil  //
     var XodaiImage3:URL? = nil  //
     var XodaiImage4:URL? = nil  //
-    var XcommentNumber1:String = ""  //firebaseからDLしたコメントを代入する変数↓
+    var XcommentNumber1:String = ""  //firebaseからDLしたコメントを代入する変数↓(登録済みカレントユーザー用)
     var XcommentNumber2:String = ""  //
     var XcommentNumber3:String = ""  //
     var XcommentNumber4:String = ""  //
@@ -251,28 +251,18 @@ class TimeLineViewController:
     }
     
     
-    
-//    private func anonymousUserDisplay() {
-//
-//        //createAtの取得
-//        db.collection("users").whereField("emailAddress", isEqualTo: nil).getDocuments() { (querySnapshot, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                for document in querySnapshot!.documents {
-//                    print("\(document.documentID) => \(document.data())")
-//
-//                    let data = document.data()
-//                    self.userNameValue = data["userName"]
-//                    self.createdAtValue = data["createdAt"]
-//                    print(data)
-//                    print(self.userNameValue ?? "取得失敗")
-//                    print(self.createdAtValue ?? "取得失敗")
-//                }
-//            }
-//        }
-//    }
-    
-    
+    //匿名ユーザーのドキュメント取得
+    private func getAnonymousUser() {
+        
+        db.collection("cities").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+                    if let err = err {  //エラーなら
+                        print("Error getting documents: \(err)")
+                    } else {            ////エラーじゃないなら
+                        for document in querySnapshot!.documents {
+                            
+                        }
+                    }
+            }
+    }
     
 }
