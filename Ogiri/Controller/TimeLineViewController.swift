@@ -254,12 +254,12 @@ class TimeLineViewController:
     //匿名ユーザーのドキュメント取得
     private func getAnonymousUser() {
         
-        db.collection("cities").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+        db.collection("users").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
                     if let err = err {  //エラーなら
                         print("Error getting documents: \(err)")
                     } else {            ////エラーじゃないなら
                         for document in querySnapshot!.documents {
-                            
+                            print("\(document.documentID) => \(document.data())")
                         }
                     }
             }
