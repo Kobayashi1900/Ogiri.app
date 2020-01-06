@@ -29,7 +29,7 @@ class TimeLineViewController:
     var XcommentNumber4:String = ""  //
     var storagerefProfileImage:StorageReference? = nil  //プロフィール画像を取得するための変数
     var userNameValue:Any?  //ユーザーネームを取得するための変数
-    var createdAtValue:Any? //投稿時間を取得するための変数
+    var postedAt:Any? //投稿時間を取得するための変数
     
 //    var kaitouArray = [Any]()
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
@@ -51,7 +51,7 @@ class TimeLineViewController:
             storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
             
             
-            //userNameとcreateAtの取得
+            //userNameとpostedAtの取得
             db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
@@ -61,10 +61,10 @@ class TimeLineViewController:
 
                         let data = document.data()
                         self.userNameValue = data["userName"]
-                        self.createdAtValue = data["createdAt"]
+                        self.postedAt = data["postedAt"]
                         print(data)
                         print(self.userNameValue ?? "取得失敗")
-                        print(self.createdAtValue ?? "取得失敗")
+                        print(self.postedAt ?? "取得失敗")
                     }
                 }
             }
@@ -210,7 +210,7 @@ class TimeLineViewController:
         //Outlet接続できないため、タグでコンテンツを管理する(このメソッド内でのみ有効)
         let profileImageView = cell.viewWithTag(1) as! UIImageView
         let userNameLabel = cell.viewWithTag(2) as! UILabel
-        let createAtLabel = cell.viewWithTag(3) as! UILabel
+        let postedAtLabel = cell.viewWithTag(3) as! UILabel
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
@@ -238,9 +238,9 @@ class TimeLineViewController:
             }
             })
             
-        //userNameLabelとcreateAtLabelへの表示
+        //userNameLabelとpostedAtLabelへの表示
         userNameLabel.text = userNameValue as? String
-        createAtLabel.text = createdAtValue as? String
+        postedAtLabel.text = postedAt as? String
             
         return cell
     }
