@@ -383,7 +383,7 @@ class PlayViewController: UIViewController {
             }
             
             ref?.setData ([
-                "createdAt": date], merge: true) { error in
+                "postedAt": date], merge: true) { error in
 
                 if let error = error {
                     print("Error setData document: \(error)")

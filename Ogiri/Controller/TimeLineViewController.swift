@@ -251,18 +251,31 @@ class TimeLineViewController:
     }
     
     
-    //匿名ユーザーのドキュメント取得
-    private func getAnonymousUser() {
+//    //匿名ユーザーのドキュメント取得
+//    private func getAnonymousUser() {
+//
+//        db.collection("users").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+//                    if let err = err {  //エラーなら
+//                        print("Error getting documents: \(err)")
+//                    } else {            ////エラーじゃないなら
+//                        for document in querySnapshot!.documents {
+//                            print("\(document.documentID) => \(document.data())")
+//                        }
+//                    }
+//            }
+//    }
+    
+    private func getUsers() {
         
-        db.collection("users").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
-                    if let err = err {  //エラーなら
-                        print("Error getting documents: \(err)")
-                    } else {            ////エラーじゃないなら
-                        for document in querySnapshot!.documents {
-                            print("\(document.documentID) => \(document.data())")
-                        }
-                    }
+        db.collection("users").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
             }
+        }
     }
     
 }
