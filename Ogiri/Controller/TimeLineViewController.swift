@@ -30,6 +30,7 @@ class TimeLineViewController:
     var storagerefProfileImage:StorageReference? = nil  //プロフィール画像を取得するための変数
     var userNameValue:Any?  //ユーザーネームを取得するための変数
     var postedAt:Any? //投稿時間を取得するための変数
+    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate
     
 //    var kaitouArray = [Any]()
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
@@ -40,9 +41,16 @@ class TimeLineViewController:
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
+        
+        if appDelegate.nameText != nil {
+            //登録ユーザーの場合
+            print("登録ユーザー")
+        }else{
+            //匿名の場合
+            print("匿名ユーザー")
+        }
         
         //ログインされていることを確認する
         if let user = Auth.auth().currentUser {
