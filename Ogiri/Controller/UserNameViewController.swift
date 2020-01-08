@@ -18,10 +18,10 @@ class UserNameViewController:
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
-    var appDelegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate//AppDelegateのインスタンスを取得
     let db = Firestore.firestore()
     var emailText2: String?
     var passwordText2: String?
+    var nameText:String?
     
     
     override func viewDidLoad() {
@@ -35,7 +35,7 @@ class UserNameViewController:
     
     @IBAction func nameEditChanged(_ sender: UITextField) {
         
-        appDelegate.nameText = sender.text
+        nameText = sender.text
         self.validate()
     }
     
@@ -53,7 +53,7 @@ class UserNameViewController:
     private func validate() {
         
         // nilの場合は「次へ」を非活性に
-            guard let nameTxt = appDelegate.nameText else {
+            guard let nameTxt = nameText else {
                     
                     self.nextButton.isEnabled = false
                       return
