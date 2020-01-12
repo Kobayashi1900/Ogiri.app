@@ -19,18 +19,17 @@ class TimeLineViewController:
     
     let db = Firestore.firestore()
     
-    var XodaiImage1:URL? = nil  //firebaseからDLした画像urlを代入する変数↓(登録済みカレントユーザー用)
+    var XodaiImage1:URL? = nil  //firebaseからDLした画像urlを代入する変数
     var XodaiImage2:URL? = nil  //
     var XodaiImage3:URL? = nil  //
     var XodaiImage4:URL? = nil  //
-    var XcommentNumber1:String = ""  //firebaseからDLしたコメントを代入する変数↓(登録済みカレントユーザー用)
+    var XcommentNumber1:String = ""  //firebaseからDLしたコメントを代入する変数
     var XcommentNumber2:String = ""  //
     var XcommentNumber3:String = ""  //
     var XcommentNumber4:String = ""  //
     var storagerefProfileImage:StorageReference? = nil  //プロフィール画像を取得するための変数
     var userNameValue:Any?  //ユーザーネームを取得するための変数
     var postedAt:Any? //投稿時間を取得するための変数
-    var anonymousOrRegister:String?  //匿名ユーザーか登録ユーザーか条件分岐させるため。
     
 //    var kaitouArray = [Any]()
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
@@ -43,14 +42,7 @@ class TimeLineViewController:
         super.viewDidLoad()
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
-//        getAnonymousOrRegister()
-//        if anonymousOrRegister != nil {
-//            //登録ユーザーの場合
-//            print("登録ユーザー")
-//        }else{
-//            //匿名の場合
-//            print("匿名ユーザー")
-//        }
+
         
 //        getUsers()
 //        getusers2()
@@ -198,10 +190,25 @@ class TimeLineViewController:
         
         ///////////////////ログインされていることを確認する
         if let user = Auth.auth().currentUser {
+//
+//            if user.isAnonymous == true {
+//                print("匿名ユーザー")
+//            }else{
+//                print("登録ユーザー")
+//            }
 
-        //profileImageの取得
+            //profileImageの取得
             storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage")
             
+            storagerefProfileImage?.listAll(completion: { (StorageListResult, error) in
+                if let error = error {
+                    print(".listAllのエラー:\(error)")
+                } else {
+                    for ref in StorageListResult.items {
+                        print("プロフ画:\(ref)")
+                    }
+                }
+            })//全ユーザーのprofileImageは取得できてる
 
 
             //userNameとpostedAtの取得
@@ -220,13 +227,23 @@ class TimeLineViewController:
                         print("postedAt:\(self.postedAt ?? "取得失敗")" )
                     }
                 }
-            }
+            }//全ユーザーのuserNameとpostedAtは取得できてる
 
 
         ////↓odaiImageNumber1~4取得↓////
         let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1")
+            
+            storageRefOdaiImage1.listAll(completion: { (StorageListResult, error) in
+                if let error = error {
+                    print(".listAllのエラー:\(error)")
+                    } else {
+                    for ref in StorageListResult.items {
+                            print("1題目の画像:\(ref)")
+                        }
+                    }
+            })//全ユーザーの1題目の画像(odaiImageNumber1)は取得できてる
 
-        storageRefOdaiImage1.downloadURL { url, err in
+        storageRefOdaiImage1.downloadURL { url, err in  //「url」 = 画像のurl つまり「user.uid.jpeg」
 
             if url != nil {
                 self.XodaiImage1 = url
