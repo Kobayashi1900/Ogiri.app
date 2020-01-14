@@ -250,7 +250,7 @@ class TimeLineViewController:
                 print("XodaiImage1:\(String(describing: self.XodaiImage1))")
                 if url != nil && !self.XcommentNumber1.isEmpty {
                     // 構造体を所定の場所に保存
-                    self.kaitouArray[0] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber1)
+                    self.kaitouArray[0] = Kaitou(odaiImage: url!,comment: self.XcommentNumber1)
                     // データが埋まったので再描画をリクエスト
                     self.timeLineTableView.reloadData()
                 }
@@ -266,7 +266,7 @@ class TimeLineViewController:
                 print("XodaiImage2:\(String(describing: self.XodaiImage2))")
                 if url != nil && !self.XcommentNumber2.isEmpty {
                     // 構造体を所定の場所に保存
-                    self.kaitouArray[1] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber2)
+                    self.kaitouArray[1] = Kaitou(odaiImage: url!,comment: self.XcommentNumber2)
                     // データが埋まったので再描画をリクエスト
                     self.timeLineTableView.reloadData()
                 }
@@ -282,7 +282,7 @@ class TimeLineViewController:
                 print("XodaiImage3:\(String(describing: self.XodaiImage3))")
                 if url != nil && !self.XcommentNumber3.isEmpty {
                     // 構造体を所定の場所に保存
-                    self.kaitouArray[2] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
+                    self.kaitouArray[2] = Kaitou(odaiImage: url!,comment: self.XcommentNumber3)
                     // データが埋まったので再描画をリクエスト
                     self.timeLineTableView.reloadData()
                 }
@@ -298,7 +298,7 @@ class TimeLineViewController:
                 print("XodaiImage4:\(String(describing: self.XodaiImage4))")
                 if url != nil && !self.XcommentNumber4.isEmpty {
                     // 構造体を所定の場所に保存
-                    self.kaitouArray[3] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
+                    self.kaitouArray[3] = Kaitou(odaiImage: url!,comment: self.XcommentNumber3)
                     // データが埋まったので再描画をリクエスト
                     self.timeLineTableView.reloadData()
                 }
@@ -323,7 +323,7 @@ class TimeLineViewController:
                             if self.XodaiImage1 != nil && !self.XcommentNumber1.isEmpty {
                                 print("XcommentNumber1:\(String(describing: self.XcommentNumber1))")
                                 // 構造体を所定の場所に保存
-                                self.kaitouArray[0] = Kaitou(odaiImage: self.XodaiImage1!,commentNumber: self.XcommentNumber1)
+                                self.kaitouArray[0] = Kaitou(odaiImage: self.XodaiImage1!,comment: self.XcommentNumber1)
                                 // データが埋まったので再描画をリクエスト
                                 self.timeLineTableView.reloadData()
                             }
@@ -331,7 +331,7 @@ class TimeLineViewController:
                             self.XcommentNumber2 = (commentTextValue2 as? String)!
                             if self.XodaiImage2 != nil && !self.XcommentNumber2.isEmpty {
                                 // 構造体を所定の場所に保存
-                                self.kaitouArray[1] = Kaitou(odaiImage: self.XodaiImage2!,commentNumber: self.XcommentNumber2)
+                                self.kaitouArray[1] = Kaitou(odaiImage: self.XodaiImage2!,comment: self.XcommentNumber2)
                                 // データが埋まったので再描画をリクエスト
                                 self.timeLineTableView.reloadData()
                             }
@@ -339,7 +339,7 @@ class TimeLineViewController:
                             self.XcommentNumber3 = (commentTextValue3 as? String)!
                             if self.XodaiImage3 != nil && !self.XcommentNumber3.isEmpty {
                                 // 構造体を所定の場所に保存
-                                self.kaitouArray[2] = Kaitou(odaiImage: self.XodaiImage3!,commentNumber: self.XcommentNumber3)
+                                self.kaitouArray[2] = Kaitou(odaiImage: self.XodaiImage3!,comment: self.XcommentNumber3)
                                 // データが埋まったので再描画をリクエスト
                                 self.timeLineTableView.reloadData()
                             }
@@ -347,7 +347,7 @@ class TimeLineViewController:
                             self.XcommentNumber4 = (commentTextValue4 as? String)!
                             if self.XodaiImage4 != nil && !self.XcommentNumber4.isEmpty {
                                 // 構造体を所定の場所に保存
-                                self.kaitouArray[3] = Kaitou(odaiImage: self.XodaiImage4!,commentNumber: self.XcommentNumber4)
+                                self.kaitouArray[3] = Kaitou(odaiImage: self.XodaiImage4!,comment: self.XcommentNumber4)
                                 // データが埋まったので再描画をリクエスト
                                 self.timeLineTableView.reloadData()
                             }
@@ -403,8 +403,8 @@ class TimeLineViewController:
                             })
         
         //commentTextViewへの表示
-        commentTextView.text = kaitouArray[indexPath.row]?.commentNumber
-        print("commentNumber:\(kaitouArray[indexPath.row]?.commentNumber)")
+        commentTextView.text = kaitouArray[indexPath.row]?.comment
+        print("commentNumber:\(kaitouArray[indexPath.row]?.comment)")
             
         //profileImageViewへの表示
         storagerefProfileImage?.downloadURL(completion: { url, err in
