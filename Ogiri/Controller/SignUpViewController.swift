@@ -94,8 +94,10 @@ class SignUpViewController:
                 ref = db.collection("users").document(userID)
 
                 //TLで匿名ユーザーのみを取得するために「"Anonymous": true」というフィールドを追加
-                ref?.setData (["Anonymous": true], merge: true) { error in
-
+                ref?.setData([
+                    "uid": userID,
+                    "userName": "匿名ユーザー"
+                ], merge: true) { error in
                     if let error = error {
                         print("Error setData document: \(error)")
                     } else {

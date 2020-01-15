@@ -13,4 +13,5 @@ import Foundation
 struct Kaitou {
     var odaiImage: URL
     var comment: String
+    var uid:String
 }

@@ -372,7 +372,7 @@ class PlayViewController: UIViewController {
             ref = db.collection("users").document(userID)
             
             ref?.setData ([
-                "commentNumber\(commentNumber)": commentText], merge: true) { error in
+                "comment\(commentNumber)": commentText], merge: true) { error in
                     
                 if let error = error {
                     print("Error setData document: \(error)")
