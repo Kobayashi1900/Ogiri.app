@@ -32,7 +32,6 @@ class TimeLineViewController:
     var postedAt:Any? //firebaseからDLした投稿時間を取得するための変数
     var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
     
-//    var kaitouArray = [Any]()
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
     
     
@@ -43,150 +42,8 @@ class TimeLineViewController:
         super.viewDidLoad()
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
+        
 
-        
-//        getUsers()
-//        getusers2()
-        
-//        //ログインされていることを確認する
-//        if let user = Auth.auth().currentUser {
-//
-//            //profileImageの取得
-//            storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage").child("\(user.uid).jpeg")
-//
-//
-//            //userNameとpostedAtの取得
-//            db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
-//                if let err = err {
-//                    print("Error getting documents: \(err)")
-//                } else {
-//                    for document in querySnapshot!.documents {
-//                        print("\(document.documentID) => \(document.data())")
-//
-//                        let data = document.data()
-//                        self.userNameValue = data["userName"]
-//                        self.postedAt = data["postedAt"]
-//                        print(data)
-//                        print(self.userNameValue ?? "取得失敗")
-//                        print(self.postedAt ?? "取得失敗")
-//                    }
-//                }
-//            }
-//
-//
-//        ////↓odaiImageNumber1~4取得↓////
-//        let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1").child("\(user.uid).jpeg")
-//
-//        storageRefOdaiImage1.downloadURL { url, err in
-//
-//            if url != nil {
-//                self.XodaiImage1 = url
-//                print("XodaiImage1:\(String(describing: self.XodaiImage1))")
-//
-//                if url != nil && !self.XcommentNumber1.isEmpty {
-//                    // 構造体を所定の場所に保存
-//                    self.kaitouArray[0] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber1)
-//                    // データが埋まったので再描画をリクエスト
-//                    self.timeLineTableView.reloadData()
-//                }
-//            }
-//        }
-//
-//        let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2").child("\(user.uid).jpeg")
-//
-//        storageRefOdaiImage2.downloadURL { url, err in
-//
-//            if url != nil {
-//                self.XodaiImage2 = url
-//                print("XodaiImage2:\(String(describing: self.XodaiImage2))")
-//                if url != nil && !self.XcommentNumber2.isEmpty {
-//                    // 構造体を所定の場所に保存
-//                    self.kaitouArray[1] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber2)
-//                    // データが埋まったので再描画をリクエスト
-//                    self.timeLineTableView.reloadData()
-//                }
-//            }
-//        }
-//
-//        let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3").child("\(user.uid).jpeg")
-//
-//        storageRefOdaiImage3.downloadURL { url, err in
-//            if url != nil {
-//                self.XodaiImage3 = url
-//                print("XodaiImage3:\(String(describing: self.XodaiImage3))")
-//                if url != nil && !self.XcommentNumber3.isEmpty {
-//                    // 構造体を所定の場所に保存
-//                    self.kaitouArray[2] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
-//                    // データが埋まったので再描画をリクエスト
-//                    self.timeLineTableView.reloadData()
-//                }
-//            }
-//        }
-//
-//        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4").child("\(user.uid).jpeg")
-//
-//        storageRefOdaiImage4.downloadURL { url, err in
-//            if url != nil {
-//                self.XodaiImage4 = url
-//                print("XodaiImage4:\(String(describing: self.XodaiImage4))")
-//                if url != nil && !self.XcommentNumber4.isEmpty {
-//                    // 構造体を所定の場所に保存
-//                  self.kaitouArray[3] = Kaitou(odaiImage: url!,commentNumber: self.XcommentNumber3)
-//                    // データが埋まったので再描画をリクエスト
-//                    self.timeLineTableView.reloadData()
-//                }
-//            }
-//        }////↑odaiImageNumber1~4取得↑////
-//
-//
-//
-//        ////↓commentNumber1~4取得↓////
-//        db.collection("users").whereField("uid", isEqualTo: user.uid).getDocuments() { (querySnapshot, err) in
-//                    if let err = err {
-//                        print("Error getting documents: \(err)")
-//                    } else {
-//                        for document in querySnapshot!.documents {
-//                            let data = document.data()
-//                            let commentTextValue1 = data["commentNumber1"]
-//                            let commentTextValue2 = data["commentNumber2"]
-//                            let commentTextValue3 = data["commentNumber3"]
-//                            let commentTextValue4 = data["commentNumber4"]
-//
-//                            self.XcommentNumber1 = (commentTextValue1 as? String)!
-//                            if self.XodaiImage1 != nil && !self.XcommentNumber1.isEmpty {
-//                                // 構造体を所定の場所に保存
-//                                self.kaitouArray[0] = Kaitou(odaiImage: self.XodaiImage1!,commentNumber: self.XcommentNumber1)
-//                                // データが埋まったので再描画をリクエスト
-//                                self.timeLineTableView.reloadData()
-//                            }
-//
-//                            self.XcommentNumber2 = (commentTextValue2 as? String)!
-//                            if self.XodaiImage2 != nil && !self.XcommentNumber2.isEmpty {
-//                                // 構造体を所定の場所に保存
-//                                self.kaitouArray[1] = Kaitou(odaiImage: self.XodaiImage2!,commentNumber: self.XcommentNumber2)
-//                                // データが埋まったので再描画をリクエスト
-//                                self.timeLineTableView.reloadData()
-//                            }
-//
-//                            self.XcommentNumber3 = (commentTextValue3 as? String)!
-//                            if self.XodaiImage3 != nil && !self.XcommentNumber3.isEmpty {
-//                                // 構造体を所定の場所に保存
-//                                self.kaitouArray[2] = Kaitou(odaiImage: self.XodaiImage3!,commentNumber: self.XcommentNumber3)
-//                                // データが埋まったので再描画をリクエスト
-//                                self.timeLineTableView.reloadData()
-//                            }
-//
-//                            self.XcommentNumber4 = (commentTextValue4 as? String)!
-//                            if self.XodaiImage4 != nil && !self.XcommentNumber4.isEmpty {
-//                                // 構造体を所定の場所に保存
-//                                self.kaitouArray[3] = Kaitou(odaiImage: self.XodaiImage4!,commentNumber: self.XcommentNumber4)
-//                                // データが埋まったので再描画をリクエスト
-//                                self.timeLineTableView.reloadData()
-//                            }
-//                        }
-//                    }
-//                }////↑commentNumber1~4取得↑////
-//        }
         
         
         ///////////////////ログインされていることを確認する
@@ -451,22 +308,4 @@ class TimeLineViewController:
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.size.height/2
     }
-    
-    
-//    //匿名ユーザーのドキュメント取得
-//    private func getAnonymousUser() {
-//
-//        db.collection("users").whereField("Anonymous", isEqualTo: true).getDocuments() { (querySnapshot, err) in
-//                    if let err = err {  //エラーなら
-//                        print("Error getting documents: \(err)")
-//                    } else {            ////エラーじゃないなら
-//                        for document in querySnapshot!.documents {
-//                            print("\(document.documentID) => \(document.data())")
-//                        }
-//                    }
-//            }
-//    }
-    
-    
-    
 }
