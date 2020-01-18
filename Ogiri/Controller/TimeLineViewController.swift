@@ -33,7 +33,7 @@ class TimeLineViewController:
     var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
     
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
-    
+    var kaitouArray2: [Kaitou?] = []  //ユーザーの4つの回答のデータをまとめ、のちにkaitouArrayに入れる
     
    
     
