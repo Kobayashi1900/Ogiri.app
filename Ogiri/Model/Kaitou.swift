@@ -11,7 +11,6 @@ import Foundation
 //構造体は値型(値への参照ではなく値そのものを表す)
 
 struct Kaitou {
-    var odaiImage: URL
     var comment: String
     var uid: String
     var userName: String

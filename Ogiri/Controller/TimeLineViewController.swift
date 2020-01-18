@@ -33,7 +33,7 @@ class TimeLineViewController:
     var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
     
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
-    var kaitouArray2: [Kaitou?] = []  //ユーザーの4つの回答のデータをまとめ、のちにkaitouArrayに入れる
+    var kaitouArray2: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
     
    
     
@@ -81,13 +81,17 @@ class TimeLineViewController:
                         self.userNameValue = data["userName"]
                         self.postedAt = data["postedAt"]
                         self.Xuid = data["uid"]
+                        self.kaitouArray2 = Kaitou(comment: <#T##String#>,
+                                                   uid: self.Xuid as! String,
+                                                   userName: self.userNameValue as! String,
+                                                   postedAt: self.postedAt as! String)
                         print("data:\(data)")
                         print("userNameValue:\(self.userNameValue ?? "取得失敗")" )
                         print("postedAt:\(self.postedAt ?? "取得失敗")" )
                         print("Xuid:\(self.Xuid ?? "取得失敗")" )
                     }
                 }
-            }//全ユーザーのuserNameとpostedAtは取得できてる
+            }//全ユーザーのuserNameとpostedAtとuidは取得できてる
 
 
         ////↓odaiImageNumber1~4取得↓////
