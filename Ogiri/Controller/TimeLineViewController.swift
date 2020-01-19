@@ -69,8 +69,8 @@ class TimeLineViewController:
             })//全ユーザーのprofileImageは取得できてる
 
 
-            //userNameとpostedAtとuidの取得
-            db.collection("users").order(by: "postedAt",descending: true).limit(to: 100).getDocuments() { (querySnapshot, err) in
+            //userNameとpostedAtとuidとcomment1~4を取得し、配列kaitouArray2に格納
+            db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -78,20 +78,29 @@ class TimeLineViewController:
                         print("\(document.documentID) => \(document.data())")
 
                         let data = document.data()
-                        self.userNameValue = data["userName"]
-                        self.postedAt = data["postedAt"]
-                        self.Xuid = data["uid"]
-                        self.kaitouArray2 = Kaitou(comment: <#T##String#>,
-                                                   uid: self.Xuid as! String,
-                                                   userName: self.userNameValue as! String,
-                                                   postedAt: self.postedAt as! String)
-                        print("data:\(data)")
-                        print("userNameValue:\(self.userNameValue ?? "取得失敗")" )
-                        print("postedAt:\(self.postedAt ?? "取得失敗")" )
-                        print("Xuid:\(self.Xuid ?? "取得失敗")" )
+                        self.kaitouArray2.append(Kaitou(comment: data["comment1"] as! String,
+                                                        uid: data["uid"] as! String,
+                                                        userName: data["userName"] as! String,
+                                                        postedAt: data["postedAt"] as! String))
+                        
+                        self.kaitouArray2.append(Kaitou(comment: data["comment2"] as! String,
+                                                        uid: data["uid"] as! String,
+                                                        userName: data["userName"] as! String,
+                                                        postedAt: data["postedAt"] as! String))
+                        
+                        self.kaitouArray2.append(Kaitou(comment: data["comment3"] as! String,
+                                                        uid: data["uid"] as! String,
+                                                        userName: data["userName"] as! String,
+                                                        postedAt: data["postedAt"] as! String))
+                        
+                        self.kaitouArray2.append(Kaitou(comment: data["comment4"] as! String,
+                                                        uid: data["uid"] as! String,
+                                                        userName: data["userName"] as! String,
+                                                        postedAt: data["postedAt"] as! String))
                     }
+                    
                 }
-            }//全ユーザーのuserNameとpostedAtとuidは取得できてる
+            }
 
 
         ////↓odaiImageNumber1~4取得↓////
@@ -177,68 +186,7 @@ class TimeLineViewController:
                 }
             }
         }////↑odaiImageNumber1~4取得↑////
-
-
-
-        ////↓comment1~4取得↓////
-        db.collection("users").order(by: "postedAt",descending: true).limit(to: 100).getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in querySnapshot!.documents {
-                            let data = document.data()
-                            let commentTextValue1 = data["comment1"]
-                            let commentTextValue2 = data["comment2"]
-                            let commentTextValue3 = data["comment3"]
-                            let commentTextValue4 = data["comment4"]
-
-                            self.Xcomment1 = (commentTextValue1 as? String)!
-                            if self.XodaiImage1 != nil && !self.Xcomment1.isEmpty {
-                                print("Xcomment1:\(String(describing: self.Xcomment1))")
-                                // 構造体を所定の場所に保存
-                                self.kaitouArray[0] = Kaitou(odaiImage: self.XodaiImage1!,
-                                                             comment: self.Xcomment1,
-                                                             uid: self.Xuid as! String)
-                                // データが埋まったので再描画をリクエスト
-                                self.timeLineTableView.reloadData()
-                            }
-                            
-
-                            self.Xcomment2 = (commentTextValue2 as? String)!
-                            if self.XodaiImage2 != nil && !self.Xcomment2.isEmpty {
-                                // 構造体を所定の場所に保存
-                                self.kaitouArray[1] = Kaitou(odaiImage: self.XodaiImage2!,
-                                                             comment: self.Xcomment2,
-                                                             uid: self.Xuid as! String)
-                                // データが埋まったので再描画をリクエスト
-                                self.timeLineTableView.reloadData()
-                            }
-
-                            self.Xcomment3 = (commentTextValue3 as? String)!
-                            if self.XodaiImage3 != nil && !self.Xcomment3.isEmpty {
-                                // 構造体を所定の場所に保存
-                                self.kaitouArray[2] = Kaitou(odaiImage: self.XodaiImage3!,
-                                                             comment: self.Xcomment3,
-                                                             uid: self.Xuid as! String)
-                                // データが埋まったので再描画をリクエスト
-                                self.timeLineTableView.reloadData()
-                            }
-
-                            self.Xcomment4 = (commentTextValue4 as? String)!
-                            if self.XodaiImage4 != nil && !self.Xcomment4.isEmpty {
-                                // 構造体を所定の場所に保存
-                                self.kaitouArray[3] = Kaitou(odaiImage: self.XodaiImage4!,
-                                                             comment: self.Xcomment4,
-                                                             uid: self.Xuid as! String)
-                                // データが埋まったので再描画をリクエスト
-                                self.timeLineTableView.reloadData()
-                            }
-                        }
-                    }
-                }////↑comment1~4取得↑////
-
-    }
-        
+      }
     }
     
     override func viewWillAppear(_ animated: Bool) {
