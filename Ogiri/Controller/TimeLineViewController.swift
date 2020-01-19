@@ -28,9 +28,9 @@ class TimeLineViewController:
     var Xcomment3:String = ""  //
     var Xcomment4:String = ""  //
     var storagerefProfileImage:StorageReference? = nil  //storageからDLしたプロフィール画像を取得するための変数
-    var userNameValue:Any?  //firebaseからDLしたユーザーネームを取得するための変数
-    var postedAt:Any? //firebaseからDLした投稿時間を取得するための変数
-    var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
+//    var userNameValue:Any?  //firebaseからDLしたユーザーネームを取得するための変数
+//    var postedAt:Any? //firebaseからDLした投稿時間を取得するための変数
+//    var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
     
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
     var kaitouArray2: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
@@ -42,7 +42,7 @@ class TimeLineViewController:
         super.viewDidLoad()
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
-        
+        timeLineTableView.reloadData()
 
         
         
@@ -97,15 +97,15 @@ class TimeLineViewController:
                                                         uid: data["uid"] as! String,
                                                         userName: data["userName"] as! String,
                                                         postedAt: data["postedAt"] as! String))
+                        print("data:\(data)")
+                        print("kaitouArray2:\(self.kaitouArray2)")
                     }
-                    
                 }
             }
 
 
         ////↓odaiImageNumber1~4取得↓////
         let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1")
-            
             storageRefOdaiImage1.listAll(completion: { (StorageListResult, error) in
                 if let error = error {
                     print(".listAllのエラー:\(error)")
@@ -116,81 +116,52 @@ class TimeLineViewController:
                     }
             })//全ユーザーの1題目の画像(odaiImageNumber1)は取得できてる
 
-        storageRefOdaiImage1.downloadURL { url, err in  //「url」 = 画像のurl つまり「user.uid.jpeg」
-
-            if url != nil {
-                self.XodaiImage1 = url
-                print("XodaiImage1:\(String(describing: self.XodaiImage1))")
-                if url != nil && !self.Xcomment1.isEmpty {
-                    // 構造体を所定の場所に保存
-                    self.kaitouArray[0] = Kaitou(odaiImage: url!,
-                                                 comment: self.Xcomment1,
-                                                 uid: self.Xuid as! String)
-                    print("kaitouArray[0]:\(self.kaitouArray[0] as Any)")
-                    // データが埋まったので再描画をリクエスト
-                    self.timeLineTableView.reloadData()
-                }
-            }
-        }
+        
 
         let storageRefOdaiImage2 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber2")
-
-        storageRefOdaiImage2.downloadURL { url, err in
-
-            if url != nil {
-                self.XodaiImage2 = url
-                print("XodaiImage2:\(String(describing: self.XodaiImage2))")
-                if url != nil && !self.Xcomment2.isEmpty {
-                    // 構造体を所定の場所に保存
-                    self.kaitouArray[1] = Kaitou(odaiImage: url!,
-                                                 comment: self.Xcomment2,
-                                                 uid: self.Xuid as! String)
-                    // データが埋まったので再描画をリクエスト
-                    self.timeLineTableView.reloadData()
-                }
-            }
-        }
+            storageRefOdaiImage2.listAll(completion: { (StorageListResult, error) in
+                if let error = error {
+                    print(".listAllのエラー:\(error)")
+                    } else {
+                    for ref in StorageListResult.items {
+                            print("2題目の画像:\(ref)")
+                        }
+                    }
+            })//全ユーザーの2題目の画像(odaiImageNumber1)は取得できてる
+            
+            
+            
 
         let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3")
-
-        storageRefOdaiImage3.downloadURL { url, err in
-
-            if url != nil {
-                self.XodaiImage3 = url
-                print("XodaiImage3:\(String(describing: self.XodaiImage3))")
-                if url != nil && !self.Xcomment3.isEmpty {
-                    // 構造体を所定の場所に保存
-                    self.kaitouArray[2] = Kaitou(odaiImage: url!,
-                                                 comment: self.Xcomment3,
-                                                 uid: self.Xuid as! String)
-                    // データが埋まったので再描画をリクエスト
-                    self.timeLineTableView.reloadData()
-                }
-            }
-        }
-
+            storageRefOdaiImage3.listAll(completion: { (StorageListResult, error) in
+                if let error = error {
+                    print(".listAllのエラー:\(error)")
+                    } else {
+                    for ref in StorageListResult.items {
+                            print("3題目の画像:\(ref)")
+                        }
+                    }
+            })//全ユーザーの3題目の画像(odaiImageNumber1)は取得できてる
+            
+            
+            
+            
         let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4")
-
-        storageRefOdaiImage4.downloadURL { url, err in
-
-            if url != nil {
-                self.XodaiImage4 = url
-                print("XodaiImage4:\(String(describing: self.XodaiImage4))")
-                if url != nil && !self.Xcomment4.isEmpty {
-                    // 構造体を所定の場所に保存
-                    self.kaitouArray[3] = Kaitou(odaiImage: url!,
-                                                 comment: self.Xcomment3,
-                                                 uid: self.Xuid as! String)
-                    // データが埋まったので再描画をリクエスト
-                    self.timeLineTableView.reloadData()
-                }
-            }
-        }////↑odaiImageNumber1~4取得↑////
+           storageRefOdaiImage4.listAll(completion: { (StorageListResult, error) in
+                if let error = error {
+                    print(".listAllのエラー:\(error)")
+                    } else {
+                    for ref in StorageListResult.items {
+                            print("4題目の画像:\(ref)")
+                        }
+                    }
+            })//全ユーザーの4題目の画像(odaiImageNumber1)は取得できてる
       }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        timeLineTableView.reloadData()
         }
     
     
@@ -226,15 +197,15 @@ class TimeLineViewController:
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
         //odaiImageViewへの表示
-        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
-
-            print("odaiImage:\(self.kaitouArray[indexPath.row]?.odaiImage)")
-                                print("imageUrl:\(imageUrl)")
-                            })
+//        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
+//
+//            print("odaiImage:\(self.kaitouArray[indexPath.row]?.odaiImage)")
+//                                print("imageUrl:\(imageUrl)")
+//                            })
         
         //commentTextViewへの表示
-        commentTextView.text = kaitouArray[indexPath.row]?.comment
-        print("commentNumber:\(kaitouArray[indexPath.row]?.comment)")
+        commentTextView.text = kaitouArray2[indexPath.row]?.comment
+        print("comment:\(kaitouArray2[indexPath.row]?.comment)")
             
         //profileImageViewへの表示
         storagerefProfileImage?.downloadURL(completion: { url, err in
@@ -250,8 +221,9 @@ class TimeLineViewController:
             })
             
         //userNameLabelとpostedAtLabelへの表示
-        userNameLabel.text = userNameValue as? String
-        postedAtLabel.text = postedAt as? String
+        userNameLabel.text = self.kaitouArray2[indexPath.row]?.userName
+        postedAtLabel.text = self.kaitouArray2[indexPath.row]?.postedAt
+        print("postedAtLabel:\(postedAtLabel.text)")
             
         return cell
     }
