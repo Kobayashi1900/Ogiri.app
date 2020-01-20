@@ -28,9 +28,6 @@ class TimeLineViewController:
     var Xcomment3:String = ""  //
     var Xcomment4:String = ""  //
     var storagerefProfileImage:StorageReference? = nil  //storageからDLしたプロフィール画像を取得するための変数
-//    var userNameValue:Any?  //firebaseからDLしたユーザーネームを取得するための変数
-//    var postedAt:Any? //firebaseからDLした投稿時間を取得するための変数
-//    var Xuid:Any?  //firebaseからDLしたuidを取得するための変数
     
     var kaitouArray: [Kaitou?] = [nil, nil, nil, nil]
     var kaitouArray2: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
@@ -42,7 +39,6 @@ class TimeLineViewController:
         super.viewDidLoad()
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
-        timeLineTableView.reloadData()
 
         
         
@@ -100,6 +96,7 @@ class TimeLineViewController:
                         print("data:\(data)")
                         print("kaitouArray2:\(self.kaitouArray2)")
                     }
+                    self.timeLineTableView.reloadData()
                 }
             }
 
@@ -161,7 +158,6 @@ class TimeLineViewController:
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timeLineTableView.reloadData()
         }
     
     
@@ -184,7 +180,7 @@ class TimeLineViewController:
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
         
         //配列が空の時
-        if kaitouArray[indexPath.row] == nil {
+        if kaitouArray2[indexPath.row] == nil {
             // データが存在していないので、セルに何もせずそのまま返却して終了。
             return cell
         }
@@ -197,7 +193,7 @@ class TimeLineViewController:
         let commentTextView = cell.viewWithTag(5) as! UITextView
             
         //odaiImageViewへの表示
-//        odaiImageView.sd_setImage(with: kaitouArray[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
+//        odaiImageView.sd_setImage(with: kaitouArray2[indexPath.row]?.odaiImage, completed: {_, _, _, imageUrl in
 //
 //            print("odaiImage:\(self.kaitouArray[indexPath.row]?.odaiImage)")
 //                                print("imageUrl:\(imageUrl)")
