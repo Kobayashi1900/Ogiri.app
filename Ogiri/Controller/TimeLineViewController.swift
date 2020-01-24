@@ -23,10 +23,7 @@ class TimeLineViewController:
     var XodaiImage2:URL? = nil  //
     var XodaiImage3:URL? = nil  //
     var XodaiImage4:URL? = nil  //
-//    var Xcomment1:String = ""  //firebaseからDLしたコメントを代入する変数
-//    var Xcomment2:String = ""  //
-//    var Xcomment3:String = ""  //
-//    var Xcomment4:String = ""  //
+
     var storagerefProfileImage:StorageReference? = nil  //storageからDLしたプロフィール画像を取得するための変数
     
     var kaitouArray2: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
@@ -195,24 +192,17 @@ class TimeLineViewController:
             
         
         //odaiImageViewへの表示
-//        odaiImageView.sd_setImage(with: )
+//        odaiImageView.sd_setImage(with: URL(string: ("https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg")), completed: nil)
+        odaiImageView.sd_setImage(with: URL(string: ("\(kaitouArray2[indexPath.row]!.uid).jpeg")), completed: nil)
+        print("お題の画像:\(kaitouArray2[indexPath.row]!.uid).jpeg")
+        
         
         //commentTextViewへの表示
         commentTextView.text = kaitouArray2[indexPath.row]?.comment
         print("comment:\(kaitouArray2[indexPath.row]?.comment)")
             
         //profileImageViewへの表示
-        storagerefProfileImage?.downloadURL(completion: { url, err in
-            if url != nil {
-                profileImageView.sd_setImage(with: url, completed: {_, _, _, imageUrl in
-
-                    print("profileurl:\(url)")
-                    print("imageUrl:\(imageUrl)")
-                })
-            }else{
-                profileImageView.image = UIImage(named: "Default")
-            }
-            })
+//        profileImageView.sd_setImage(with: "\(kaitouArray2[indexPath.row]?.uid).jpeg")
             
         //userNameLabelとpostedAtLabelへの表示
         userNameLabel.text = self.kaitouArray2[indexPath.row]?.userName
