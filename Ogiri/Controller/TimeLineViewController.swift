@@ -18,14 +18,7 @@ class TimeLineViewController:
     @IBOutlet weak var timeLineTableView: UITableView!
     
     let db = Firestore.firestore()
-    
-    var XodaiImage1:URL? = nil  //storageからDLした画像urlを代入する変数
-    var XodaiImage2:URL? = nil  //
-    var XodaiImage3:URL? = nil  //
-    var XodaiImage4:URL? = nil  //
-
     var storagerefProfileImage:StorageReference? = nil  //storageからDLしたプロフィール画像を取得するための変数
-    
     var kaitouArray2: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
     
    
@@ -163,47 +156,36 @@ class TimeLineViewController:
             
             
 
-        let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber3")
-            storageRefOdaiImage3.listAll(completion: { (StorageListResult, error) in
-                if let error = error {
-                    print(".listAllのエラー:\(error)")
-                    } else {
-                    for ref in StorageListResult.items {
-                            print("3題目の画像:\(ref)")
-                        }
-                    }
-            })//全ユーザーの3題目の画像(odaiImageNumber1)は取得できてる
+//        let storageRefOdaiImage3 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber3/\(kaitouArray2[indexPath.row]!.uid).jpeg")
+//        storageRefOdaiImage3.getData(maxSize: 1 * 1024 * 1024) { data, error in
+//            odaiImageView.image = UIImage(data: data!)!
+//        }
             
             
             
             
-        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber4")
-           storageRefOdaiImage4.listAll(completion: { (StorageListResult, error) in
-                if let error = error {
-                    print(".listAllのエラー:\(error)")
-                    } else {
-                    for ref in StorageListResult.items {
-                            print("4題目の画像:\(ref)")
-                        }
-                    }
-            })//全ユーザーの4題目の画像(odaiImageNumber1)は取得できてる
+        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber4/\(kaitouArray2[indexPath.row]!.uid).jpeg")
+        storageRefOdaiImage4.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            odaiImageView.image = UIImage(data: data!)!
+        }
         
-        
-            
-        
-        //odaiImageViewへの表示
-//        odaiImageView.sd_setImage(with: URL(string: ("https://i.gzn.jp/img/2018/01/15/google-gorilla-ban/00.jpg")), completed: nil)
-        odaiImageView.sd_setImage(with: URL(string: ("\(kaitouArray2[indexPath.row]!.uid).jpeg")), completed: nil)
-        print("お題の画像:\(kaitouArray2[indexPath.row]!.uid).jpeg")
-        
+                
         
         //commentTextViewへの表示
         commentTextView.text = kaitouArray2[indexPath.row]?.comment
         print("comment:\(kaitouArray2[indexPath.row]?.comment)")
             
         //profileImageViewへの表示
-//        profileImageView.sd_setImage(with: "\(kaitouArray2[indexPath.row]?.uid).jpeg")
-            
+        let storageRefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/profileImage/\(kaitouArray2[indexPath.row]!.uid).jpeg")
+        storageRefProfileImage.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if data != nil {
+                profileImageView.image = UIImage(data: data!)!
+            }else{
+                profileImageView.image = UIImage(named: "Default")
+            }
+        }
+        
+                    
         //userNameLabelとpostedAtLabelへの表示
         userNameLabel.text = self.kaitouArray2[indexPath.row]?.userName
         postedAtLabel.text = self.kaitouArray2[indexPath.row]?.postedAt
