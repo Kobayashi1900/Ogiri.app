@@ -54,22 +54,26 @@ class TimeLineViewController:
                         self.kaitouArray2.append(Kaitou(comment: data["comment1"] as! String,
                                                         uid: data["uid"] as! String,
                                                         userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String))
+                                                        postedAt: data["postedAt"] as! String,
+                                                        folder: 1))
                         
                         self.kaitouArray2.append(Kaitou(comment: data["comment2"] as! String,
                                                         uid: data["uid"] as! String,
                                                         userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String))
+                                                        postedAt: data["postedAt"] as! String,
+                                                        folder: 2))
                         
                         self.kaitouArray2.append(Kaitou(comment: data["comment3"] as! String,
                                                         uid: data["uid"] as! String,
                                                         userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String))
+                                                        postedAt: data["postedAt"] as! String,
+                                                        folder: 3))
                         
                         self.kaitouArray2.append(Kaitou(comment: data["comment4"] as! String,
                                                         uid: data["uid"] as! String,
                                                         userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String))
+                                                        postedAt: data["postedAt"] as! String,
+                                                        folder: 4))
                         print("data:\(data)")
                         print("kaitouArray2:\(self.kaitouArray2)")
                     }
@@ -115,18 +119,6 @@ class TimeLineViewController:
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
         
-        //profileImageの取得
-        storagerefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("profileImage")
-        
-        storagerefProfileImage?.listAll(completion: { (StorageListResult, error) in
-            if let error = error {
-                print(".listAllのエラー:\(error)")
-            } else {
-                for ref in StorageListResult.items {
-                    print("プロフ画:\(ref)")
-                }
-            }
-        })//全ユーザーのprofileImageは取得できてる
         
         ////↓odaiImageNumber1~4取得↓////
         let storageRefOdaiImage1 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com").child("odaiImageNumber1")
@@ -164,9 +156,13 @@ class TimeLineViewController:
             
             
             
-        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber4/\(kaitouArray2[indexPath.row]!.uid).jpeg")
+        let storageRefOdaiImage4 = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber\(kaitouArray2[indexPath.row]!.folder)/\(kaitouArray2[indexPath.row]!.uid).jpeg")
         storageRefOdaiImage4.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            odaiImageView.image = UIImage(data: data!)!
+            if data == nil {
+                print("dataがnilです")
+            }else {
+                odaiImageView.image = UIImage(data: data!)!
+            }
         }
         
                 

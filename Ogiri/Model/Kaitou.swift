@@ -15,4 +15,5 @@ struct Kaitou {
     var uid: String
     var userName: String
     var postedAt: String
+    var folder: Int
 }
