@@ -19,23 +19,17 @@ class UserNameViewController:
     @IBOutlet weak var nextButton: UIButton!
     
     let db = Firestore.firestore()
-    var emailText2: String?
-    var passwordText2: String?
-    var nameText:String?
+    var emailText2: String?      //SignUpViewControllerでアドレスの値が渡っている
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         userNameTextField.delegate = self
-
     }
     
     
     
     @IBAction func nameEditChanged(_ sender: UITextField) {
-        
-        nameText = sender.text
         self.validate()
     }
     
@@ -52,21 +46,21 @@ class UserNameViewController:
     
     private func validate() {
         
-        // nilの場合は「次へ」を非活性に
-            guard let nameTxt = nameText else {
+        // nilの場合はnextButtonを非活性に
+            guard let nameText = userNameTextField.text else {
                     
                     self.nextButton.isEnabled = false
                       return
             }
         
-            // 文字数が0の場合(""空文字)次へを非活性に
-            if nameTxt.count == 0 {
+            // 文字数が0の場合(""空文字)nextButtonを非活性に
+            if nameText.count == 0 {
               
                 self.nextButton.isEnabled = false
                 return
             }
             
-            // nilでないかつ0文字以上は次へを活性に
+            // nilでないかつ0文字以上はnextButtonを活性に
             self.nextButton.isEnabled = true
     }
     
@@ -93,31 +87,12 @@ class UserNameViewController:
                         print("Error adding document: \(err)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-                        self.getCollection()
+//                        self.getCollection()
                     }
                 }
             }
         }
-    
-        //Firestore  コレクションから自分のuserドキュメントのみを取得
-        private func getCollection() {
-    
-            db.collection("users").whereField("emailAddress", isEqualTo: emailText2 as Any).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        print("\(document.documentID) => \(document.data())")
-    
-                        let data = document.data()
-                        let value = data["emailAddress"]
-                        print(data)
-                        print(value ?? "取得失敗")
-                    }
-                }
-            }
-        }
-   
+       
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
@@ -128,13 +103,5 @@ class UserNameViewController:
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//
-//    let timeLineVC = segue.destination as! TimeLineViewController
-//
-//        timeLineVC.registerUserName = nameText!
-//        }
 }

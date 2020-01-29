@@ -18,9 +18,7 @@ class TimeLineViewController:
     @IBOutlet weak var timeLineTableView: UITableView!
     
     let db = Firestore.firestore()   //firestoreに保存した値を取得するため
-    var kaitouArray: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめ、のちにkaitouArrayに入れる
-    
-   
+    var kaitouArray: [Kaitou?] = []  //ユーザーの4題の回答のデータをまとめるため
     
     
     override func viewDidLoad() {
@@ -29,63 +27,94 @@ class TimeLineViewController:
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
 
         
-        
         ///////////////////ログインされていることを確認する
         if let user = Auth.auth().currentUser {
-
             
-            //            if user.isAnonymous == true {
-//                print("匿名ユーザー")
-//            }else{
-//                print("登録ユーザー")
-//            }
+            if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
+                
+                //コレクションusersから全ての匿名ユーザーのドキュメントを取得し、各フィールドを配列kaitouArrayに格納
+                db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
+                    if let err = err {
+                        print("Error getting documents: \(err)")
+                    } else {
+                        for document in querySnapshot!.documents {
 
-
-
-            //userNameとpostedAtとuidとcomment1~4を取得し、配列kaitouArrayに格納
-            db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-
-                        let data = document.data()
-                        self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                                        uid: data["uid"] as! String,
-                                                        userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String,
-                                                        folder: 1))
-                        
-                        self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
-                                                        uid: data["uid"] as! String,
-                                                        userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String,
-                                                        folder: 2))
-                        
-                        self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
-                                                        uid: data["uid"] as! String,
-                                                        userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String,
-                                                        folder: 3))
-                        
-                        self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
-                                                        uid: data["uid"] as! String,
-                                                        userName: data["userName"] as! String,
-                                                        postedAt: data["postedAt"] as! String,
-                                                        folder: 4))
-                        print("data:\(data)")
-                        print("kaitouArray:\(self.kaitouArray)")
+                            let data = document.data()
+                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                            uid: data["uid"] as! String,
+                                                            userName: data["userName"] as! String,
+                                                            postedAt: data["postedAt"] as! String,
+                                                            folder: 1))
+                            
+                            self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                            uid: data["uid"] as! String,
+                                                            userName: data["userName"] as! String,
+                                                            postedAt: data["postedAt"] as! String,
+                                                            folder: 2))
+                            
+                            self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                            uid: data["uid"] as! String,
+                                                            userName: data["userName"] as! String,
+                                                            postedAt: data["postedAt"] as! String,
+                                                            folder: 3))
+                            
+                            self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                            uid: data["uid"] as! String,
+                                                            userName: data["userName"] as! String,
+                                                            postedAt: data["postedAt"] as! String,
+                                                            folder: 4))
+                            print("data:\(data)")
+                            print("kaitouArray(匿名者用):\(self.kaitouArray)")
+                        }
+                        self.timeLineTableView.reloadData()
                     }
-                    self.timeLineTableView.reloadData()
                 }
-            }
+                }else{//カレントユーザーが登録ユーザーなら
+                
+                    //コレクションusers全体を取得し、userNameとpostedAtとuidとcomment1~4を配列kaitouArrayに格納
+                    db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
+                        if let err = err {
+                            print("Error getting documents: \(err)")
+                        } else {
+                            for document in querySnapshot!.documents {
+
+                                let data = document.data()
+                                self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                                uid: data["uid"] as! String,
+                                                                userName: data["userName"] as! String,
+                                                                postedAt: data["postedAt"] as! String,
+                                                                folder: 1))
+                                
+                                self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                                uid: data["uid"] as! String,
+                                                                userName: data["userName"] as! String,
+                                                                postedAt: data["postedAt"] as! String,
+                                                                folder: 2))
+                                
+                                self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                                uid: data["uid"] as! String,
+                                                                userName: data["userName"] as! String,
+                                                                postedAt: data["postedAt"] as! String,
+                                                                folder: 3))
+                                
+                                self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                                uid: data["uid"] as! String,
+                                                                userName: data["userName"] as! String,
+                                                                postedAt: data["postedAt"] as! String,
+                                                                folder: 4))
+                                print("data:\(data)")
+                                print("kaitouArray(登録者用):\(self.kaitouArray)")
+                            }
+                            self.timeLineTableView.reloadData()
+                        }
+                    }
+                }
       }
-    }
+    }//viewDidLoad
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         }
-    
     
 
     //セクションの数
@@ -118,23 +147,6 @@ class TimeLineViewController:
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
         
-        
-        ////お題の画像の取得とodaiImageViewへの表示////
-        let storageRefOdaiImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber\(kaitouArray[indexPath.row]!.folder)/\(kaitouArray[indexPath.row]!.uid).jpeg")
-        storageRefOdaiImage.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            if data == nil {
-                print("dataがnilです")
-            }else {
-                odaiImageView.image = UIImage(data: data!)!
-            }
-        }
-        
-                
-        
-        //commentTextViewへの表示
-        commentTextView.text = kaitouArray[indexPath.row]?.comment
-        print("comment:\(kaitouArray[indexPath.row]?.comment)")
-            
         //profileImageViewへの表示
         let storageRefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/profileImage/\(kaitouArray[indexPath.row]!.uid).jpeg")
         storageRefProfileImage.getData(maxSize: 1 * 1024 * 1024) { data, error in
@@ -145,10 +157,22 @@ class TimeLineViewController:
             }
         }
         
-                    
         //userNameLabelとpostedAtLabelへの表示
         userNameLabel.text = self.kaitouArray[indexPath.row]?.userName
         postedAtLabel.text = self.kaitouArray[indexPath.row]?.postedAt
+        
+        //お題の画像の取得とodaiImageViewへの表示
+        let storageRefOdaiImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber\(kaitouArray[indexPath.row]!.folder)/\(kaitouArray[indexPath.row]!.uid).jpeg")
+        storageRefOdaiImage.getData(maxSize: 1 * 1024 * 1024) { data, error in
+            if data == nil {
+                print(error!.localizedDescription)
+            }else{
+                odaiImageView.image = UIImage(data: data!)!
+            }
+        }
+        
+        //commentTextViewへの表示
+        commentTextView.text = kaitouArray[indexPath.row]?.comment
             
         return cell
     }

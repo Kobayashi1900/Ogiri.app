@@ -14,15 +14,14 @@ import FirebaseFirestore
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var nameText: String? //広域変数
+    
+    override init() { //初期化メソッドを追記
+            FirebaseApp.configure()
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        FirebaseApp.configure()
-        
         let db = Firestore.firestore()
-
         return true
     }
 

@@ -22,40 +22,31 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
     
-    private var tempCommentText: String?
-    
-    
-    private let wordsList = WordsList()  //インスタンス生成、語群にアクセスできる
-    var timer = Timer()  //timerクラスのインスタンス生成
-    private var count = 31
-    private var odaiNumber = 1
-    var commentNumber = 0
-    var odaiImageNumber = 0
-    private var screenShotImagae1 = UIImage() //スクショを入れる配列
-    private var screenShotImagae2 = UIImage() //スクショを入れる配列
-    private var screenShotImagae3 = UIImage() //スクショを入れる配列
-    private var screenShotImagae4 = UIImage() //スクショを入れる配列
-    let db = Firestore.firestore()
-    
+    private var tempCommentText: String?      //commentTextView.textを代入する
+    private let wordsList = WordsList()       //インスタンス生成、語群にアクセスできる
+    var timer = Timer()                       //timerクラスのインスタンス生成
+    private var count = 31                    //大喜利の回答制限時間に使う
+    private var odaiNumber = 1                //何題目のお題なのか
+    var commentNumber = 0                     //それぞれの大喜利の回答をstroageのそれぞれのフォルダに保存するため
+    var odaiImageNumber = 0                   //それぞれのお題画像をstroageのそれぞれのフォルダに保存するため
+    private var screenShotImagae1 = UIImage() //スクショを入れる変数
+    private var screenShotImagae2 = UIImage()
+    private var screenShotImagae3 = UIImage()
+    private var screenShotImagae4 = UIImage()
+    let db = Firestore.firestore()            //ドキュメントにコメントとpostedAtを保存するため
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getPixabayImages()
-        odaiLabel.text = "\(odaiNumber)題目"
+        self.getPixabayImages()                //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
         self.commentTextView.delegate = self
-        
+        odaiLabel.text = "\(odaiNumber)題目"    //何題目なのか表示
     }
     
     
-    
-    
-    
-    // パラメータ作成 (パラメーターとheader情報はkey/valueのDictionaryで設定する。これはAlamofireの仕様)
+    // パラメータ作成 (パラメータとheader情報はkey/valueのDictionaryで設定する。これはAlamofireの仕様)
     private func getPixabayImages() {
         let parameters: [String: Any] = [
             "key": self.apiKey,
@@ -63,7 +54,7 @@ class PlayViewController: UIViewController {
             "per_page": 200
         ]
         
-        print("q=\(parameters["q"])")
+        print("q:\(parameters["q"])")
         
         let headers:HTTPHeaders = [              //HTTPHeadersはURLリクエストに適用するヘッダーの辞書
             "Contenttype": "application/json"    //リクエストを送信してレスポンスを受け取る際のフォーマットを指定してる
@@ -71,9 +62,6 @@ class PlayViewController: UIViewController {
         
         self.fire(params: parameters, headers: headers)
     }
-    
-    
-    
     
     
     // APIをコールする
@@ -89,12 +77,10 @@ class PlayViewController: UIViewController {
     }
     
     
-    
-    
     //配列"hits"のcountを取得し、0件とそうでない場合で処理を分ける
     private func result(response: DataResponse<Data>) {
         let json :JSON = JSON(response.data as Any)
-        let totalHitsCount = json ["hits"].array?.count
+        let totalHitsCount = json ["hits"].array?.count  //そのワードで検索して得られた画像の数がtotalHitsCount
         
         print("totalHitsCount1=\(totalHitsCount)")
         
@@ -116,9 +102,7 @@ class PlayViewController: UIViewController {
     }
     
     
-    
-    
-    //totalHitsCountからランダムの数値を出し、totalHitsCount番目の画像を取得してodaiImageViewに反映する
+    //totalHitsCountからランダムの数値を出し、totalHitsRandomNumber番目の画像を取得してodaiImageViewに反映する
     private func displayImage(data: Data) {
         let json :JSON = JSON(data as Any)
         let totalHitsCount = json ["hits"].array?.count
@@ -127,7 +111,7 @@ class PlayViewController: UIViewController {
         
         let totalHitsRandomNumber = Int.random(in: 0..<totalHitsCount!)
         
-        print("totalHitsRandomNumber=\(totalHitsRandomNumber)")
+        print("totalHitsRandomNumber:\(totalHitsRandomNumber)")
         
         guard let imageString = json ["hits"][totalHitsRandomNumber]["webformatURL"].string else { return }
         
@@ -139,16 +123,12 @@ class PlayViewController: UIViewController {
             })  //コールバック
             
             startTimer()
-            
         }
-        
     }
     
     
-    
-    
+    //次のお題に行った際にラベルを更新する
     private func odaiLabelIncrement() {
-        
         switch odaiNumber {
             
             case 1:
@@ -169,12 +149,12 @@ class PlayViewController: UIViewController {
                 odaiLabel.text = ""
                 timerLabel.text = ""
             
-        default:
-            break
+        default: break
         }
-        
     }
     
+    
+    //それぞれのお題画像をstroageのそれぞれのフォルダに保存できるようにnext押すたびインクリメント
     private func odaiImageNumberIncrement() {
         
         switch odaiImageNumber {
@@ -191,12 +171,12 @@ class PlayViewController: UIViewController {
             case 3:
                 odaiImageNumber = 4
             
-        default:
-            break
+        default: break
         }
-        
     }
     
+    
+    //それぞれのお題画像をstroageのそれぞれのフォルダに保存できるようにnext押すたびインクリメント
     private func commentNumberIncrement() {
         
         switch commentNumber {
@@ -213,10 +193,8 @@ class PlayViewController: UIViewController {
             case 3:
                 commentNumber = 4
             
-        default:
-            break
+        default: break
         }
-        
     }
     
     
@@ -232,7 +210,7 @@ class PlayViewController: UIViewController {
         //viewに書き出す
         self.view.drawHierarchy(in: view.bounds, afterScreenUpdates: true)
         
-        switch odaiNumber {
+        switch odaiNumber {  //それぞれのお題に答える都度、スクショをそれぞれの変数に入れる
             case 1:
                 screenShotImagae1 = UIGraphicsGetImageFromCurrentImageContext()!
             
@@ -245,14 +223,12 @@ class PlayViewController: UIViewController {
             case 4 :
                 screenShotImagae4 = UIGraphicsGetImageFromCurrentImageContext()!
             
-            default:
-                break
+            default: break
             }
         
         UIGraphicsEndImageContext()
-        odaiLabelIncrement()
+        odaiLabelIncrement()          //スクショを撮るたび、お題のラベルの更新とcommentTextViewを空に
         commentTextView.text = ""
-    
     }
     
     
@@ -267,11 +243,8 @@ class PlayViewController: UIViewController {
         let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         
         present(activityVC, animated: true, completion: nil)
-        
     }
-    
-    
-    
+
     
     //時間制限
     func startTimer() {
@@ -280,12 +253,9 @@ class PlayViewController: UIViewController {
         if 1...4 ~= odaiNumber {
         //タイマーを回す
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCount), userInfo: nil, repeats: true)
-        //timeInterval: 何秒ごとに呼ぶのか
-        //target: どこのメソッドを呼ぶか
-        //selector: なんのメソッドを呼ぶのか
-        // ＝　1秒ごとに自身のクラスのtimerUpdateメソッドを呼ぶ
+        //timeInterval: 何秒ごとに呼ぶのか/target: どこのメソッドを呼ぶか/selector: なんのメソッドを呼ぶのか
+        //つまり、1秒ごとに自身のクラスのtimerUpdateメソッドを呼ぶ
         }
-        
     }
     
     
@@ -293,27 +263,22 @@ class PlayViewController: UIViewController {
     @objc func timerCount() {
         
         if 1...31 ~= count {
-            
             count = count - 1
-            
         }else{
-            
             count = 0
-            
         }
         
         if count == 0 {
             
             //タイムオーバーしたら強制的に次の問題に行く
             self.next(nextButton as Any)
-                        
         }
         
         timerLabel.text = "\(count)秒"
-        
     }
     
     
+    //storageにお題の画像を保存
     func odaiImageAdd() {
         
         // ログインされていること確認する
@@ -322,17 +287,16 @@ class PlayViewController: UIViewController {
         //ストレージサーバのURLを取得
         let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
         
-        // パス
+        // パス  /  画像のURLが「uid.jpeg」となるように保存
         let imageRef = storage.child("odaiImageNumber\(odaiImageNumber)").child("\(user.uid).jpeg")
         
         //保存したい画像のデータを変数として持つ
         var odaiImageData: Data = Data()
         
-        if odaiImageView.image != nil {
+        if odaiImageView.image != nil {  //odaiImageViewに画像があれば
             
         //画像を圧縮
         odaiImageData = (odaiImageView.image?.jpegData(compressionQuality: 0.01))!
-            
         }
         
         //storageに画像を送信
@@ -340,19 +304,14 @@ class PlayViewController: UIViewController {
             
             //エラーであれば
             if error != nil {
-                
                 print(error.debugDescription)
                 return  //これより下にはいかないreturn
-                
             }
-            
         }
-        
     }
     
     
-    
-    //ドキュメントにコメントを追加する
+    //ドキュメントにコメントとpostedAtを追加する
     func commentAdd() {
         
         var ref: DocumentReference? = nil
@@ -372,62 +331,49 @@ class PlayViewController: UIViewController {
             ref = db.collection("users").document(userID)
             
             ref?.setData ([
-                "comment\(commentNumber)": commentText], merge: true) { error in
-                    
-                if let error = error {
-                    print("Error setData document: \(error)")
-                } else {
-                    print("Document successfully setData")
-                }
-                    
-            }
-            
-            ref?.setData ([
+                "comment\(commentNumber)": commentText,
                 "postedAt": date], merge: true) { error in
-
+                    
                 if let error = error {
                     print("Error setData document: \(error)")
                 } else {
                     print("Document successfully setData")
                 }
-
             }
             
+//            ref?.setData ([
+//                "postedAt": date], merge: true) { error in
+//
+//                if let error = error {
+//                    print("Error setData document: \(error)")
+//                } else {
+//                    print("Document successfully setData")
+//                }
+//            }
         }
-        
     }
-    
-    
-
     
     
     @IBAction func next(_ sender: Any) {
         
-        self.getPixabayImages()
+        self.getPixabayImages()           //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
         odaiImageNumberIncrement()
         commentNumberIncrement()
-        count = 31
-        timer.invalidate()
-        commentAdd()
-        odaiImageAdd()
-        takeScreenShot()
-        self.nextButton.isEnabled = false
+        count = 31                        //カウントを31に設定し直す
+        timer.invalidate()                //現在のタイマーを無効にする
+        commentAdd()                      //ドキュメントに回答を保存
+        odaiImageAdd()                    //storageにお題画像を保存
+        takeScreenShot()                  //スクショ撮影
+        self.nextButton.isEnabled = false //nextButtonを押せなくする
         
-        if odaiNumber == 5 {
-            
+        if odaiNumber == 5 {              //4題目のお題に答え終わったら、Twitter連携などできるアクティビティービューを出す
             share()
-            
         }
-        
     }
-    
-    
-    
     
     
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         view.endEditing(true)
     }
     
@@ -435,12 +381,8 @@ class PlayViewController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
-        
     }
-    
-    
 }
-
 
 
 // MARK: UITextViewDelegate
@@ -450,16 +392,10 @@ extension PlayViewController: UITextViewDelegate {
         
         self.tempCommentText = textView.text
         
-        if tempCommentText!.count == 0 {
-        
+        if tempCommentText!.count == 0 {  //textViewが空なら
             self.nextButton.isEnabled = false
-                
         }else{
-            
             self.nextButton.isEnabled = true
-            
         }
-        
     }
-    
 }
