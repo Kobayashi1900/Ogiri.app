@@ -369,6 +369,7 @@ class PlayViewController: UIViewController {
         
         if odaiNumber == 5 {              //4題目のお題に答え終わったら
             share()                       //Twitter連携などできるアクティビティービューを出す
+            validate()                    //ボタンとTextViewの非活性
             tabBarController?.tabBar.isHidden = false  //非表示にしていたタブバーを復活させる
         }
     }
@@ -383,6 +384,12 @@ class PlayViewController: UIViewController {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
+    }
+    
+    private func validate() {  //ボタンとTextViewの非活性
+
+        self.commentTextView.isEditable = false
+        self.nextButton.isEnabled = false
     }
 }
 
