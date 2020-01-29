@@ -20,6 +20,8 @@ class MypageViewController:
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userNameTextField: UITextField!
+    @IBOutlet weak var imageSettingButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     
     let db = Firestore.firestore()  //ドキュメントに新しいユーザーネームを保存するため
     
@@ -27,6 +29,7 @@ class MypageViewController:
         super.viewDidLoad()
         userNameTextField.delegate = self
         getCollection()
+        validate()
     }
         
     
@@ -196,5 +199,16 @@ class MypageViewController:
                     self.profileImageView.image = UIImage(named: "Default")
                 }
             })
+    }
+    
+    private func validate() {  //ボタンとTextFieldの非活性
+        // ログインされていること確認する
+        guard let user = Auth.auth().currentUser else { return }
+
+            if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
+                self.imageSettingButton.isEnabled = false
+                self.saveButton.isEnabled = false
+                self.userNameTextField.isEnabled = false
+            }
     }
 }

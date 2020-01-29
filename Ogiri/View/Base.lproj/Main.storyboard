@@ -286,33 +286,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uhf-8R-zbf">
-                                <rect key="frame" x="139" y="349" width="97" height="30"/>
+                                <rect key="frame" x="139" y="339" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGJ-Kr-E7G">
-                                <rect key="frame" x="144" y="297" width="87" height="21"/>
+                                <rect key="frame" x="144" y="310" width="87" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mS-zU-UO7">
-                                <rect key="frame" x="111" y="518" width="196" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="image4"/>
-                                <connections>
-                                    <action selector="save:" destination="4i3-CH-j9X" eventType="touchUpInside" id="Qjd-5e-Xdn"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="bhB-0V-kyW">
                                 <rect key="frame" x="67" y="66" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4V-hV-v8C">
-                                <rect key="frame" x="114" y="252" width="196" height="35"/>
+                                <rect key="frame" x="114" y="212" width="196" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="image3">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -321,13 +313,30 @@
                                     <action selector="imageSetting:" destination="4i3-CH-j9X" eventType="touchUpInside" id="81W-6w-b4n"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mS-zU-UO7">
+                                <rect key="frame" x="114" y="433" width="196" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="image4"/>
+                                <connections>
+                                    <action selector="save:" destination="4i3-CH-j9X" eventType="touchUpInside" id="Qjd-5e-Xdn"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="＊ユーザー登録すると画像とユーザー名を変更できるようになります。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEM-nW-1jy">
+                                <rect key="frame" x="114" y="476" width="224" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.6814534068107605" blue="0.25071612000465393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Sh8-Q1-3GB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" id="qw3-gz-mQ2"/>
                     <connections>
+                        <outlet property="imageSettingButton" destination="j4V-hV-v8C" id="sYe-Tv-IAg"/>
                         <outlet property="profileImageView" destination="bhB-0V-kyW" id="hRf-ej-5rY"/>
+                        <outlet property="saveButton" destination="0mS-zU-UO7" id="4gf-CZ-znH"/>
                         <outlet property="userNameTextField" destination="Uhf-8R-zbf" id="sfs-qd-cPv"/>
                     </connections>
                 </viewController>
