@@ -25,92 +25,8 @@ class TimeLineViewController:
         super.viewDidLoad()
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self  //デリゲートメソッドが使えるようになる
-
-        
-        ///////////////////ログインされていることを確認する
-        if let user = Auth.auth().currentUser {
-            
-            if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
-                
-                //コレクションusersから全ての匿名ユーザーのドキュメントを取得し、各フィールドを配列kaitouArrayに格納
-                db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
-                    if let err = err {
-                        print("Error getting documents: \(err)")
-                    } else {
-                        for document in querySnapshot!.documents {
-
-                            let data = document.data()
-                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                                            uid: data["uid"] as! String,
-                                                            userName: data["userName"] as! String,
-                                                            postedAt: data["postedAt"] as! String,
-                                                            folder: 1))
-                            
-                            self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
-                                                            uid: data["uid"] as! String,
-                                                            userName: data["userName"] as! String,
-                                                            postedAt: data["postedAt"] as! String,
-                                                            folder: 2))
-                            
-                            self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
-                                                            uid: data["uid"] as! String,
-                                                            userName: data["userName"] as! String,
-                                                            postedAt: data["postedAt"] as! String,
-                                                            folder: 3))
-                            
-                            self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
-                                                            uid: data["uid"] as! String,
-                                                            userName: data["userName"] as! String,
-                                                            postedAt: data["postedAt"] as! String,
-                                                            folder: 4))
-                            print("data:\(data)")
-                            print("kaitouArray(匿名者用):\(self.kaitouArray)")
-                        }
-                        self.timeLineTableView.reloadData()
-                    }
-                }
-                }else{//カレントユーザーが登録ユーザーなら
-                
-                    //コレクションusers全体を取得し、userNameとpostedAtとuidとcomment1~4を配列kaitouArrayに格納
-                    db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
-                        if let err = err {
-                            print("Error getting documents: \(err)")
-                        } else {
-                            for document in querySnapshot!.documents {
-
-                                let data = document.data()
-                                self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                                                uid: data["uid"] as! String,
-                                                                userName: data["userName"] as! String,
-                                                                postedAt: data["postedAt"] as! String,
-                                                                folder: 1))
-                                
-                                self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
-                                                                uid: data["uid"] as! String,
-                                                                userName: data["userName"] as! String,
-                                                                postedAt: data["postedAt"] as! String,
-                                                                folder: 2))
-                                
-                                self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
-                                                                uid: data["uid"] as! String,
-                                                                userName: data["userName"] as! String,
-                                                                postedAt: data["postedAt"] as! String,
-                                                                folder: 3))
-                                
-                                self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
-                                                                uid: data["uid"] as! String,
-                                                                userName: data["userName"] as! String,
-                                                                postedAt: data["postedAt"] as! String,
-                                                                folder: 4))
-                                print("data:\(data)")
-                                print("kaitouArray(登録者用):\(self.kaitouArray)")
-                            }
-                            self.timeLineTableView.reloadData()
-                        }
-                    }
-                }
-      }
-    }//viewDidLoad
+        display()  //タイムラインに各ユーザーの大喜利を表示
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -180,5 +96,92 @@ class TimeLineViewController:
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return view.frame.size.height/2
+    }
+    
+    
+    func display() {
+          //ログインされていることを確認する
+          if let user = Auth.auth().currentUser {
+              
+              if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
+                  
+                  //コレクションusersから全ての匿名ユーザーのドキュメントを取得し、各フィールドを配列kaitouArrayに格納
+                  db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
+                      if let err = err {
+                          print("Error getting documents: \(err)")
+                      } else {
+                          for document in querySnapshot!.documents {
+
+                              let data = document.data()
+                              self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                              uid: data["uid"] as! String,
+                                                              userName: data["userName"] as! String,
+                                                              postedAt: data["postedAt"] as! String,
+                                                              folder: 1))
+                              
+                              self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                              uid: data["uid"] as! String,
+                                                              userName: data["userName"] as! String,
+                                                              postedAt: data["postedAt"] as! String,
+                                                              folder: 2))
+                              
+                              self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                              uid: data["uid"] as! String,
+                                                              userName: data["userName"] as! String,
+                                                              postedAt: data["postedAt"] as! String,
+                                                              folder: 3))
+                              
+                              self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                              uid: data["uid"] as! String,
+                                                              userName: data["userName"] as! String,
+                                                              postedAt: data["postedAt"] as! String,
+                                                              folder: 4))
+                              print("data:\(data)")
+                              print("kaitouArray(匿名者用):\(self.kaitouArray)")
+                          }
+                          self.timeLineTableView.reloadData()
+                      }
+                  }
+                  }else{//カレントユーザーが登録ユーザーなら
+                  
+                      //コレクションusers全体を取得し、userNameとpostedAtとuidとcomment1~4を配列kaitouArrayに格納
+                      db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
+                          if let err = err {
+                              print("Error getting documents: \(err)")
+                          } else {
+                              for document in querySnapshot!.documents {
+
+                                  let data = document.data()
+                                  self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                                  uid: data["uid"] as! String,
+                                                                  userName: data["userName"] as! String,
+                                                                  postedAt: data["postedAt"] as! String,
+                                                                  folder: 1))
+                                  
+                                  self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                                  uid: data["uid"] as! String,
+                                                                  userName: data["userName"] as! String,
+                                                                  postedAt: data["postedAt"] as! String,
+                                                                  folder: 2))
+                                  
+                                  self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                                  uid: data["uid"] as! String,
+                                                                  userName: data["userName"] as! String,
+                                                                  postedAt: data["postedAt"] as! String,
+                                                                  folder: 3))
+                                  
+                                  self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                                  uid: data["uid"] as! String,
+                                                                  userName: data["userName"] as! String,
+                                                                  postedAt: data["postedAt"] as! String,
+                                                                  folder: 4))
+                                  print("data:\(data)")
+                                  print("kaitouArray(登録者用):\(self.kaitouArray)")
+                              }
+                              self.timeLineTableView.reloadData()
+                          }
+                      }
+                  }
+        }
     }
 }
