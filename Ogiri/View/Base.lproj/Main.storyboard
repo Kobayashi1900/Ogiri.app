@@ -334,6 +334,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="マイページ" id="qw3-gz-mQ2"/>
                     <connections>
+                        <outlet property="announcement" destination="XEM-nW-1jy" id="Dgo-Vu-J5i"/>
                         <outlet property="imageSettingButton" destination="j4V-hV-v8C" id="sYe-Tv-IAg"/>
                         <outlet property="profileImageView" destination="bhB-0V-kyW" id="hRf-ej-5rY"/>
                         <outlet property="saveButton" destination="0mS-zU-UO7" id="4gf-CZ-znH"/>

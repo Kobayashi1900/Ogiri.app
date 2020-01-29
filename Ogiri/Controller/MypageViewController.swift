@@ -22,6 +22,7 @@ class MypageViewController:
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var imageSettingButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var announcement: UILabel!
     
     let db = Firestore.firestore()  //ドキュメントに新しいユーザーネームを保存するため
     
@@ -209,6 +210,8 @@ class MypageViewController:
                 self.imageSettingButton.isEnabled = false
                 self.saveButton.isEnabled = false
                 self.userNameTextField.isEnabled = false
-            }
+            }else {
+                self.announcement.isHidden = true
+        }
     }
 }
