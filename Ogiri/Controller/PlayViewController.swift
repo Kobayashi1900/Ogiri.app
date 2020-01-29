@@ -40,9 +40,10 @@ class PlayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getPixabayImages()                //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
+        self.getPixabayImages()                   //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
         self.commentTextView.delegate = self
-        odaiLabel.text = "\(odaiNumber)題目"    //何題目なのか表示
+        odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
+        tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
     
     
@@ -366,8 +367,9 @@ class PlayViewController: UIViewController {
         takeScreenShot()                  //スクショ撮影
         self.nextButton.isEnabled = false //nextButtonを押せなくする
         
-        if odaiNumber == 5 {              //4題目のお題に答え終わったら、Twitter連携などできるアクティビティービューを出す
-            share()
+        if odaiNumber == 5 {              //4題目のお題に答え終わったら
+            share()                       //Twitter連携などできるアクティビティービューを出す
+            tabBarController?.tabBar.isHidden = false  //非表示にしていたタブバーを復活させる
         }
     }
     
