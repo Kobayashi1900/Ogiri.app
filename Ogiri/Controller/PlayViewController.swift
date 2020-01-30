@@ -34,6 +34,7 @@ class PlayViewController: UIViewController {
     private var screenShotImagae3 = UIImage()
     private var screenShotImagae4 = UIImage()
     let db = Firestore.firestore()            //ドキュメントにコメントとpostedAtを保存するため
+    var ref: DocumentReference? = nil         //ドキュメントにコメントとpostedAtを保存するため
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
@@ -260,7 +261,7 @@ class PlayViewController: UIViewController {
     }
     
     
-    //回答すると呼ばれるタイマーメソッド
+    //回答すると呼ばれるタイマーメソッド(0秒時点でcommentTextView.textが""だった場合は未回答処理)
     @objc func timerCount() {
         
         if 1...31 ~= count {
@@ -273,8 +274,36 @@ class PlayViewController: UIViewController {
             
             //タイムオーバーしたら強制的に次の問題に行く
             self.next(nextButton as Any)
+            
+            if commentTextView.text == "" {
+                
+                let unanswered = "未回答またはタイムオーバー"
+                
+                //時刻を取得する
+                let dt = Date()
+                let dateFormatter = DateFormatter()
+                //日付の書式＆日本時間にする
+                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
+                
+                let date = dateFormatter.string(from: dt)
+                
+                // ログインされていること確認する
+                guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
+                                    
+                    ref = db.collection("users").document(userID)
+                    
+                    ref?.setData ([
+                        "comment\(commentNumber)": unanswered,
+                        "postedAt": date], merge: true) { error in
+                            
+                        if let error = error {
+                            print("Error setData document: \(error)")
+                        } else {
+                            print("Document successfully setData")
+                        }
+                    }
+            }
         }
-        
         timerLabel.text = "\(count)秒"
     }
     
@@ -315,7 +344,6 @@ class PlayViewController: UIViewController {
     //ドキュメントにコメントとpostedAtを追加する
     func commentAdd() {
         
-        var ref: DocumentReference? = nil
         //時刻を取得する
         let dt = Date()
         let dateFormatter = DateFormatter()
@@ -341,16 +369,6 @@ class PlayViewController: UIViewController {
                     print("Document successfully setData")
                 }
             }
-            
-//            ref?.setData ([
-//                "postedAt": date], merge: true) { error in
-//
-//                if let error = error {
-//                    print("Error setData document: \(error)")
-//                } else {
-//                    print("Document successfully setData")
-//                }
-//            }
         }
     }
     
