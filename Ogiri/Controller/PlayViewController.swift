@@ -46,6 +46,10 @@ class PlayViewController: UIViewController {
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
         tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
     
     
     // パラメータ作成 (パラメータとheader情報はkey/valueのDictionaryで設定する。これはAlamofireの仕様)
