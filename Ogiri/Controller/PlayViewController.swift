@@ -38,7 +38,12 @@ class PlayViewController: UIViewController {
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
-    
+    @IBOutlet weak var coverView: UIView!
+
+    @IBAction func pressNextButton(_ sender: Any) {
+        coverView.isHidden = true
+    }
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getPixabayImages()                   //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
