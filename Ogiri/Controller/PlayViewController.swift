@@ -39,21 +39,32 @@ class PlayViewController: UIViewController {
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
     @IBOutlet weak var coverView: UIView!
-
-    @IBAction func pressNextButton(_ sender: Any) {
+    
+    @IBAction func nextButton(_ sender: Any) {
         coverView.isHidden = true
+        getPixabayImages()    //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
+        count = 31
+        odaiNumber = 1
+        commentNumber = 0
+        odaiImageNumber = 0
+        odaiLabel.text = "\(odaiNumber)題目"
+        commentTextView.isEditable = true
     }
+    
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getPixabayImages()                   //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
-        self.commentTextView.delegate = self
+        commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
         tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        coverView.isHidden = false
     }
     
     
