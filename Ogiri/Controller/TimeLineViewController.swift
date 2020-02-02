@@ -30,6 +30,7 @@ class TimeLineViewController:
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        timeLineTableView.reloadData()
         }
     
 
@@ -74,8 +75,8 @@ class TimeLineViewController:
         }
         
         //userNameLabelとpostedAtLabelへの表示
-        userNameLabel.text = self.kaitouArray[indexPath.row]?.userName
-        postedAtLabel.text = self.kaitouArray[indexPath.row]?.postedAt
+        userNameLabel.text = kaitouArray[indexPath.row]?.userName
+        postedAtLabel.text = kaitouArray[indexPath.row]?.postedAt
         
         //お題の画像の取得とodaiImageViewへの表示
         let storageRefOdaiImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/odaiImageNumber\(kaitouArray[indexPath.row]!.folder)/\(kaitouArray[indexPath.row]!.uid).jpeg")
