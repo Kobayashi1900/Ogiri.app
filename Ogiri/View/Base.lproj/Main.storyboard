@@ -346,7 +346,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="image2"/>
                                                     <connections>
-                                                        <action selector="nextButton:" destination="Qhz-ur-UIP" eventType="touchUpInside" id="nai-kb-3GS"/>
+                                                        <action selector="nextButton_coverView:" destination="Qhz-ur-UIP" eventType="touchUpInside" id="nai-kb-3GS"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

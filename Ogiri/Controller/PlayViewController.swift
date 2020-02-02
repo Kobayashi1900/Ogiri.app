@@ -40,7 +40,7 @@ class PlayViewController: UIViewController {
     
     @IBOutlet weak var coverView: UIView!
     
-    @IBAction func nextButton(_ sender: Any) {
+    @IBAction func nextButton_coverView(_ sender: Any) {
         coverView.isHidden = true
         getPixabayImages()    //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
         count = 31
@@ -49,6 +49,7 @@ class PlayViewController: UIViewController {
         odaiImageNumber = 0
         odaiLabel.text = "\(odaiNumber)題目"
         commentTextView.isEditable = true
+        tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
     
   
@@ -56,7 +57,12 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
-        tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
+        
+        if let user = Auth.auth().currentUser {
+            if user.isAnonymous == true {
+                tabBarController?.tabBar.isHidden = true//匿名者ならtabBarを非表示
+            }
+        }
     }
     
     
