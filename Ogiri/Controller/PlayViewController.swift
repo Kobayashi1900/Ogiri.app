@@ -351,8 +351,10 @@ class PlayViewController: UIViewController {
         
         if odaiImageView.image != nil {  //odaiImageViewに画像があれば
             
-        //画像を圧縮
-        odaiImageData = (odaiImageView.image?.jpegData(compressionQuality: 0.01))!
+            odaiImageData = (odaiImageView.image?.jpegData(compressionQuality: 0.01))!  //画像を圧縮して代入
+            
+        }else{
+            odaiImageData = (UIImage(named: "image8")!.jpegData(compressionQuality: 0.01))!
         }
         
         //storageに画像を送信
@@ -401,7 +403,7 @@ class PlayViewController: UIViewController {
     
     @IBAction func next(_ sender: Any) {
         
-        self.getPixabayImages()           //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
+        getPixabayImages()                //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
         odaiImageNumberIncrement()
         commentNumberIncrement()
         count = 31                        //カウントを31に設定し直す
@@ -409,7 +411,7 @@ class PlayViewController: UIViewController {
         commentAdd()                      //ドキュメントに回答を保存
         odaiImageAdd()                    //storageにお題画像を保存
         takeScreenShot()                  //スクショ撮影
-        self.nextButton.isEnabled = false //nextButtonを押せなくする
+        nextButton.isEnabled = false //nextButtonを押せなくする
         
         if odaiNumber == 5 {              //4題目のお題に答え終わったら
             share()                       //Twitter連携などできるアクティビティービューを出す

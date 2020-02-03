@@ -30,8 +30,9 @@ class TimeLineViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         timeLineTableView.reloadData()
+//        kaitouArray.removeAll()  //一旦kaitouArrayを空にする
         display()  //タイムラインに各ユーザーの大喜利を表示
-        }
+    }
     
 
     //セクションの数
@@ -103,13 +104,9 @@ class TimeLineViewController:
     func display() {
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
-              
-//            kaitouArray.removeAll()  //一旦kaitouArrayを空にする
-            
+                          
               if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
-                
-//                self.kaitouArray.removeAll()  //一旦kaitouArrayを空にする
-                  
+                                  
                   //コレクションusersから全ての匿名ユーザーのドキュメントを取得し、各フィールドを配列kaitouArrayに格納
                   db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
                       if let err = err {
@@ -148,8 +145,6 @@ class TimeLineViewController:
                       }
                   }
                   }else{//カレントユーザーが登録ユーザーなら
-                
-//                self.kaitouArray.removeAll()  //一旦kaitouArrayを空にする
                   
                       //コレクションusers全体を取得し、userNameとpostedAtとuidとcomment1~4を配列kaitouArrayに格納
                       db.collection("users").order(by: "postedAt",descending: true).limit(to: 25).getDocuments() { (querySnapshot, err) in
