@@ -55,7 +55,7 @@
 		AA700AA0FC334B1679A9CD9E /* Pods_OgiriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2A010E9DFFE825775123AAA /* Pods-OgiriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OgiriUITests.release.xcconfig"; path = "Target Support Files/Pods-OgiriUITests/Pods-OgiriUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BC0411F32353379C00517DA8 /* UserNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNameViewController.swift; sourceTree = "<group>"; };
-		BC5686E12313062400BB196C /* 写真で 雑 大喜利.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "写真で 雑 大喜利.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC5686E12313062400BB196C /* Ogiri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ogiri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5686E42313062400BB196C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC5686E92313062400BB196C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BC5686EB2313062500BB196C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -147,7 +147,7 @@
 		BC5686E22313062400BB196C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BC5686E12313062400BB196C /* 写真で 雑 大喜利.app */,
+				BC5686E12313062400BB196C /* Ogiri.app */,
 				BC5686F52313062500BB196C /* OgiriTests.xctest */,
 				BC5687002313062500BB196C /* OgiriUITests.xctest */,
 			);
@@ -239,7 +239,7 @@
 			);
 			name = Ogiri;
 			productName = Ogiri;
-			productReference = BC5686E12313062400BB196C /* 写真で 雑 大喜利.app */;
+			productReference = BC5686E12313062400BB196C /* Ogiri.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BC5686F42313062500BB196C /* OgiriTests */ = {
@@ -653,7 +653,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cccc12233.Ogiri;
-				PRODUCT_NAME = "写真で 雑 大喜利";
+				PRODUCT_NAME = Ogiri;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -672,7 +672,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = cccc12233.Ogiri;
-				PRODUCT_NAME = "写真で 雑 大喜利";
+				PRODUCT_NAME = Ogiri;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
