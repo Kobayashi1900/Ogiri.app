@@ -22,7 +22,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
     
-    private var tempCommentText: String?      //commentTextView.textを代入する
+    private var tempCommentText: String? = "未回答またはタイムオーバー"      //commentTextView.textを代入する
     private let wordsList = WordsList()       //インスタンス生成、語群にアクセスできる
     var timer = Timer()                       //timerクラスのインスタンス生成
     private var count = 31                    //大喜利の回答制限時間に使う
@@ -300,35 +300,6 @@ class PlayViewController: UIViewController {
             
             //タイムオーバーしたら強制的に次の問題に行く
             self.next(nextButton as Any)
-            
-            if commentTextView.text == "" {
-                
-                let unanswered = "未回答またはタイムオーバー"
-                
-                //時刻を取得する
-                let dt = Date()
-                let dateFormatter = DateFormatter()
-                //日付の書式＆日本時間にする
-                dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
-                
-                let date = dateFormatter.string(from: dt)
-                
-                // ログインされていること確認する
-                guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
-                                    
-                    ref = db.collection("users").document(userID)
-                    
-                    ref?.setData ([
-                        "comment\(commentNumber)": unanswered,
-                        "postedAt": date], merge: true) { error in
-                            
-                        if let error = error {
-                            print("Error setData document: \(error)")
-                        } else {
-                            print("Document successfully setData")
-                        }
-                    }
-            }
         }
         timerLabel.text = "\(count)秒"
     }
@@ -383,7 +354,14 @@ class PlayViewController: UIViewController {
         // ログインされていること確認する
         guard let userID = Auth.auth().currentUser?.uid else { fatalError() }
         
-        if let commentText = self.tempCommentText {
+        var commentText:String
+        
+        if tempCommentText != nil{
+            commentText = tempCommentText!
+            
+            if commentTextView.hasText == false{
+                commentText = "未回答またはタイムオーバー"
+            }
             
             ref = db.collection("users").document(userID)
             
