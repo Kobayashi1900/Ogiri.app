@@ -112,6 +112,7 @@ class TimeLineViewController:
                       if let err = err {
                           print("Error getting documents: \(err)")
                       } else {
+                        self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
                           for document in querySnapshot!.documents {
 
                               let data = document.data()
@@ -151,6 +152,7 @@ class TimeLineViewController:
                           if let err = err {
                               print("Error getting documents: \(err)")
                           } else {
+                            self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
                               for document in querySnapshot!.documents {
 
                                   let data = document.data()
