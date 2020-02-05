@@ -229,8 +229,8 @@ class PlayViewController: UIViewController {
     func takeScreenShot() {
         
         //幅・高さを決める
-        let width = CGFloat(UIScreen.main.bounds.size.width)
-        let height = CGFloat(UIScreen.main.bounds.size.height)
+        let width = view.bounds.width
+        let height = view.bounds.height
         let size  = CGSize(width: width, height: height)
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
