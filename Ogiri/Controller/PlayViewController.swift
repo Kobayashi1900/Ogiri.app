@@ -35,6 +35,7 @@ class PlayViewController: UIViewController {
     private var screenShotImagae4 = UIImage()
     let db = Firestore.firestore()            //ドキュメントにコメントとpostedAtを保存するため
     var ref: DocumentReference? = nil         //ドキュメントにコメントとpostedAtを保存するため
+    var played: Bool? = nil
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
@@ -57,12 +58,6 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
-        
-        if let user = Auth.auth().currentUser {
-            if user.isAnonymous == true {
-                tabBarController?.tabBar.isHidden = true//匿名者ならtabBarを非表示
-            }
-        }
     }
     
     

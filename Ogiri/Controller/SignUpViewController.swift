@@ -90,9 +90,9 @@ class SignUpViewController:
         }
         
         //PlayViewControllerに遷移させる
-        let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
-        tabbarController.selectedIndex = 1
-        self.navigationController?.pushViewController(tabbarController, animated: true)
+        let PlayViewController = self.storyboard?.instantiateViewController(withIdentifier: "playvc")  as! PlayViewController
+        PlayViewController.played = false
+        self.navigationController?.pushViewController(PlayViewController, animated: true)
     }
     
     
