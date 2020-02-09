@@ -79,7 +79,12 @@ class SignUpViewController:
                 //TLで匿名ユーザーのみを取得するために「"userName": ユーザー」というフィールドを追加
                 ref?.setData([
                     "uid": userID,
-                    "userName": "匿名ユーザー"
+                    "userName": "匿名ユーザー",
+                    "postedAt": "投稿されていません",
+                    "comment1": "まだコメントはありません",
+                    "comment2": "まだコメントはありません",
+                    "comment3": "まだコメントはありません",
+                    "comment4": "まだコメントはありません"
                 ], merge: true) { error in
                     if let error = error {
                         print("Error setData document: \(error)")
@@ -90,9 +95,10 @@ class SignUpViewController:
         }
         
         //PlayViewControllerに遷移させる
-        let PlayViewController = self.storyboard?.instantiateViewController(withIdentifier: "playvc")  as! PlayViewController
-        PlayViewController.played = false
-        self.navigationController?.pushViewController(PlayViewController, animated: true)
+        let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
+        tabbarController.selectedIndex = 1
+        self.navigationController?.pushViewController(tabbarController, animated: true)
+
     }
     
     

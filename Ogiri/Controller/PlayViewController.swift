@@ -58,6 +58,13 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
+        
+        if let user = Auth.auth().currentUser {
+            if user.isAnonymous == true {
+                tabBarController?.tabBar.isHidden = true//匿名者ならtabBarを非表示
+            }
+        }
+
     }
     
     
