@@ -35,7 +35,7 @@ class PlayViewController: UIViewController {
     private var screenShotImagae4 = UIImage()
     let db = Firestore.firestore()            //ドキュメントにコメントとpostedAtを保存するため
     var ref: DocumentReference? = nil         //ドキュメントにコメントとpostedAtを保存するため
-    var played: Bool? = nil
+    var isFirstPlay = true
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
@@ -58,13 +58,7 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
-        
-        if let user = Auth.auth().currentUser {
-            if user.isAnonymous == true {
-                tabBarController?.tabBar.isHidden = true//匿名者ならtabBarを非表示
-            }
-        }
-
+        tabBarController?.tabBar.isHidden = true  //tabBarを非表示
     }
     
     
@@ -73,6 +67,16 @@ class PlayViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         
         coverView.isHidden = false
+        
+        if let user = Auth.auth().currentUser {
+                    if user.isAnonymous == false {
+                        tabBarController?.tabBar.isHidden = false  //登録者ならtabBarを表示
+                    }
+                }
+        
+        if isFirstPlay == false{
+            tabBarController?.tabBar.isHidden = false
+        }
     }
     
     
@@ -396,6 +400,7 @@ class PlayViewController: UIViewController {
         if odaiNumber == 5 {              //4題目のお題に答え終わったら
             share()                       //Twitter連携などできるアクティビティービューを出す
             validate()                    //ボタンとTextViewの非活性
+            isFirstPlay = false
             tabBarController?.tabBar.isHidden = false  //非表示にしていたタブバーを復活させる
         }
     }
