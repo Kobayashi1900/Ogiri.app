@@ -16,43 +16,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image6" translatesAutoresizingMaskIntoConstraints="NO" id="Ixg-t0-LhV">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image6" translatesAutoresizingMaskIntoConstraints="NO" id="Ixg-t0-LhV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7y-vs-8IC">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <visualEffectView opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="X7y-vs-8IC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gRY-Zl-hFM">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image7" translatesAutoresizingMaskIntoConstraints="NO" id="rrM-kY-Zr1">
-                                            <rect key="frame" x="0.0" y="337" width="376" height="128"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="128" id="lZx-Q5-R4E"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="rrM-kY-Zr1" firstAttribute="top" secondItem="gRY-Zl-hFM" secondAttribute="top" constant="337" id="4P8-0S-Xzz"/>
-                                        <constraint firstAttribute="trailing" secondItem="rrM-kY-Zr1" secondAttribute="trailing" constant="38" id="AhW-J3-qk3"/>
-                                        <constraint firstItem="rrM-kY-Zr1" firstAttribute="leading" secondItem="gRY-Zl-hFM" secondAttribute="leading" id="pMI-xS-k2e"/>
-                                    </constraints>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="896" id="EcZ-P7-tlt"/>
-                                </constraints>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="X7y-vs-8IC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-44" id="MQQ-0t-LXf"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="X7y-vs-8IC" secondAttribute="trailing" constant="-55" id="OHN-Al-ri3"/>
-                            <constraint firstItem="X7y-vs-8IC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cjV-QP-rYE"/>
-                            <constraint firstItem="Ixg-t0-LhV" firstAttribute="leading" secondItem="X7y-vs-8IC" secondAttribute="leading" id="gvT-ix-Ivm"/>
-                            <constraint firstItem="Ixg-t0-LhV" firstAttribute="top" secondItem="X7y-vs-8IC" secondAttribute="top" id="hMx-R5-15i"/>
-                            <constraint firstItem="X7y-vs-8IC" firstAttribute="trailing" secondItem="Ixg-t0-LhV" secondAttribute="trailing" id="rxk-Mo-DBM"/>
-                            <constraint firstItem="Ixg-t0-LhV" firstAttribute="bottom" secondItem="X7y-vs-8IC" secondAttribute="bottom" id="xA0-sF-aaH"/>
+                            <constraint firstAttribute="bottom" secondItem="X7y-vs-8IC" secondAttribute="bottom" id="2et-Ti-pEh"/>
+                            <constraint firstItem="X7y-vs-8IC" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="GY6-9q-9GS"/>
+                            <constraint firstItem="Ixg-t0-LhV" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="H1M-Mm-HJs"/>
+                            <constraint firstItem="X7y-vs-8IC" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="HWR-8V-mp1"/>
+                            <constraint firstAttribute="trailing" secondItem="X7y-vs-8IC" secondAttribute="trailing" id="Q1z-8y-Y7C"/>
+                            <constraint firstAttribute="trailing" secondItem="Ixg-t0-LhV" secondAttribute="trailing" id="Wfe-87-fbw"/>
+                            <constraint firstItem="Ixg-t0-LhV" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="XLh-zL-Yfw"/>
+                            <constraint firstAttribute="bottom" secondItem="Ixg-t0-LhV" secondAttribute="bottom" id="vtw-3h-Xgn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -64,6 +49,5 @@
     </scenes>
     <resources>
         <image name="image6" width="1125" height="2436"/>
-        <image name="image7" width="562.5" height="387.5"/>
     </resources>
 </document>
