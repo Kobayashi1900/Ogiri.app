@@ -59,6 +59,10 @@ class PlayViewController: UIViewController {
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
         tabBarController?.tabBar.isHidden = true  //tabBarを非表示
+        
+        if tabBarController?.tabBar.isHidden == true {
+            print("tabBar非表示DidLoad")
+        }
     }
     
     
@@ -71,11 +75,16 @@ class PlayViewController: UIViewController {
         if let user = Auth.auth().currentUser {
                     if user.isAnonymous == false {
                         tabBarController?.tabBar.isHidden = false  //登録者ならtabBarを表示
-                    }
+                        print("登録者ならtabBarを表示WillAppear")
+            }else{
+                        tabBarController?.tabBar.isHidden = true
+                        print("登録者でないならtabBarを非表示WillAppear")
+            }
                 }
         
         if isFirstPlay == false{
-            tabBarController?.tabBar.isHidden = false
+            tabBarController?.tabBar.isHidden = false  //tabBarを表示
+            print("初playでないならならtabBarを表示WillAppear")
         }
     }
     
@@ -401,6 +410,7 @@ class PlayViewController: UIViewController {
             share()                       //Twitter連携などできるアクティビティービューを出す
             validate()                    //ボタンとTextViewの非活性
             isFirstPlay = false
+            print("isFirstPlay = falseにした")
             tabBarController?.tabBar.isHidden = false  //非表示にしていたタブバーを復活させる
         }
     }
