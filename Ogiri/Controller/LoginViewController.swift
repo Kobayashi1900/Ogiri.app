@@ -45,14 +45,10 @@ class LoginViewController:
   }
     
     @IBAction func emailEditChanged(_ sender: UITextField) {
-        
-//        self.emailText = sender.text
         self.validate()
     }
     
     @IBAction func passwordEditChanged(_ sender: UITextField) {
-        
-//        self.passwordText = sender.text
         self.validate()
     }
     
@@ -72,6 +68,11 @@ class LoginViewController:
                 self.loginButton.isEnabled = false
                 return
             }
+        
+        if passwordText.count < 6{
+            self.loginButton.isEnabled = false
+            return
+        }
             
             // nilでないかつ0文字以上はloginButtonを活性に
             self.loginButton.isEnabled = true

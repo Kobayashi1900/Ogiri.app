@@ -124,7 +124,7 @@
                                     <action selector="emailEditChanged:" destination="L9B-HH-dRX" eventType="editingChanged" id="Y6E-cK-gRS"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PsR-WA-jlY">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="6文字以上" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PsR-WA-jlY">
                                 <rect key="frame" x="30" y="275" width="315" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -219,7 +219,7 @@
                                     <action selector="emailEditChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="s5J-XR-ay0"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RTd-3u-VIi">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="6文字以上" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RTd-3u-VIi">
                                 <rect key="frame" x="30" y="320" width="315" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
@@ -513,22 +513,26 @@
                                 <blurEffect style="regular"/>
                             </visualEffectView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uhf-8R-zbf">
-                                <rect key="frame" x="30" y="353" width="315" height="34"/>
+                                <rect key="frame" x="30" y="355" width="315" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ユーザー名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGJ-Kr-E7G">
-                                <rect key="frame" x="60" y="317" width="87" height="21"/>
+                                <rect key="frame" x="60" y="319" width="87" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="bhB-0V-kyW">
-                                <rect key="frame" x="123" y="104" width="129" height="128"/>
+                                <rect key="frame" x="122.66666666666669" y="104" width="130" height="130"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="QYV-oG-nk5"/>
+                                    <constraint firstAttribute="height" constant="130" id="dk4-Te-aBO"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j4V-hV-v8C">
-                                <rect key="frame" x="89.666666666666686" y="247" width="196" height="35"/>
+                                <rect key="frame" x="89.666666666666686" y="249" width="196" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="196" id="KYW-1E-BPL"/>
                                     <constraint firstAttribute="height" constant="35" id="yqK-4b-h20"/>
@@ -541,7 +545,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mS-zU-UO7">
-                                <rect key="frame" x="89.666666666666686" y="422" width="196" height="35"/>
+                                <rect key="frame" x="89.666666666666686" y="424" width="196" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="bKN-c2-Jo7"/>
                                     <constraint firstAttribute="width" constant="196" id="e5Q-tU-Wp5"/>
@@ -552,7 +556,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="＊ユーザー登録すると画像とユーザー名を変更できるようになります。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEM-nW-1jy">
-                                <rect key="frame" x="75.666666666666686" y="472" width="224" height="65"/>
+                                <rect key="frame" x="75.666666666666686" y="474" width="224" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="MRh-Jm-ice"/>
                                     <constraint firstAttribute="width" constant="224" id="snl-03-3iP"/>

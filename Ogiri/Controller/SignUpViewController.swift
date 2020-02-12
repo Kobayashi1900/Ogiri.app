@@ -51,6 +51,8 @@ class SignUpViewController:
             
             if error != nil {
                 print(error?.localizedDescription as Any)
+            }else{
+                self.defaultOdaiImageAdd()
             }
             
             //navigationControllerで画面遷移
@@ -92,6 +94,7 @@ class SignUpViewController:
                         print("Document successfully setData")
                     }
                 }
+            self.defaultOdaiImageAdd()
         }
         
         //PlayViewControllerに遷移させる
@@ -125,6 +128,11 @@ class SignUpViewController:
                 self.nextButton.isEnabled = false
                 return
             }
+        
+            if passTxt.count < 6{
+                self.nextButton.isEnabled = false
+                return
+            }
             
             // nilでないかつ0文字以上はnextButtonを活性に
             self.nextButton.isEnabled = true
@@ -140,5 +148,30 @@ class SignUpViewController:
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
+    }
+    
+    func defaultOdaiImageAdd() {
+        // ログインされていること確認する
+        guard let user = Auth.auth().currentUser else { return }
+        
+        //ストレージサーバのURLを取得
+        let storage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/")
+        
+        // パス  /  画像のURLが「uid.jpeg」となるように保存
+        let imageRef1 = storage.child("odaiImageNumber1").child("\(user.uid).jpeg")
+        let imageRef2 = storage.child("odaiImageNumber2").child("\(user.uid).jpeg")
+        let imageRef3 = storage.child("odaiImageNumber3").child("\(user.uid).jpeg")
+        let imageRef4 = storage.child("odaiImageNumber4").child("\(user.uid).jpeg")
+        
+        //保存したい画像のデータを変数として持つ
+        var odaiImageData: Data = Data()
+        
+        odaiImageData = (UIImage(named: "image8")!.jpegData(compressionQuality: 0.01))!
+        
+        //storageに画像を送信
+        imageRef1.putData(odaiImageData, metadata: nil)
+        imageRef2.putData(odaiImageData, metadata: nil)
+        imageRef3.putData(odaiImageData, metadata: nil)
+        imageRef4.putData(odaiImageData, metadata: nil)
     }
 }
