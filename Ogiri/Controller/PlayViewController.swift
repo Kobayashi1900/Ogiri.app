@@ -35,21 +35,15 @@ class PlayViewController: UIViewController {
     private var screenShotImagae4 = UIImage()
     let db = Firestore.firestore()            //ドキュメントにコメントとpostedAtを保存するため
     var ref: DocumentReference? = nil         //ドキュメントにコメントとpostedAtを保存するため
-    var isFirstPlay = true
+    var isFirstPlay = true                    //匿名ユーザーの最初のplayでtabbarを非表示にするため
     private let baseUrl = "https://pixabay.com/api/"
     private let apiKey = "13787747-8afd4e03ae250892260a92055"
     
-    @IBOutlet weak var coverView: UIView!
+    @IBOutlet weak var coverView: UIView!     //遊び方説明画面
     
     @IBAction func nextButton_coverView(_ sender: Any) {
         coverView.isHidden = true
         getPixabayImages()    //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
-        count = 31
-        odaiNumber = 1
-        commentNumber = 0
-        odaiImageNumber = 0
-        odaiLabel.text = "\(odaiNumber)題目"
-        commentTextView.isEditable = true
         tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
     
@@ -59,10 +53,6 @@ class PlayViewController: UIViewController {
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
         tabBarController?.tabBar.isHidden = true  //tabBarを非表示
-        
-        if tabBarController?.tabBar.isHidden == true {
-            print("tabBar非表示DidLoad")
-        }
     }
     
     
@@ -75,16 +65,14 @@ class PlayViewController: UIViewController {
         if let user = Auth.auth().currentUser {
                     if user.isAnonymous == false {
                         tabBarController?.tabBar.isHidden = false  //登録者ならtabBarを表示
-                        print("登録者ならtabBarを表示WillAppear")
             }else{
-                        tabBarController?.tabBar.isHidden = true
-                        print("登録者でないならtabBarを非表示WillAppear")
+                        tabBarController?.tabBar.isHidden = true   //匿名者ならtabBarを非表示
             }
-                }
+        }
         
-        if isFirstPlay == false{
-            tabBarController?.tabBar.isHidden = false  //tabBarを表示
-            print("初playでないならならtabBarを表示WillAppear")
+        if isFirstPlay == false{  //匿名者でも初playじゃなければtabBarを表示
+            tabBarController?.tabBar.isHidden = false
+            print("初playでないならtabBarを表示WillAppear")
         }
     }
     
@@ -219,7 +207,7 @@ class PlayViewController: UIViewController {
     }
     
     
-    //それぞれのお題画像をstroageのそれぞれのフォルダに保存できるようにnext押すたびインクリメント
+    //それぞれの回答をドキュメントのそれぞれのフィールドに保存できるようにnext押すたびインクリメント
     private func commentNumberIncrement() {
         
         switch commentNumber {
@@ -302,7 +290,7 @@ class PlayViewController: UIViewController {
     }
     
     
-    //回答すると呼ばれるタイマーメソッド(0秒時点でcommentTextView.textが""だった場合は未回答処理)
+    //回答すると呼ばれるタイマーメソッド
     @objc func timerCount() {
         
         if 1...31 ~= count {
@@ -339,7 +327,7 @@ class PlayViewController: UIViewController {
             
             odaiImageData = (odaiImageView.image?.jpegData(compressionQuality: 0.01))!  //画像を圧縮して代入
             
-        }else{
+        }else{  //お題の画像が見つける前に回答されたら、odaiImageDataにデフォの画像をいれる
             odaiImageData = (UIImage(named: "image8")!.jpegData(compressionQuality: 0.01))!
         }
         
@@ -374,7 +362,7 @@ class PlayViewController: UIViewController {
         if tempCommentText != nil{
             commentText = tempCommentText!
             
-            if commentTextView.hasText == false{
+            if commentTextView.hasText == false{  //commentTextViewにテキストがなかったら
                 commentText = "未回答またはタイムオーバー"
             }
             
@@ -409,7 +397,7 @@ class PlayViewController: UIViewController {
         if odaiNumber == 5 {              //4題目のお題に答え終わったら
             share()                       //Twitter連携などできるアクティビティービューを出す
             validate()                    //ボタンとTextViewの非活性
-            isFirstPlay = false
+            isFirstPlay = false           //匿名ユーザーでもisFirstPlay = falseならtabbarが表示される
             print("isFirstPlay = falseにした")
             tabBarController?.tabBar.isHidden = false  //非表示にしていたタブバーを復活させる
         }
@@ -423,7 +411,6 @@ class PlayViewController: UIViewController {
     
     //リターンでキーボードを閉じる
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
         textField.resignFirstResponder()
     }
     

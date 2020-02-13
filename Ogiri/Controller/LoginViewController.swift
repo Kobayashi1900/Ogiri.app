@@ -62,19 +62,14 @@ class LoginViewController:
                       return
             }
         
-            // 文字数が0の場合(""空文字)loginButtonを非活性に
-        if emailText.count == 0 || passwordText.count == 0 {
+            //アドレスが0(""空文字)、パスワードが6文字より少ない場合nextButtonを非活性に
+        if emailText.count == 0 || passwordText.count < 6 {
               
                 self.loginButton.isEnabled = false
                 return
             }
-        
-        if passwordText.count < 6{
-            self.loginButton.isEnabled = false
-            return
-        }
             
-            // nilでないかつ0文字以上はloginButtonを活性に
+            //nilでないかつ0文字、6文字より多ければnextButtonを活性に
             self.loginButton.isEnabled = true
     }
     

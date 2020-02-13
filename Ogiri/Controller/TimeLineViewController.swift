@@ -30,7 +30,6 @@ class TimeLineViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         timeLineTableView.reloadData()
-//        kaitouArray.removeAll()  //一旦kaitouArrayを空にする
         display()  //タイムラインに各ユーザーの大喜利を表示
     }
     

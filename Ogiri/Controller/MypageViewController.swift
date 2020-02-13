@@ -119,12 +119,6 @@ class MypageViewController:
         }
     }
     
-    //キャンセルが押された時にピッカーを閉じる
-//    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-//
-//        picker.dismiss(animated: true, completion: nil)
-//    }
-    
     //アルバムから画像を選択させるアラートを出すメソッド
     func showAlert() {
         

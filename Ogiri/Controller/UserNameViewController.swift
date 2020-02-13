@@ -18,8 +18,8 @@ class UserNameViewController:
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     
-    let db = Firestore.firestore()
-    var emailText2: String?      //SignUpViewControllerでアドレスの値が渡っている
+    let db = Firestore.firestore()//登録ユーザーの要素をdbに保存するため
+    var emailText2: String?       //SignUpViewControllerでアドレスの値が渡っている
     
     
     override func viewDidLoad() {
@@ -92,7 +92,6 @@ class UserNameViewController:
                         print("Error adding document: \(err)")
                     } else {
                         print("Document added with ID: \(ref!.documentID)")
-//                        self.getCollection()
                     }
                 }
             }

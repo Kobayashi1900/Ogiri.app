@@ -52,13 +52,13 @@ class SignUpViewController:
             if error != nil {
                 print(error?.localizedDescription as Any)
             }else{
-                self.defaultOdaiImageAdd()
+                self.defaultOdaiImageAdd()  //コンパイルエラーを防ぐために、とりあえずお題の画像にデフォルトのものを保存しておく
             }
             
             //navigationControllerで画面遷移
             let UserNameVC = self.storyboard?.instantiateViewController(withIdentifier: "unvc")  as! UserNameViewController
             
-            //値渡し
+            //値渡し  UserNameViewControllerでdbにまとめて保存するため。
             UserNameVC.emailText2 = self.emailTextField.text
             self.navigationController?.pushViewController(UserNameVC, animated: true)
         }
@@ -78,7 +78,8 @@ class SignUpViewController:
 
             ref = self.db.collection("users").document(userID)
 
-                //TLで匿名ユーザーのみを取得するために「"userName": ユーザー」というフィールドを追加
+                //TLで匿名ユーザーのみを取得するために「"userName": 匿名ユーザー」というフィールドを追加
+                //コンパイルエラーしないよう、仮の値を各フィールドに追加
                 ref?.setData([
                     "uid": userID,
                     "userName": "匿名ユーザー",
@@ -101,7 +102,6 @@ class SignUpViewController:
         let tabbarController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarControllerID")  as! UITabBarController
         tabbarController.selectedIndex = 1
         self.navigationController?.pushViewController(tabbarController, animated: true)
-
     }
     
     
@@ -122,19 +122,14 @@ class SignUpViewController:
                       return
             }
         
-            // 文字数が0の場合(""空文字)nextButtonを非活性に
-            if emailTxt.count == 0 || passTxt.count == 0 {
+            //アドレスが0(""空文字)、パスワードが6文字より少ない場合nextButtonを非活性に
+            if emailTxt.count == 0 || passTxt.count < 6 {
               
                 self.nextButton.isEnabled = false
                 return
             }
-        
-            if passTxt.count < 6{
-                self.nextButton.isEnabled = false
-                return
-            }
-            
-            // nilでないかつ0文字以上はnextButtonを活性に
+                    
+            //nilでないかつ0文字、6文字より多ければnextButtonを活性に
             self.nextButton.isEnabled = true
     }
     
@@ -149,6 +144,7 @@ class SignUpViewController:
         
         textField.resignFirstResponder()
     }
+    
     
     func defaultOdaiImageAdd() {
         // ログインされていること確認する
