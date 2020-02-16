@@ -122,15 +122,20 @@ class SignUpViewController:
                       return
             }
         
-            //アドレスが0(""空文字)、パスワードが6文字より少ない場合nextButtonを非活性に
-            if emailTxt.count == 0 || passTxt.count < 6 {
-              
-                self.nextButton.isEnabled = false
+            //アドレスが正規かつパスワードが6文字以上の場合nextButtonを活性に
+            if validateEmail(candidate: emailTxt) && passTxt.count >= 6 {
+                self.nextButton.isEnabled = true
                 return
-            }
+            }else{
+                self.nextButton.isEnabled = false
+        }
                     
-            //nilでないかつ0文字、6文字より多ければnextButtonを活性に
-            self.nextButton.isEnabled = true
+            
+    }
+    
+    func validateEmail(candidate: String) -> Bool {
+     let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: candidate)
     }
     
     //タッチでキーボードを閉じる
