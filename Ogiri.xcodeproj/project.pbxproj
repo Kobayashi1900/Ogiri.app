@@ -75,6 +75,7 @@
 		BC94336623723A1700C2DD27 /* WordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsList.swift; sourceTree = "<group>"; };
 		BC94336C23797CB400C2DD27 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		BC94336D23797CB400C2DD27 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
+		BC9A8E5C23FA106B00CAE577 /* Ogiri.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Ogiri.entitlements; sourceTree = "<group>"; };
 		BC9CF55223BDD49C00BA022E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCAA570F2366F31B00162C41 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E60402C23A178B90DB2951BF /* Pods_OgiriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OgiriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +158,7 @@
 		BC5686E32313062400BB196C /* Ogiri */ = {
 			isa = PBXGroup;
 			children = (
+				BC9A8E5C23FA106B00CAE577 /* Ogiri.entitlements */,
 				BC8B23E5234460BF00138327 /* Model */,
 				BC8B23E4234460B600138327 /* View */,
 				BC8B23E3234460A600138327 /* Controller */,
@@ -645,6 +647,7 @@
 			baseConfigurationReference = 7610E134B1E2FA9F2DCD339A /* Pods-Ogiri.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ogiri/Ogiri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5A7KM2635A;
@@ -665,6 +668,7 @@
 			baseConfigurationReference = 6687185436C471973E8C0639 /* Pods-Ogiri.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Ogiri/Ogiri.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5A7KM2635A;
