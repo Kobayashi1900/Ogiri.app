@@ -63,8 +63,8 @@ class RollingSequenceNumberBuffer {
     if (queue_.size() < max_elements_) {
       queue_.push(sequence_number);
     } else {
-      ListenSequenceNumber highest_value = queue_.top();
-      if (sequence_number < highest_value) {
+      ListenSequenceNumber highestValue = queue_.top();
+      if (sequence_number < highestValue) {
         queue_.pop();
         queue_.push(sequence_number);
       }
@@ -96,9 +96,9 @@ LruParams LruParams::Disabled() {
   return LruParams{api::Settings::CacheSizeUnlimited, 0, 0};
 }
 
-LruParams LruParams::WithCacheSize(int64_t cache_size) {
+LruParams LruParams::WithCacheSize(int64_t cacheSize) {
   LruParams params = Default();
-  params.min_bytes_threshold = cache_size;
+  params.min_bytes_threshold = cacheSize;
   return params;
 }
 
@@ -181,12 +181,12 @@ ListenSequenceNumber LruGarbageCollector::SequenceNumberForQueryCount(
 
   RollingSequenceNumberBuffer buffer(query_count);
 
-  delegate_->EnumerateTargets([&buffer](const TargetData& target_data) {
-    buffer.AddElement(target_data.sequence_number());
+  delegate_->EnumerateTargets([&buffer](const QueryData& queryData) {
+    buffer.AddElement(queryData.sequence_number());
   });
 
   delegate_->EnumerateOrphanedDocuments(
-      [&buffer](const DocumentKey& doc_key,
+      [&buffer](const DocumentKey& docKey,
                 ListenSequenceNumber sequence_number) {
         buffer.AddElement(sequence_number);
       });

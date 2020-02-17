@@ -17,6 +17,12 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_MEMORY_MUTATION_QUEUE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_MEMORY_MUTATION_QUEUE_H_
 
+#if !defined(__OBJC__)
+#error "For now, this file must only be included by ObjC source files."
+#endif  // !defined(__OBJC__)
+
+#import <Foundation/Foundation.h>
+
 #include <set>
 #include <vector>
 
@@ -28,16 +34,19 @@
 #include "Firestore/core/src/firebase/firestore/model/document_key_set.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
 
+@class FSTMemoryPersistence;
+
+NS_ASSUME_NONNULL_BEGIN
+
 namespace firebase {
 namespace firestore {
 namespace local {
 
-class MemoryPersistence;
 class Sizer;
 
 class MemoryMutationQueue : public MutationQueue {
  public:
-  explicit MemoryMutationQueue(MemoryPersistence* persistence);
+  explicit MemoryMutationQueue(FSTMemoryPersistence* persistence);
 
   void Start() override;
 
@@ -81,7 +90,7 @@ class MemoryMutationQueue : public MutationQueue {
   int64_t CalculateByteSize(const Sizer& sizer);
 
   nanopb::ByteString GetLastStreamToken() override;
-  void SetLastStreamToken(nanopb::ByteString token) override;
+  void SetLastStreamToken(const nanopb::ByteString& token) override;
 
  private:
   using DocumentKeyReferenceSet =
@@ -91,7 +100,7 @@ class MemoryMutationQueue : public MutationQueue {
       const std::set<model::BatchId>& batch_ids);
 
   /**
-   * Finds the index of the given batch_id in the mutation queue. This operation
+   * Finds the index of the given batchID in the mutation queue. This operation
    * is O(1).
    *
    * @return The computed index of the batch with the given BatchID, based on
@@ -101,9 +110,8 @@ class MemoryMutationQueue : public MutationQueue {
    */
   int IndexOfBatchId(model::BatchId batch_id);
 
-  // This instance is owned by MemoryPersistence.
-  MemoryPersistence* persistence_;
-
+  // This instance is owned by FSTMemoryPersistence; avoid a retain cycle.
+  __weak FSTMemoryPersistence* persistence_;
   /**
    * A FIFO queue of all mutations to apply to the backend. Mutations are added
    * to the end of the queue as they're written, and removed from the front of
@@ -144,5 +152,7 @@ class MemoryMutationQueue : public MutationQueue {
 }  // namespace local
 }  // namespace firestore
 }  // namespace firebase
+
+NS_ASSUME_NONNULL_END
 
 #endif  // FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_LOCAL_MEMORY_MUTATION_QUEUE_H_

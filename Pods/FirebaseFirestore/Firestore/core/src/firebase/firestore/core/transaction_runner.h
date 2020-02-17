@@ -23,7 +23,7 @@
 #include "Firestore/core/src/firebase/firestore/remote/exponential_backoff.h"
 #include "Firestore/core/src/firebase/firestore/remote/remote_store.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
-#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "Firestore/core/src/firebase/firestore/util/status.h"
 
 namespace firebase {
 namespace firestore {
@@ -53,13 +53,14 @@ class TransactionRunner
   void Run();
 
  private:
-  void ContinueCommit(const std::shared_ptr<Transaction>& transaction,
-                      util::Status maybe_result);
+  void ContinueCommit(const std::shared_ptr<Transaction> transaction,
+                      const util::StatusOr<absl::any> maybe_result);
 
-  void DispatchResult(const std::shared_ptr<Transaction>& transaction,
-                      util::Status status);
+  void DispatchResult(const std::shared_ptr<Transaction> transaction,
+                      util::Status status,
+                      const util::StatusOr<absl::any> maybe_result);
 
-  void HandleTransactionError(const std::shared_ptr<Transaction>& transaction,
+  void HandleTransactionError(const std::shared_ptr<Transaction> transaction,
                               util::Status status);
 
   std::shared_ptr<util::AsyncQueue> queue_;

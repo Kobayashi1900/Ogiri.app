@@ -17,17 +17,6 @@
 #import <GoogleDataTransport/GDTCORPlatform.h>
 
 #import <GoogleDataTransport/GDTCORAssert.h>
-#import <GoogleDataTransport/GDTCORConsoleLogger.h>
-
-#import "GDTCORLibrary/Private/GDTCORRegistrar_Private.h"
-
-#ifdef GDTCOR_VERSION
-#define STR(x) STR_EXPAND(x)
-#define STR_EXPAND(x) #x
-NSString *const kGDTCORVersion = @STR(GDTCOR_VERSION);
-#else
-NSString *const kGDTCORVersion = @"Unknown";
-#endif  // GDTCOR_VERSION
 
 const GDTCORBackgroundIdentifier GDTCORBackgroundIdentifierInvalid = 0;
 
@@ -39,7 +28,7 @@ NSString *const kGDTCORApplicationWillEnterForegroundNotification =
 
 NSString *const kGDTCORApplicationWillTerminateNotification =
     @"GDTCORApplicationWillTerminateNotification";
-#if !TARGET_OS_WATCH
+
 BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 #if TARGET_OS_IOS
   return (flags & kSCNetworkReachabilityFlagsIsWWAN) == kSCNetworkReachabilityFlagsIsWWAN;
@@ -47,24 +36,10 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
   return NO;
 #endif  // TARGET_OS_IOS
 }
-#endif  // !TARGET_OS_WATCH
-
-@interface GDTCORApplication ()
-/**
- Private flag to match the existing `readonly` public flag. This will be accurate for all platforms,
- since we handle each platform's lifecycle notifications separately.
- */
-@property(atomic, readwrite) BOOL isRunningInBackground;
-
-@end
 
 @implementation GDTCORApplication
 
 + (void)load {
-  GDTCORLogDebug(
-      "%@", @"GDT is initializing. Please note that if you quit the app via the "
-             "debugger and not through a lifecycle event, event data will remain on disk but "
-             "storage won't have a reference to them since the singleton wasn't saved to disk.");
 #if TARGET_OS_IOS || TARGET_OS_TV
   // If this asserts, please file a bug at https://github.com/firebase/firebase-ios-sdk/issues.
   GDTCORFatalAssert(
@@ -86,9 +61,6 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 - (instancetype)init {
   self = [super init];
   if (self) {
-    // This class will be instantiated in the foreground.
-    _isRunningInBackground = NO;
-
 #if TARGET_OS_IOS || TARGET_OS_TV
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self
@@ -130,31 +102,21 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
   return self;
 }
 
-- (GDTCORBackgroundIdentifier)beginBackgroundTaskWithName:(NSString *)name
-                                        expirationHandler:(void (^)(void))handler {
-  GDTCORBackgroundIdentifier bgID =
-      [[self sharedApplicationForBackgroundTask] beginBackgroundTaskWithName:name
-                                                           expirationHandler:handler];
-#if !NDEBUG
-  if (bgID != GDTCORBackgroundIdentifierInvalid) {
-    GDTCORLogDebug("Creating background task with name:%@ bgID:%ld", name, (long)bgID);
-  }
-#endif  // !NDEBUG
-  return bgID;
+- (GDTCORBackgroundIdentifier)beginBackgroundTaskWithExpirationHandler:(void (^)(void))handler {
+  return
+      [[self sharedApplicationForBackgroundTask] beginBackgroundTaskWithExpirationHandler:handler];
 }
 
 - (void)endBackgroundTask:(GDTCORBackgroundIdentifier)bgID {
   if (bgID != GDTCORBackgroundIdentifierInvalid) {
-    GDTCORLogDebug("Ending background task with ID:%ld was successful", (long)bgID);
     [[self sharedApplicationForBackgroundTask] endBackgroundTask:bgID];
-    return;
   }
 }
 
 #pragma mark - App environment helpers
 
 - (BOOL)isAppExtension {
-#if TARGET_OS_IOS || TARGET_OS_TV || TARGET_OS_WATCH
+#if TARGET_OS_IOS || TARGET_OS_TV
   BOOL appExtension = [[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"];
   return appExtension;
 #elif TARGET_OS_OSX
@@ -187,24 +149,17 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 
 #if TARGET_OS_IOS || TARGET_OS_TV
 - (void)iOSApplicationDidEnterBackground:(NSNotification *)notif {
-  _isRunningInBackground = YES;
-
   NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
-  GDTCORLogDebug("%@", @"GDTCORPlatform is sending a notif that the app is backgrounding.");
   [notifCenter postNotificationName:kGDTCORApplicationDidEnterBackgroundNotification object:nil];
 }
 
 - (void)iOSApplicationWillEnterForeground:(NSNotification *)notif {
-  _isRunningInBackground = NO;
-
   NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
-  GDTCORLogDebug("%@", @"GDTCORPlatform is sending a notif that the app is foregrounding.");
   [notifCenter postNotificationName:kGDTCORApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)iOSApplicationWillTerminate:(NSNotification *)notif {
   NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
-  GDTCORLogDebug("%@", @"GDTCORPlatform is sending a notif that the app is terminating.");
   [notifCenter postNotificationName:kGDTCORApplicationWillTerminateNotification object:nil];
 }
 #endif  // TARGET_OS_IOS || TARGET_OS_TV
@@ -214,7 +169,6 @@ BOOL GDTCORReachabilityFlagsContainWWAN(SCNetworkReachabilityFlags flags) {
 #if TARGET_OS_OSX
 - (void)macOSApplicationWillTerminate:(NSNotification *)notif {
   NSNotificationCenter *notifCenter = [NSNotificationCenter defaultCenter];
-  GDTCORLogDebug("%@", @"GDTCORPlatform is sending a notif that the app is terminating.");
   [notifCenter postNotificationName:kGDTCORApplicationWillTerminateNotification object:nil];
 }
 #endif  // TARGET_OS_OSX

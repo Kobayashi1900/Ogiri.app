@@ -17,12 +17,20 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_CORE_FIRESTORE_CLIENT_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_CORE_FIRESTORE_CLIENT_H_
 
+#if !defined(__OBJC__)
+#error "This header only supports Objective-C++"
+#endif  // !defined(__OBJC__)
+
+#import <Foundation/Foundation.h>
+
 #include <memory>
 #include <vector>
 
+#import "Firestore/Source/Local/FSTLRUGarbageCollector.h"
+#import "Firestore/Source/Local/FSTLocalStore.h"
+
 #include "Firestore/core/src/firebase/firestore/api/document_reference.h"
 #include "Firestore/core/src/firebase/firestore/api/document_snapshot.h"
-#include "Firestore/core/src/firebase/firestore/api/listener_registration.h"
 #include "Firestore/core/src/firebase/firestore/api/query_core.h"
 #include "Firestore/core/src/firebase/firestore/api/settings.h"
 #include "Firestore/core/src/firebase/firestore/auth/credentials_provider.h"
@@ -32,29 +40,19 @@
 #include "Firestore/core/src/firebase/firestore/core/query_listener.h"
 #include "Firestore/core/src/firebase/firestore/core/transaction.h"
 #include "Firestore/core/src/firebase/firestore/core/view_snapshot.h"
-#include "Firestore/core/src/firebase/firestore/local/local_store.h"
 #include "Firestore/core/src/firebase/firestore/model/database_id.h"
 #include "Firestore/core/src/firebase/firestore/model/mutation.h"
+#include "Firestore/core/src/firebase/firestore/objc/objc_class.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/delayed_constructor.h"
-#include "Firestore/core/src/firebase/firestore/util/empty.h"
 #include "Firestore/core/src/firebase/firestore/util/executor.h"
-#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "Firestore/core/src/firebase/firestore/util/statusor_callback.h"
 
 namespace firebase {
 namespace firestore {
-namespace local {
-
-class LruDelegate;
-class QueryEngine;
-class Persistence;
-
-}  // namespace local
 
 namespace remote {
-
 class RemoteStore;
-
 }  // namespace remote
 
 namespace core {
@@ -88,13 +86,7 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
    * Terminates this client, cancels all writes / listeners, and releases all
    * resources.
    */
-  void TerminateAsync(util::StatusCallback callback);
-
-  /**
-   * Synchronously terminates this client, cancels all writes / listeners, and
-   * releases all resources.
-   */
-  void Terminate();
+  void Terminate(util::StatusCallback callback);
 
   /**
    * Passes a callback that is triggered when all the pending writes at the
@@ -146,18 +138,6 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
                    TransactionUpdateCallback update_callback,
                    TransactionResultCallback result_callback);
 
-  /**
-   * Adds a listener to be called when a snapshots-in-sync event fires.
-   */
-  void AddSnapshotsInSyncListener(
-      const std::shared_ptr<EventListener<util::Empty>>& listener);
-
-  /**
-   * Removes a specific listener for snapshots-in-sync events.
-   */
-  void RemoveSnapshotsInSyncListener(
-      const std::shared_ptr<EventListener<util::Empty>>& listener);
-
   /** The database ID of the DatabaseInfo this client was initialized with. */
   const model::DatabaseId& database_id() const {
     return database_info_.database_id();
@@ -189,8 +169,6 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
 
   void VerifyNotTerminated();
 
-  void TerminateInternal();
-
   void ScheduleLruGarbageCollection();
 
   DatabaseInfo database_info_;
@@ -205,9 +183,8 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
   std::shared_ptr<util::AsyncQueue> worker_queue_;
   std::shared_ptr<util::Executor> user_executor_;
 
-  std::unique_ptr<local::Persistence> persistence_;
-  std::unique_ptr<local::LocalStore> local_store_;
-  std::unique_ptr<local::QueryEngine> query_engine_;
+  _Nonnull id<FSTPersistence> persistence_;
+  FSTLocalStore* _Nonnull local_store_;
   std::unique_ptr<remote::RemoteStore> remote_store_;
   std::unique_ptr<SyncEngine> sync_engine_;
   std::unique_ptr<EventManager> event_manager_;
@@ -215,8 +192,7 @@ class FirestoreClient : public std::enable_shared_from_this<FirestoreClient> {
   std::chrono::milliseconds initial_gc_delay_ = std::chrono::minutes(1);
   std::chrono::milliseconds regular_gc_delay_ = std::chrono::minutes(5);
   bool gc_has_run_ = false;
-  bool credentials_initialized_ = false;
-  local::LruDelegate* _Nullable lru_delegate_;
+  _Nullable id<FSTLRUDelegate> lru_delegate_;
   util::DelayedOperation lru_callback_;
 };
 

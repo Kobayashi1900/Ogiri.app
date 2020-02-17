@@ -17,10 +17,14 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_REMOTE_WATCH_STREAM_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_REMOTE_WATCH_STREAM_H_
 
+#if !defined(__OBJC__)
+#error "This header only supports Objective-C++"
+#endif  // !defined(__OBJC__)
+
 #include <memory>
 #include <string>
 
-#include "Firestore/core/src/firebase/firestore/local/target_data.h"
+#include "Firestore/core/src/firebase/firestore/local/query_data.h"
 #include "Firestore/core/src/firebase/firestore/model/snapshot_version.h"
 #include "Firestore/core/src/firebase/firestore/model/types.h"
 #include "Firestore/core/src/firebase/firestore/remote/grpc_connection.h"
@@ -28,27 +32,24 @@
 #include "Firestore/core/src/firebase/firestore/remote/stream.h"
 #include "Firestore/core/src/firebase/firestore/remote/watch_change.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
-#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "Firestore/core/src/firebase/firestore/util/status.h"
 #include "absl/strings/string_view.h"
 #include "grpcpp/support/byte_buffer.h"
+
+#import "Firestore/Source/Core/FSTTypes.h"
+#import "Firestore/Source/Remote/FSTSerializerBeta.h"
 
 namespace firebase {
 namespace firestore {
 namespace remote {
-
-class Serializer;
 
 /**
  * An interface defining the events that can be emitted by the `WatchStream`.
  */
 class WatchStreamCallback {
  public:
-  virtual ~WatchStreamCallback() = default;
-
-  /**
-   * Called by the `WatchStream` when it is ready to accept outbound request
-   * messages.
-   */
+  /** Called by the `WatchStream` when it is ready to accept outbound request
+   * messages. */
   virtual void OnWatchStreamOpen() = 0;
 
   /**
@@ -82,7 +83,7 @@ class WatchStream : public Stream {
  public:
   WatchStream(const std::shared_ptr<util::AsyncQueue>& async_queue,
               std::shared_ptr<auth::CredentialsProvider> credentials_provider,
-              Serializer serializer,
+              FSTSerializerBeta* serializer,
               GrpcConnection* grpc_connection,
               WatchStreamCallback* callback);
 
@@ -93,7 +94,7 @@ class WatchStream : public Stream {
    * target ID included in `query`.
    */
   virtual /*virtual for tests only*/ void WatchQuery(
-      const local::TargetData& query);
+      const local::QueryData& query);
 
   /**
    * Unregisters interest in the results of the query associated with the given
@@ -115,7 +116,7 @@ class WatchStream : public Stream {
     return "WatchStream";
   }
 
-  WatchStreamSerializer watch_serializer_;
+  bridge::WatchStreamSerializer serializer_bridge_;
   WatchStreamCallback* callback_;
 };
 

@@ -30,7 +30,7 @@ class MutationBatch;
 
 namespace local {
 
-class TargetData;
+class QueryData;
 
 /**
  * Estimates the stored size of documents and queries.
@@ -53,9 +53,9 @@ class Sizer {
       const model::MutationBatch& batch) const = 0;
 
   /**
-   * Calculates the size of the given target_data in bytes.
+   * Calculates the size of the given query_data in bytes.
    */
-  virtual int64_t CalculateByteSize(const TargetData& target_data) const = 0;
+  virtual int64_t CalculateByteSize(const QueryData& query_data) const = 0;
 };
 
 }  // namespace local

@@ -17,6 +17,10 @@
 #ifndef FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_REMOTE_DATASTORE_H_
 #define FIRESTORE_CORE_SRC_FIREBASE_FIRESTORE_REMOTE_DATASTORE_H_
 
+#if !defined(__OBJC__)
+#error "This header only supports Objective-C++"
+#endif  // !defined(__OBJC__)
+
 #include <functional>
 #include <memory>
 #include <string>
@@ -33,7 +37,8 @@
 #include "Firestore/core/src/firebase/firestore/remote/write_stream.h"
 #include "Firestore/core/src/firebase/firestore/util/async_queue.h"
 #include "Firestore/core/src/firebase/firestore/util/executor.h"
-#include "Firestore/core/src/firebase/firestore/util/status_fwd.h"
+#include "Firestore/core/src/firebase/firestore/util/status.h"
+#include "Firestore/core/src/firebase/firestore/util/statusor.h"
 #include "absl/strings/string_view.h"
 #include "grpcpp/completion_queue.h"
 #include "grpcpp/support/status.h"
@@ -59,8 +64,9 @@ namespace remote {
  */
 class Datastore : public std::enable_shared_from_this<Datastore> {
  public:
+  // TODO(varconst): change this to take a single `StatusOr` parameter.
   using LookupCallback = std::function<void(
-      const util::StatusOr<std::vector<model::MaybeDocument>>&)>;
+      const std::vector<model::MaybeDocument>&, const util::Status&)>;
   using CommitCallback = std::function<void(const util::Status&)>;
 
   Datastore(const core::DatabaseInfo& database_info,
@@ -185,12 +191,12 @@ class Datastore : public std::enable_shared_from_this<Datastore> {
   // shared for all spawned gRPC streams and calls).
   std::unique_ptr<util::Executor> rpc_executor_;
   grpc::CompletionQueue grpc_queue_;
-  // TODO(varconst): move `ConnectivityMonitor` to `FirestoreClient`.
+  // TODO(varconst): move `ConnectivityMonitor` to `FSTFirestoreClient`.
   std::unique_ptr<ConnectivityMonitor> connectivity_monitor_;
   GrpcConnection grpc_connection_;
 
   std::vector<std::unique_ptr<GrpcCall>> active_calls_;
-  DatastoreSerializer datastore_serializer_;
+  bridge::DatastoreSerializer serializer_bridge_;
 };
 
 }  // namespace remote

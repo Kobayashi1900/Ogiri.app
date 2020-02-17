@@ -10,6 +10,7 @@ target 'Ogiri' do
 pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'SDWebImage'
+pod 'TwitterKit'
 pod 'Firebase'
 pod 'Firebase/Database'
 pod 'Firebase/Messaging'
