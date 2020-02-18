@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>カメラを使うため</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Twitterでのツイート時にあなたの場所を共有する場合に利用します。</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>ユーザーが画像を保存できるようにする。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
