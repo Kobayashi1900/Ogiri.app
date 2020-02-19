@@ -44,6 +44,12 @@ class PlayViewController: UIViewController {
     @IBAction func nextButton_coverView(_ sender: Any) {
         coverView.isHidden = true
         getPixabayImages()    //外部API(pixabay)に検索ワードを投げて画像を得て、それを表示してタイマーも開始するメソッド
+        count = 31
+        odaiNumber = 1
+        commentNumber = 0
+        odaiImageNumber = 0
+        odaiLabel.text = "\(odaiNumber)題目"
+        commentTextView.isEditable = true
         tabBarController?.tabBar.isHidden = true  //プレイ中はtabBarを非表示にする
     }
     
