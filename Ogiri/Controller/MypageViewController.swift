@@ -124,6 +124,13 @@ class MypageViewController:
         
         let alertController = UIAlertController(title: "", message: "画像を選択してください", preferredStyle: .actionSheet)
         
+        //iPadでActivityViewControllerを出すため
+        alertController.popoverPresentationController?.sourceView = self.view
+        alertController.popoverPresentationController?.sourceRect = CGRect(x: self.view.bounds.size.width / 2.0,
+                                                                           y: self.view.bounds.size.height / 2.0,
+                                                                           width: 1.0,
+                                                                           height: 1.0)
+        
         let action1 = UIAlertAction(title: "アルバム", style: .default) { (alert) in
             
         self.album()  //アルバムを表示するメソッド
