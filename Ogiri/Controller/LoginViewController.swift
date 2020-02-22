@@ -32,8 +32,14 @@ class LoginViewController:
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
            
             if error != nil {
+                let alert = UIAlertController(title: "ログインエラー",
+                                              message: "メールアドレスまたはパスワードが違います。",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
                 print("ログインできませんでした")
-            }else {
+            }else{
                 print("ログインできました")
                 
                 //navigationControllerで画面遷移

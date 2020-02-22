@@ -19,6 +19,8 @@ class SignUpViewController:
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var alertLabel: UILabel!
+    
     
     let db = Firestore.firestore()//匿名ユーザーのドキュメントを追加するため(匿名ユーザーをTLで取得するため)
 
@@ -29,6 +31,7 @@ class SignUpViewController:
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        alertLabel.isHidden = true
     }
     
     
@@ -125,13 +128,14 @@ class SignUpViewController:
             //アドレスが正規かつパスワードが6文字以上の場合nextButtonを活性に
             if validateEmail(candidate: emailTxt) && passTxt.count >= 6 {
                 self.nextButton.isEnabled = true
+                alertLabel.isHidden = true
                 return
             }else{
+                alertLabel.isHidden = false  //アラートを出す
                 self.nextButton.isEnabled = false
         }
-                    
-            
-    }
+}
+    
     
     func validateEmail(candidate: String) -> Bool {
      let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}"

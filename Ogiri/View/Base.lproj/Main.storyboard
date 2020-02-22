@@ -199,6 +199,18 @@
                                 </view>
                                 <blurEffect style="regular"/>
                             </visualEffectView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jiJ-Jh-GQj">
+                                <rect key="frame" x="190" y="182" width="160" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="8D9-gu-aQW"/>
+                                    <constraint firstAttribute="width" constant="160" id="tJP-bP-Vka"/>
+                                </constraints>
+                                <string key="text">形式が正しくないまたは
+パスワードが6文字未満です</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="メールアドレス" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zme-Mm-lAD">
                                 <rect key="frame" x="60" y="189" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
@@ -299,6 +311,7 @@
                             <constraint firstItem="dbp-el-jAt" firstAttribute="top" secondItem="zme-Mm-lAD" secondAttribute="bottom" constant="15" id="hn3-0D-e6Q"/>
                             <constraint firstAttribute="bottom" secondItem="eIA-sH-hpA" secondAttribute="bottom" id="iih-M7-53m"/>
                             <constraint firstItem="DMB-YT-Git" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" symbolic="YES" id="jPV-qt-QQt"/>
+                            <constraint firstItem="jiJ-Jh-GQj" firstAttribute="leading" secondItem="zme-Mm-lAD" secondAttribute="trailing" constant="8" id="khm-Tt-ghG"/>
                             <constraint firstItem="RTd-3u-VIi" firstAttribute="top" secondItem="iy2-mY-QFu" secondAttribute="bottom" constant="15" id="kq1-WP-0IQ"/>
                             <constraint firstItem="aYc-G5-jRO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ldE-oq-asl"/>
                             <constraint firstItem="zme-Mm-lAD" firstAttribute="top" secondItem="Gq8-x2-tRb" secondAttribute="bottom" constant="40" id="mUs-ya-oBl"/>
@@ -308,11 +321,13 @@
                             <constraint firstItem="DMB-YT-Git" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uwc-z0-ZCs"/>
                             <constraint firstItem="njc-V9-ZuI" firstAttribute="top" secondItem="RTd-3u-VIi" secondAttribute="bottom" constant="25" id="v5h-Bd-QVf"/>
                             <constraint firstItem="Gq8-x2-tRb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="xb9-WA-De3"/>
+                            <constraint firstItem="jiJ-Jh-GQj" firstAttribute="top" secondItem="Gq8-x2-tRb" secondAttribute="bottom" constant="33" id="xiw-pV-RkW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="vR4-ve-cuy"/>
                     <connections>
+                        <outlet property="alertLabel" destination="jiJ-Jh-GQj" id="imt-Uh-W4l"/>
                         <outlet property="emailTextField" destination="dbp-el-jAt" id="q77-QT-KLR"/>
                         <outlet property="nextButton" destination="njc-V9-ZuI" id="raA-za-fPF"/>
                         <outlet property="passwordTextField" destination="RTd-3u-VIi" id="BLa-Z9-yBp"/>
