@@ -77,6 +77,13 @@ class MypageViewController:
         updateProfile()  //ドキュメントのフィールド更新メソッド
     }
     
+    @IBAction func terms(_ sender: Any) {
+        let url = URL(string: "http://hari-blog.com/terms-of-service")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     //タッチでキーボードを閉じる
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
