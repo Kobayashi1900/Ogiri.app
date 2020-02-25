@@ -580,9 +580,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASh-83-XqY">
+                                <rect key="frame" x="156.66666666666666" y="554" width="62" height="30"/>
+                                <state key="normal" title="利用規約"/>
+                                <connections>
+                                    <action selector="terms:" destination="4i3-CH-j9X" eventType="touchUpInside" id="F1v-WV-Q6k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.6814534068107605" blue="0.25071612000465393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ASh-83-XqY" firstAttribute="top" secondItem="XEM-nW-1jy" secondAttribute="bottom" constant="15" id="21j-9x-ecC"/>
                             <constraint firstItem="XEM-nW-1jy" firstAttribute="top" secondItem="0mS-zU-UO7" secondAttribute="bottom" constant="15" id="5BI-FB-2oa"/>
                             <constraint firstItem="bhB-0V-kyW" firstAttribute="centerX" secondItem="1rz-Sg-Xje" secondAttribute="centerX" id="5p1-9O-Nu4"/>
                             <constraint firstAttribute="bottom" secondItem="nyb-Vh-CSE" secondAttribute="bottom" id="62Q-Uf-SNW"/>
@@ -603,6 +611,7 @@
                             <constraint firstItem="Uhf-8R-zbf" firstAttribute="leading" secondItem="Sh8-Q1-3GB" secondAttribute="leading" constant="30" id="oqG-dX-7cM"/>
                             <constraint firstAttribute="trailing" secondItem="oFA-Qh-FUK" secondAttribute="trailing" id="scN-1g-CDv"/>
                             <constraint firstItem="j4V-hV-v8C" firstAttribute="top" secondItem="bhB-0V-kyW" secondAttribute="bottom" constant="15" id="tGC-OS-9ay"/>
+                            <constraint firstItem="ASh-83-XqY" firstAttribute="centerX" secondItem="1rz-Sg-Xje" secondAttribute="centerX" id="tRC-ah-qDG"/>
                             <constraint firstItem="aGJ-Kr-E7G" firstAttribute="top" secondItem="j4V-hV-v8C" secondAttribute="bottom" constant="35" id="yyg-tk-3LV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Sh8-Q1-3GB"/>
@@ -663,6 +672,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr">
+                                                    <rect key="frame" x="298" y="11" width="62" height="30"/>
+                                                    <color key="backgroundColor" red="0.933613578680203" green="0.046136230141910949" blue="0.014342386188495039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <state key="normal" title="通報する">
+                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="report:" destination="uMd-1x-gag" eventType="touchUpInside" id="qzI-Ww-cNY"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6L-xS-r6u">
                                                     <rect key="frame" x="100" y="54" width="45" height="13.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
@@ -691,6 +710,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="o81-KC-jP5" secondAttribute="trailing" id="22v-O7-Rbp"/>
                                                 <constraint firstItem="cyv-e7-a7X" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="topMargin" id="2Hc-OZ-1pK"/>
                                                 <constraint firstItem="egX-Vv-8Cs" firstAttribute="top" secondItem="cyv-e7-a7X" secondAttribute="bottom" constant="15" id="2VX-EG-TZG"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="6Ge-8l-0sr" secondAttribute="trailing" id="4bo-Lt-dnW"/>
                                                 <constraint firstItem="C6L-xS-r6u" firstAttribute="leading" secondItem="cyv-e7-a7X" secondAttribute="trailing" constant="25" id="ELC-SH-zUB"/>
                                                 <constraint firstItem="PsF-vR-MoG" firstAttribute="leading" secondItem="Jd9-2f-xrg" secondAttribute="leadingMargin" constant="30" id="Ex5-TI-dkQ"/>
                                                 <constraint firstItem="H8n-M4-4O4" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="top" constant="20" symbolic="YES" id="GYo-OZ-xoI"/>
@@ -705,6 +725,7 @@
                                                 <constraint firstItem="egX-Vv-8Cs" firstAttribute="centerX" secondItem="Jd9-2f-xrg" secondAttribute="centerX" id="ayU-jc-QIt"/>
                                                 <constraint firstItem="cyv-e7-a7X" firstAttribute="leading" secondItem="Jd9-2f-xrg" secondAttribute="leadingMargin" id="dVc-1e-gVV"/>
                                                 <constraint firstItem="PsF-vR-MoG" firstAttribute="top" secondItem="egX-Vv-8Cs" secondAttribute="bottom" constant="5" id="fTh-fr-hhs"/>
+                                                <constraint firstItem="6Ge-8l-0sr" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="topMargin" id="hnh-oy-kqQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="egX-Vv-8Cs" secondAttribute="trailing" constant="30" id="kMi-Wd-qLx"/>
                                                 <constraint firstAttribute="bottom" secondItem="o81-KC-jP5" secondAttribute="bottom" id="nwL-qz-DVq"/>
                                                 <constraint firstAttribute="bottom" secondItem="6Pt-pi-L8o" secondAttribute="bottom" id="nzs-OW-YIJ"/>
