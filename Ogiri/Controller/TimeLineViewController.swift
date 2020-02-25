@@ -33,7 +33,15 @@ class TimeLineViewController:
         display()  //タイムラインに各ユーザーの大喜利を表示
     }
     
-
+    
+    @IBAction func report(_ sender: Any) {
+        let url = URL(string: "http://hari-blog.com/report-form")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
+    
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
