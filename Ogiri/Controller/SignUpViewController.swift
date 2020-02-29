@@ -29,6 +29,16 @@ class SignUpViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let alert = UIAlertController(title: "警告(warning)",
+                                 message: "このアプリは不適切なコンテンツが表示される可能性があります。(This app may display inappropriate content.)",
+                                 preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK",
+                                      style: .default,
+                                      handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+        
         emailTextField.delegate = self
         passwordTextField.delegate = self
         alertLabel.isHidden = true
