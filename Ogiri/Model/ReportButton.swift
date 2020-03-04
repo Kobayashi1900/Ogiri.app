@@ -10,5 +10,6 @@ import Foundation
 import UIKit
 
 class ReportButton: UIButton {
-  var uid: String = ""
+  var uid:String = ""
+  var folder:Int = 0
 }

@@ -36,13 +36,11 @@ class TimeLineViewController:
     
     @IBAction func reportButton(_ sender: ReportButton) {
         
-        let XXX = ReportButton()
-        
-        db.collection("users").document(XXX.uid).delete() { err in
+        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": FieldValue.delete(), ]) { err in
             if let err = err {
-                print("Error removing document: \(err)")
+                print("Error updating document: \(err)")
             } else {
-                print("Document successfully removed!")
+                print("Document successfully updated")
             }
         }
     }
@@ -79,6 +77,7 @@ class TimeLineViewController:
         let reportButton = cell.viewWithTag(6) as! ReportButton
         
         reportButton.uid = kaitouArray[indexPath.row]!.uid
+        reportButton.folder = kaitouArray[indexPath.row]!.folder
 
         
         //profileImageViewへの表示
