@@ -34,6 +34,19 @@ class TimeLineViewController:
     }
     
     
+    @IBAction func reportButton(_ sender: ReportButton) {
+        
+        let XXX = ReportButton()
+        
+        db.collection("users").document(XXX.uid).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+            }
+        }
+    }
+    
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -63,7 +76,10 @@ class TimeLineViewController:
         let postedAtLabel = cell.viewWithTag(3) as! UILabel
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
-        let reportButton = cell.viewWithTag(6) as! UIButton
+        let reportButton = cell.viewWithTag(6) as! ReportButton
+        
+        reportButton.uid = kaitouArray[indexPath.row]!.uid
+
         
         //profileImageViewへの表示
         let storageRefProfileImage = Storage.storage().reference(forURL: "gs://ogiri-d1811.appspot.com/profileImage/\(kaitouArray[indexPath.row]!.uid).jpeg")

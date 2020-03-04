@@ -672,12 +672,15 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr">
+                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="ReportButton" customModule="Ogiri">
                                                     <rect key="frame" x="298" y="11" width="62" height="30"/>
                                                     <color key="backgroundColor" red="0.933613578680203" green="0.046136230141910949" blue="0.014342386188495039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <state key="normal" title="通報する">
                                                         <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="fxZ-Kw-AHx"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6L-xS-r6u">
                                                     <rect key="frame" x="100" y="54" width="45" height="13.666666666666671"/>
