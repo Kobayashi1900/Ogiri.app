@@ -29,20 +29,20 @@ class TimeLineViewController:
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timeLineTableView.reloadData()
         display()  //タイムラインに各ユーザーの大喜利を表示
     }
     
     
     @IBAction func reportButton(_ sender: ReportButton) {
         
-        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": FieldValue.delete(), ]) { err in
+        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": "このコメントは通報されました", ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
             }
         }
+        display()
     }
     
     //セクションの数
