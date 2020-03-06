@@ -35,7 +35,7 @@ class TimeLineViewController:
     
     @IBAction func reportButton(_ sender: ReportButton) {
         
-        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": "このコメントは通報されました", ]) { err in
+        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": FieldValue.delete(), ]) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
