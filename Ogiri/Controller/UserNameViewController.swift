@@ -33,6 +33,12 @@ class UserNameViewController:
         self.validate()
     }
     
+    @IBAction func termsButton(_ sender: Any) {
+        let url = URL(string: "http://hari-blog.com/terms-of-service")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
     
     
     @IBAction func next(_ sender: Any) {

@@ -44,6 +44,9 @@
                                 <rect key="frame" x="36" y="423" width="54" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="利用規約"/>
+                                <connections>
+                                    <action selector="termsButton:" destination="Sda-i3-eej" eventType="touchUpInside" id="87H-bT-sAd"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="に同意して" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HE4-3F-ohw">
                                 <rect key="frame" x="90" y="429" width="67" height="16"/>
@@ -271,6 +274,9 @@
                                 <rect key="frame" x="56.666666666666657" y="494" width="54" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="利用規約"/>
+                                <connections>
+                                    <action selector="termsButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yZt-X2-0Je"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="に同意して" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RU-9r-NSN">
                                 <rect key="frame" x="110.66666666666669" y="500" width="67" height="16"/>
