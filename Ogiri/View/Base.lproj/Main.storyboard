@@ -704,6 +704,9 @@
                                                                 <state key="normal" title="通報" image="flag" catalog="system">
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
+                                                                <connections>
+                                                                    <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="f6W-B3-1dz"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="ReportButton" customModule="Ogiri">
                                                                 <rect key="frame" x="293" y="10" width="62" height="22"/>
@@ -717,7 +720,7 @@
                                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="fxZ-Kw-AHx"/>
+                                                                    <action selector="blockButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="Cl3-iW-TPf"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>

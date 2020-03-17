@@ -33,7 +33,7 @@ class TimeLineViewController:
     }
     
     
-    @IBAction func reportButton(_ sender: ReportButton) {
+    @IBAction func blockButton(_ sender: ReportButton) {
         
         db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": FieldValue.delete()]) { err in
             if let err = err {
@@ -43,6 +43,15 @@ class TimeLineViewController:
             }
         }
         display()
+    }
+    
+    
+    @IBAction func reportButton(_ sender: Any) {
+        
+        let url = URL(string: "http://hari-blog.com/report")!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
     
     //セクションの数
