@@ -692,6 +692,41 @@
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bQc-eW-P55">
                                                         <rect key="frame" x="0.0" y="0.0" width="375" height="453"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-iQ-IuK">
+                                                                <rect key="frame" x="235" y="10" width="53" height="22"/>
+                                                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="22" id="tRt-qd-3eX"/>
+                                                                    <constraint firstAttribute="width" constant="53" id="uqC-Qu-ZWe"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <state key="normal" title="通報" image="flag" catalog="system">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                            </button>
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="ReportButton" customModule="Ogiri">
+                                                                <rect key="frame" x="293" y="10" width="62" height="22"/>
+                                                                <color key="backgroundColor" red="0.933613578680203" green="0.046136230141910949" blue="0.014342386188495039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="62" id="5cv-8S-onI"/>
+                                                                    <constraint firstAttribute="height" constant="22" id="R3A-G9-1MW"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                <state key="normal" title="ブロック">
+                                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="fxZ-Kw-AHx"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="6Ge-8l-0sr" firstAttribute="top" secondItem="bQc-eW-P55" secondAttribute="top" constant="10" id="FVi-B5-FXX"/>
+                                                            <constraint firstAttribute="trailing" secondItem="6Ge-8l-0sr" secondAttribute="trailing" constant="20" symbolic="YES" id="Tvw-p3-6Bz"/>
+                                                            <constraint firstItem="6Ge-8l-0sr" firstAttribute="leading" secondItem="RtX-iQ-IuK" secondAttribute="trailing" constant="5" id="a1d-xg-pSf"/>
+                                                            <constraint firstItem="RtX-iQ-IuK" firstAttribute="top" secondItem="bQc-eW-P55" secondAttribute="top" constant="10" id="fak-dc-OeU"/>
+                                                        </constraints>
                                                     </view>
                                                     <blurEffect style="regular"/>
                                                 </visualEffectView>
@@ -708,16 +743,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="ReportButton" customModule="Ogiri">
-                                                    <rect key="frame" x="298" y="11" width="62" height="30"/>
-                                                    <color key="backgroundColor" red="0.933613578680203" green="0.046136230141910949" blue="0.014342386188495039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="通報する">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="fxZ-Kw-AHx"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投稿日時" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C6L-xS-r6u">
                                                     <rect key="frame" x="100" y="54" width="45" height="13.666666666666671"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="11"/>
@@ -746,7 +771,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="o81-KC-jP5" secondAttribute="trailing" id="22v-O7-Rbp"/>
                                                 <constraint firstItem="cyv-e7-a7X" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="topMargin" id="2Hc-OZ-1pK"/>
                                                 <constraint firstItem="egX-Vv-8Cs" firstAttribute="top" secondItem="cyv-e7-a7X" secondAttribute="bottom" constant="15" id="2VX-EG-TZG"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="6Ge-8l-0sr" secondAttribute="trailing" id="4bo-Lt-dnW"/>
                                                 <constraint firstItem="C6L-xS-r6u" firstAttribute="leading" secondItem="cyv-e7-a7X" secondAttribute="trailing" constant="25" id="ELC-SH-zUB"/>
                                                 <constraint firstItem="PsF-vR-MoG" firstAttribute="leading" secondItem="Jd9-2f-xrg" secondAttribute="leadingMargin" constant="30" id="Ex5-TI-dkQ"/>
                                                 <constraint firstItem="H8n-M4-4O4" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="top" constant="20" symbolic="YES" id="GYo-OZ-xoI"/>
@@ -761,7 +785,6 @@
                                                 <constraint firstItem="egX-Vv-8Cs" firstAttribute="centerX" secondItem="Jd9-2f-xrg" secondAttribute="centerX" id="ayU-jc-QIt"/>
                                                 <constraint firstItem="cyv-e7-a7X" firstAttribute="leading" secondItem="Jd9-2f-xrg" secondAttribute="leadingMargin" id="dVc-1e-gVV"/>
                                                 <constraint firstItem="PsF-vR-MoG" firstAttribute="top" secondItem="egX-Vv-8Cs" secondAttribute="bottom" constant="5" id="fTh-fr-hhs"/>
-                                                <constraint firstItem="6Ge-8l-0sr" firstAttribute="top" secondItem="Jd9-2f-xrg" secondAttribute="topMargin" id="hnh-oy-kqQ"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="egX-Vv-8Cs" secondAttribute="trailing" constant="30" id="kMi-Wd-qLx"/>
                                                 <constraint firstAttribute="bottom" secondItem="o81-KC-jP5" secondAttribute="bottom" id="nwL-qz-DVq"/>
                                                 <constraint firstAttribute="bottom" secondItem="6Pt-pi-L8o" secondAttribute="bottom" id="nzs-OW-YIJ"/>
@@ -840,6 +863,7 @@
     </scenes>
     <resources>
         <image name="Default" width="129" height="128"/>
+        <image name="flag" catalog="system" width="64" height="60"/>
         <image name="image1" width="400" height="400"/>
         <image name="image2" width="426" height="79"/>
         <image name="image3" width="512" height="95"/>
