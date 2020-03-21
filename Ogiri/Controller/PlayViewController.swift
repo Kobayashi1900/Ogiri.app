@@ -272,7 +272,9 @@ class PlayViewController: UIViewController {
     //スクショをtwitterにシェア
     func share() {
         
-        let items = [screenShotImagae1,
+        let items = ["#画像で雑大喜利",
+                 "https://apps.apple.com/jp/app/%E7%94%BB%E5%83%8F%E3%81%A7%E9%9B%91%E5%A4%A7%E5%96%9C%E5%88%A9/id1498900431",
+                     screenShotImagae1,
                      screenShotImagae2,
                      screenShotImagae3,
                      screenShotImagae4] as [Any]
