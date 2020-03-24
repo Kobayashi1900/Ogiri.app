@@ -708,7 +708,7 @@
                                                                     <action selector="reportButton:" destination="uMd-1x-gag" eventType="touchUpInside" id="f6W-B3-1dz"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="ReportButton" customModule="Ogiri">
+                                                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ge-8l-0sr" customClass="BlockButton" customModule="Ogiri">
                                                                 <rect key="frame" x="293" y="10" width="62" height="22"/>
                                                                 <color key="backgroundColor" red="0.933613578680203" green="0.046136230141910949" blue="0.014342386188495039" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>

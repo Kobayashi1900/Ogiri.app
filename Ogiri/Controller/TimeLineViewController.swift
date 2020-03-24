@@ -33,15 +33,13 @@ class TimeLineViewController:
     }
     
     
-    @IBAction func blockButton(_ sender: ReportButton) {
+    @IBAction func blockButton(_ sender: BlockButton) {
         
-        db.collection("users").document(sender.uid).updateData(["comment\(sender.folder)": FieldValue.delete()]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
+        var blockArray:[String] = ["\(sender.uid)","comment\(sender.folder)"]
+        UserDefaults.standard.set(blockArray, forKey: "blocked")
+        print("UserDefaultsに保存")
+        print("blocked:\(UserDefaults.standard.object(forKey: "blocked"))")
+        
         display()
     }
     
@@ -83,10 +81,10 @@ class TimeLineViewController:
         let postedAtLabel = cell.viewWithTag(3) as! UILabel
         let odaiImageView = cell.viewWithTag(4) as! UIImageView
         let commentTextView = cell.viewWithTag(5) as! UITextView
-        let reportButton = cell.viewWithTag(6) as! ReportButton
+        let blockButton = cell.viewWithTag(6) as! BlockButton
         
-        reportButton.uid = kaitouArray[indexPath.row]!.uid
-        reportButton.folder = kaitouArray[indexPath.row]!.folder
+        blockButton.uid = kaitouArray[indexPath.row]!.uid
+        blockButton.folder = kaitouArray[indexPath.row]!.folder
 
         
         //profileImageViewへの表示
@@ -142,12 +140,17 @@ class TimeLineViewController:
                               let data = document.data()
                             
                                       if data["comment1"] != nil {
+                                        
+                                        if UserDefaults.standard.object(forKey: "blocked") as! [String] !=
+                                            [data["uid"], "comment1"] as! [String]  {
                                   
+                                            
                                           self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                     uid: data["uid"] as! String,
                                                                     userName: data["userName"] as! String,
                                                                     postedAt: data["postedAt"] as! String,
                                                                     folder: 1))
+                                        }
                                       }
                                   
                                       if data["comment2"] != nil {

@@ -17,7 +17,7 @@
 		BC5686EF2313062500BB196C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC5686ED2313062500BB196C /* LaunchScreen.storyboard */; };
 		BC5686FA2313062500BB196C /* OgiriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5686F92313062500BB196C /* OgiriTests.swift */; };
 		BC5687052313062600BB196C /* OgiriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5687042313062600BB196C /* OgiriUITests.swift */; };
-		BC7CB866240FBE40005BEE41 /* ReportButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CB865240FBE40005BEE41 /* ReportButton.swift */; };
+		BC7CB866240FBE40005BEE41 /* BlockButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CB865240FBE40005BEE41 /* BlockButton.swift */; };
 		BC8B2442234B138400138327 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2441234B138400138327 /* PlayViewController.swift */; };
 		BC8B2444234B266900138327 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2443234B266900138327 /* SignUpViewController.swift */; };
 		BC8B2446234C84C600138327 /* MypageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8B2445234C84C600138327 /* MypageViewController.swift */; };
@@ -68,7 +68,7 @@
 		BC5687002313062500BB196C /* OgiriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OgiriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC5687042313062600BB196C /* OgiriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OgiriUITests.swift; sourceTree = "<group>"; };
 		BC5687062313062600BB196C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC7CB865240FBE40005BEE41 /* ReportButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportButton.swift; sourceTree = "<group>"; };
+		BC7CB865240FBE40005BEE41 /* BlockButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockButton.swift; sourceTree = "<group>"; };
 		BC8B2441234B138400138327 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
 		BC8B2443234B266900138327 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		BC8B2445234C84C600138327 /* MypageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 			children = (
 				BC94336623723A1700C2DD27 /* WordsList.swift */,
 				BC91984E239AAAEE00340F9B /* Kaitou.swift */,
-				BC7CB865240FBE40005BEE41 /* ReportButton.swift */,
+				BC7CB865240FBE40005BEE41 /* BlockButton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCAA57102366F31B00162C41 /* LoginViewController.swift in Sources */,
-				BC7CB866240FBE40005BEE41 /* ReportButton.swift in Sources */,
+				BC7CB866240FBE40005BEE41 /* BlockButton.swift in Sources */,
 				BC8B2442234B138400138327 /* PlayViewController.swift in Sources */,
 				BC5686E52313062400BB196C /* AppDelegate.swift in Sources */,
 				BC94336E23797CB400C2DD27 /* TableViewCell.swift in Sources */,
