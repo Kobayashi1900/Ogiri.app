@@ -30,15 +30,21 @@ class TimeLineViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         display()  //タイムラインに各ユーザーの大喜利を表示
+//        UserDefaults.standard.removeObject(forKey: "blocked")
     }
     
     
     @IBAction func blockButton(_ sender: BlockButton) {
         
-        var blockArray:[String] = ["\(sender.uid)","comment\(sender.folder)"]
-        UserDefaults.standard.set(blockArray, forKey: "blocked")
-        print("UserDefaultsに保存")
-        print("blocked:\(UserDefaults.standard.object(forKey: "blocked"))")
+        if UserDefaults.standard.object(forKey: "blocked") == nil {
+            let XXX = ["XX" : "xx"]
+            UserDefaults.standard.set(XXX, forKey: "blocked")
+        }
+        var blockDic:[String:String] = UserDefaults.standard.object(forKey: "blocked") as! [String : String]
+        blockDic ["\(sender.uid)" + "\(sender.folder)"] = "comment\(sender.folder)"
+        UserDefaults.standard.set(blockDic, forKey: "blocked")
+        print("ブロックボタン検知")
+        print("キー値blockedで保存した値:\(String(describing: UserDefaults.standard.object(forKey: "blocked")))")
         
         display()
     }
@@ -124,6 +130,7 @@ class TimeLineViewController:
     
     
     func display() {
+        print("display()")
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
                           
@@ -141,10 +148,9 @@ class TimeLineViewController:
                             
                                       if data["comment1"] != nil {
                                         
-                                        if UserDefaults.standard.object(forKey: "blocked") as! [String] !=
-                                            [data["uid"], "comment1"] as! [String]  {
-                                  
-                                            
+                                        if UserDefaults.standard.object(forKey: "blocked") as! [String:String] !=
+                                            ["\(String(describing: data["uid"]))" + "1" : "comment1"]  {
+                            
                                           self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                     uid: data["uid"] as! String,
                                                                     userName: data["userName"] as! String,
@@ -199,6 +205,9 @@ class TimeLineViewController:
                                   let data = document.data()
                                 
                                     if data["comment1"] != nil {
+                                        
+                                        if UserDefaults.standard.object(forKey: "blocked") as! [String:String] !=
+                                            ["\(String(describing: data["uid"]))" + "1" : "comment1"]  {
                                 
                                         self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                   uid: data["uid"] as! String,
@@ -206,6 +215,7 @@ class TimeLineViewController:
                                                                   postedAt: data["postedAt"] as! String,
                                                                   folder: 1))
                                     }
+                                }
                                 
                                     if data["comment2"] != nil {
                                                                       
