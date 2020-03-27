@@ -131,6 +131,8 @@ class TimeLineViewController:
     
     func display() {
         print("display()")
+        let userDefaults:[String:String] = UserDefaults.standard.object(forKey: "blocked") as! [String : String] //事前にUserDefaultsの中身取得
+        
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
                           
@@ -206,8 +208,7 @@ class TimeLineViewController:
                                 
                                     if data["comment1"] != nil {
                                         
-                                        if UserDefaults.standard.object(forKey: "blocked") as! [String:String] !=
-                                            ["\(String(describing: data["uid"]))" + "1" : "comment1"]  {
+                                        if userDefaults["\(String(describing: data["uid"]))1"] != "comment1" {
                                 
                                         self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                   uid: data["uid"] as! String,
