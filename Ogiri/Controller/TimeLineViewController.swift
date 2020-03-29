@@ -42,10 +42,10 @@ class TimeLineViewController:
             UserDefaults.standard.set(XXX, forKey: "blocked")
         }
         var blockDic:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String : Bool]
-        blockDic ["\(sender.uid)" + "\(sender.folder)"] = true
+        blockDic["\(sender.uid)" + "\(sender.folder)"] = true
         UserDefaults.standard.set(blockDic, forKey: "blocked")
         print("ブロックボタン検知")
-        print("キー値blockedで保存した値:\(String(describing: UserDefaults.standard.object(forKey: "blocked")))")
+        print("キー値blockedで保存した値:\(UserDefaults.standard.object(forKey: "blocked"))")
         
         display()
     }
@@ -137,6 +137,7 @@ class TimeLineViewController:
             UserDefaults.standard.set(XXX, forKey: "blocked")
         }
         let blockList:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String:Bool] //事前にUserDefaultsの中身取得
+        print("blockListの中身：\(blockList)")
         
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
@@ -155,7 +156,7 @@ class TimeLineViewController:
                             
                                       if data["comment1"] != nil {
                                         
-                                        if blockList["\(String(describing: data["uid"]))1"] != nil {
+                                        if let blockFlag = blockList["\(data["uid"])" + "1"], blockFlag == true {
                             
                                           self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                     uid: data["uid"] as! String,
@@ -220,6 +221,7 @@ class TimeLineViewController:
                                             userName: data["userName"] as! String,
                                             postedAt: data["postedAt"] as! String,
                                             folder: 1))
+                                            print("与えてるキー:\(blockList["\(data["uid"])" + "1"])")
                                         }
                                 }
                                 
