@@ -212,16 +212,14 @@ class TimeLineViewController:
                                 
                                     if data["comment1"] != nil {
                                         
-                                        if blockList["\(data["uid"])" + "1"] != nil {
-
-                                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                                                  uid: data["uid"] as! String,
-                                                                  userName: data["userName"] as! String,
-                                                                  postedAt: data["postedAt"] as! String,
-                                                                  folder: 1))
+                                        if let blockFlag = blockList["\(data["uid"])" + "1"], blockFlag == true {
+                                            
                                         }else{
-                                            print("blockListがnil")
-                                            print("blockList:\("\(data["uid"]!)" + "1")")
+                                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                            uid: data["uid"] as! String,
+                                            userName: data["userName"] as! String,
+                                            postedAt: data["postedAt"] as! String,
+                                            folder: 1))
                                         }
                                 }
                                 
