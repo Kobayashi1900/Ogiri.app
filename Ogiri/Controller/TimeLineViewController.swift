@@ -31,17 +31,18 @@ class TimeLineViewController:
         super.viewWillAppear(animated)
         display()  //タイムラインに各ユーザーの大喜利を表示
 //        UserDefaults.standard.removeObject(forKey: "blocked")
+        print("保存された値：\(UserDefaults.standard.object(forKey: "blocked"))")
     }
     
     
     @IBAction func blockButton(_ sender: BlockButton) {
         
         if UserDefaults.standard.object(forKey: "blocked") == nil {
-            let XXX = ["XX" : "xx"]
+            let XXX = ["XX" : true]
             UserDefaults.standard.set(XXX, forKey: "blocked")
         }
-        var blockDic:[String:String] = UserDefaults.standard.object(forKey: "blocked") as! [String : String]
-        blockDic ["\(sender.uid)" + "\(sender.folder)"] = "comment\(sender.folder)"
+        var blockDic:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String : Bool]
+        blockDic ["\(sender.uid)" + "\(sender.folder)"] = true
         UserDefaults.standard.set(blockDic, forKey: "blocked")
         print("ブロックボタン検知")
         print("キー値blockedで保存した値:\(String(describing: UserDefaults.standard.object(forKey: "blocked")))")
@@ -131,7 +132,11 @@ class TimeLineViewController:
     
     func display() {
         print("display()")
-        let userDefaults:[String:String] = UserDefaults.standard.object(forKey: "blocked") as! [String : String] //事前にUserDefaultsの中身取得
+        if UserDefaults.standard.object(forKey: "blocked") == nil {
+            let XXX = ["XX" : true]
+            UserDefaults.standard.set(XXX, forKey: "blocked")
+        }
+        let blockList:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String:Bool] //事前にUserDefaultsの中身取得
         
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
@@ -208,14 +213,14 @@ class TimeLineViewController:
                                 
                                     if data["comment1"] != nil {
                                         
-                                        if userDefaults["\(String(describing: data["uid"]))1"] != "comment1" {
-                                
-                                        self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                        if blockList["\(String(describing: data["uid"]))1"] != nil {
+
+                                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                   uid: data["uid"] as! String,
                                                                   userName: data["userName"] as! String,
                                                                   postedAt: data["postedAt"] as! String,
                                                                   folder: 1))
-                                    }
+                                        }
                                 }
                                 
                                     if data["comment2"] != nil {
