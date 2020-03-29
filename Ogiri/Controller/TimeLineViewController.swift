@@ -155,8 +155,7 @@ class TimeLineViewController:
                             
                                       if data["comment1"] != nil {
                                         
-                                        if UserDefaults.standard.object(forKey: "blocked") as! [String:String] !=
-                                            ["\(String(describing: data["uid"]))" + "1" : "comment1"]  {
+                                        if blockList["\(String(describing: data["uid"]))1"] != nil {
                             
                                           self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                     uid: data["uid"] as! String,
@@ -213,13 +212,16 @@ class TimeLineViewController:
                                 
                                     if data["comment1"] != nil {
                                         
-                                        if blockList["\(String(describing: data["uid"]))1"] != nil {
+                                        if blockList["\(data["uid"])" + "1"] != nil {
 
                                             self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                   uid: data["uid"] as! String,
                                                                   userName: data["userName"] as! String,
                                                                   postedAt: data["postedAt"] as! String,
                                                                   folder: 1))
+                                        }else{
+                                            print("blockListがnil")
+                                            print("blockList:\("\(data["uid"]!)" + "1")")
                                         }
                                 }
                                 
