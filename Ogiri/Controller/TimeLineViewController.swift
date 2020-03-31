@@ -30,7 +30,6 @@ class TimeLineViewController:
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         display()  //タイムラインに各ユーザーの大喜利を表示
-//        UserDefaults.standard.removeObject(forKey: "blocked")
         print("保存された値：\(UserDefaults.standard.object(forKey: "blocked"))")
     }
     
@@ -131,13 +130,12 @@ class TimeLineViewController:
     
     
     func display() {
-        print("display()")
+        
         if UserDefaults.standard.object(forKey: "blocked") == nil {
             let XXX = ["XX" : true]
             UserDefaults.standard.set(XXX, forKey: "blocked")
         }
         let blockList:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String:Bool] //事前にUserDefaultsの中身取得
-        print("blockListの中身：\(blockList)")
         
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
@@ -149,53 +147,72 @@ class TimeLineViewController:
                       if let err = err {
                           print("Error getting documents: \(err)")
                       } else {
-                        self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
-                          for document in querySnapshot!.documents {
+                            self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
+                                for document in querySnapshot!.documents {
 
-                              let data = document.data()
+                                    let data = document.data()
                             
-                                      if data["comment1"] != nil {
-                                        
-                                        if let blockFlag = blockList["\(data["uid"])1"], blockFlag == true {
-                            
-                                          self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                                                    uid: data["uid"] as! String,
-                                                                    userName: data["userName"] as! String,
-                                                                    postedAt: data["postedAt"] as! String,
-                                                                    folder: 1))
+                                        if data["comment1"] != nil {
+                                            if let data_uid = data["uid"] {
+                                                if let blockFlag = blockList["\(data_uid)3"], blockFlag == true {
+                                            
+                                                }else{
+                                                    self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                                                            uid: data["uid"] as! String,
+                                                                                            userName: data["userName"] as! String,
+                                                                                            postedAt: data["postedAt"] as! String,
+                                                                                            folder: 1))
+                                                }
+                                            }
                                         }
-                                      }
-                                  
-                                      if data["comment2"] != nil {
-                                                                        
-                                          self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
-                                                                    uid: data["uid"] as! String,
-                                                                    userName: data["userName"] as! String,
-                                                                    postedAt: data["postedAt"] as! String,
-                                                                    folder: 2))
-                                      }
-                                    
-                                      if data["comment3"] != nil {
-                                      
-                                          self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
-                                                                    uid: data["uid"] as! String,
-                                                                    userName: data["userName"] as! String,
-                                                                    postedAt: data["postedAt"] as! String,
-                                                                    folder: 3))
-                                      }
                                     
                                   
-                                      if data["comment4"] != nil {
-                                      
-                                          self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
-                                                                    uid: data["uid"] as! String,
-                                                                    userName: data["userName"] as! String,
-                                                                    postedAt: data["postedAt"] as! String,
-                                                                    folder: 4))
-                                      }
-                              print("data:\(data)")
-                              print("kaitouArray(匿名者用):\(self.kaitouArray)")
-                          }
+                                        if data["comment2"] != nil {
+                                            if let data_uid = data["uid"] {
+                                                if let blockFlag = blockList["\(data_uid)2"], blockFlag == true {
+                                            
+                                                }else{
+                                                    self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                                                            uid: data["uid"] as! String,
+                                                                                            userName: data["userName"] as! String,
+                                                                                            postedAt: data["postedAt"] as! String,
+                                                                                            folder: 2))
+                                                }
+                                            }
+                                        }
+                                    
+                                    
+                                        if data["comment3"] != nil {
+                                            if let data_uid = data["uid"] {
+                                                if let blockFlag = blockList["\(data_uid)3"], blockFlag == true {
+                                            
+                                                }else{
+                                                    self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                                                            uid: data["uid"] as! String,
+                                                                                            userName: data["userName"] as! String,
+                                                                                            postedAt: data["postedAt"] as! String,
+                                                                                            folder: 3))
+                                                }
+                                            }
+                                        }
+                                    
+                                  
+                                        if data["comment4"] != nil {
+                                            if let data_uid = data["uid"] {
+                                                if let blockFlag = blockList["\(data_uid)4"], blockFlag == true {
+                                            
+                                                }else{
+                                                    self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                                                            uid: data["uid"] as! String,
+                                                                                            userName: data["userName"] as! String,
+                                                                                            postedAt: data["postedAt"] as! String,
+                                                                                            folder: 4))
+                                                }
+                                            }
+                                        }
+                                        print("data:\(data)")
+                                        print("kaitouArray(匿名者用):\(self.kaitouArray)")
+                                }
                           self.timeLineTableView.reloadData()
                       }
                   }
@@ -212,45 +229,62 @@ class TimeLineViewController:
                                   let data = document.data()
 
                                     if data["comment1"] != nil {
-                                        if let data_uid = data["uid"] { print("キーの中身：\(data_uid)1")
-                                        if let blockFlag = blockList["\(data_uid)1"], blockFlag == true {
+                                        if let data_uid = data["uid"] {
+                                            if let blockFlag = blockList["\(data_uid)1"], blockFlag == true {
                                             
-                                        }else{
-                                            self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
-                                            uid: data["uid"] as! String,
-                                            userName: data["userName"] as! String,
-                                            postedAt: data["postedAt"] as! String,
-                                            folder: 1))
+                                            }else{
+                                                self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
+                                                                                        uid: data["uid"] as! String,
+                                                                                        userName: data["userName"] as! String,
+                                                                                        postedAt: data["postedAt"] as! String,
+                                                                                        folder: 1))
+                                            }
                                         }
-                                        }
-                                }
+                                    }
+                                
                                 
                                     if data["comment2"] != nil {
-                                                                      
-                                        self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
-                                                                  uid: data["uid"] as! String,
-                                                                  userName: data["userName"] as! String,
-                                                                  postedAt: data["postedAt"] as! String,
-                                                                  folder: 2))
+                                        if let data_uid = data["uid"] {
+                                            if let blockFlag = blockList["\(data_uid)2"], blockFlag == true {
+                                            
+                                            }else{
+                                                self.kaitouArray.append(Kaitou(comment: data["comment2"] as! String,
+                                                                                        uid: data["uid"] as! String,
+                                                                                        userName: data["userName"] as! String,
+                                                                                        postedAt: data["postedAt"] as! String,
+                                                                                        folder: 2))
+                                            }
+                                        }
                                     }
                                   
+                                
                                     if data["comment3"] != nil {
-                                    
-                                        self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
-                                                                  uid: data["uid"] as! String,
-                                                                  userName: data["userName"] as! String,
-                                                                  postedAt: data["postedAt"] as! String,
-                                                                  folder: 3))
+                                        if let data_uid = data["uid"] {
+                                            if let blockFlag = blockList["\(data_uid)3"], blockFlag == true {
+                                            
+                                            }else{
+                                                self.kaitouArray.append(Kaitou(comment: data["comment3"] as! String,
+                                                                                        uid: data["uid"] as! String,
+                                                                                        userName: data["userName"] as! String,
+                                                                                        postedAt: data["postedAt"] as! String,
+                                                                                        folder: 3))
+                                            }
+                                        }
                                     }
                                   
                                 
                                     if data["comment4"] != nil {
-                                    
-                                        self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
-                                                                  uid: data["uid"] as! String,
-                                                                  userName: data["userName"] as! String,
-                                                                  postedAt: data["postedAt"] as! String,
-                                                                  folder: 4))
+                                        if let data_uid = data["uid"] {
+                                            if let blockFlag = blockList["\(data_uid)4"], blockFlag == true {
+                                            
+                                            }else{
+                                                self.kaitouArray.append(Kaitou(comment: data["comment4"] as! String,
+                                                                                        uid: data["uid"] as! String,
+                                                                                        userName: data["userName"] as! String,
+                                                                                        postedAt: data["postedAt"] as! String,
+                                                                                        folder: 4))
+                                            }
+                                        }
                                     }
                                 
                                   print("data:\(data)")
