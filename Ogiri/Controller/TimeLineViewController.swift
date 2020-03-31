@@ -156,7 +156,7 @@ class TimeLineViewController:
                             
                                       if data["comment1"] != nil {
                                         
-                                        if let blockFlag = blockList["\(data["uid"])" + "1"], blockFlag == true {
+                                        if let blockFlag = blockList["\(data["uid"])1"], blockFlag == true {
                             
                                           self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                     uid: data["uid"] as! String,
@@ -210,10 +210,10 @@ class TimeLineViewController:
                               for document in querySnapshot!.documents {
 
                                   let data = document.data()
-                                    print("キーの中身：\(data["uid"])" + "1")
+
                                     if data["comment1"] != nil {
-                                        if let data_uid = data["uid"] {
-                                        if let blockFlag = blockList[data_uid], blockFlag == true {
+                                        if let data_uid = data["uid"] { print("キーの中身：\(data_uid)1")
+                                        if let blockFlag = blockList["\(data_uid)1"], blockFlag == true {
                                             
                                         }else{
                                             self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
@@ -221,7 +221,6 @@ class TimeLineViewController:
                                             userName: data["userName"] as! String,
                                             postedAt: data["postedAt"] as! String,
                                             folder: 1))
-                                            print("与えてるキー:\(blockList["\(data["uid"])" + "1"])")
                                         }
                                         }
                                 }
