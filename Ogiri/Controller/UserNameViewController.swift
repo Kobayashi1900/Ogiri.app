@@ -87,12 +87,7 @@ class UserNameViewController:
                 ref?.setData ([
                     "emailAddress": emailText2,
                     "uid": userID,
-                    "userName": userNameTextField.text ?? "noname",
-                    "postedAt": "投稿されていません",
-                    "comment1": "まだコメントはありません",
-                    "comment2": "まだコメントはありません",
-                    "comment3": "まだコメントはありません",
-                    "comment4": "まだコメントはありません"
+                    "userName": userNameTextField.text ?? "noname"
                 ]) { err in
                     if let err = err {
                         print("Error adding document: \(err)")

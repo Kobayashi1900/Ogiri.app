@@ -88,15 +88,9 @@ class SignUpViewController:
             ref = self.db.collection("users").document(userID)
 
                 //TLで匿名ユーザーのみを取得するために「"userName": 匿名ユーザー」というフィールドを追加
-                //コンパイルエラーしないよう、仮の値を各フィールドに追加
                 ref?.setData([
                     "uid": userID,
-                    "userName": "匿名ユーザー",
-                    "postedAt": "投稿されていません",
-                    "comment1": "まだコメントはありません",
-                    "comment2": "まだコメントはありません",
-                    "comment3": "まだコメントはありません",
-                    "comment4": "まだコメントはありません"
+                    "userName": "匿名ユーザー"
                 ], merge: true) { error in
                     if let error = error {
                         print("Error setData document: \(error)")
