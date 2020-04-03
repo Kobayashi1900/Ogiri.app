@@ -36,17 +36,18 @@ class TimeLineViewController:
     
     @IBAction func blockButton(_ sender: BlockButton) {
         
+        //キー値blockedで保存された値がない(ブロックしたことが無い)場合、
         if UserDefaults.standard.object(forKey: "blocked") == nil {
             let XXX = ["XX" : true]
-            UserDefaults.standard.set(XXX, forKey: "blocked")
+            UserDefaults.standard.set(XXX, forKey: "blocked")  //UserDefaultsのキー値blockedにとりあえず初期値を入れておく
         }
-        var blockDic:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String : Bool]
-        blockDic["\(sender.uid)" + "\(sender.folder)"] = true
-        UserDefaults.standard.set(blockDic, forKey: "blocked")
-        print("ブロックボタン検知")
-        print("キー値blockedで保存した値:\(UserDefaults.standard.object(forKey: "blocked"))")
         
-        display()
+        //現時点で、キー値blockedで保存されている値をblockDicに追加する
+        var blockDic:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String : Bool]
+        blockDic["\(sender.uid)" + "\(sender.folder)"] = true  //辞書blockDicにkey[uid+folder],value-trueでデータを追加
+        UserDefaults.standard.set(blockDic, forKey: "blocked") //UserDefaultsのキー値blockedの値として、辞書blockDicを保存
+        
+        display()  //再描画
     }
     
     
@@ -89,6 +90,7 @@ class TimeLineViewController:
         let commentTextView = cell.viewWithTag(5) as! UITextView
         let blockButton = cell.viewWithTag(6) as! BlockButton
         
+        //各ブロックボタンにはプロパティとしてuid,folderがある。indexPath.row番目に対応するuid,folderを代入している
         blockButton.uid = kaitouArray[indexPath.row]!.uid
         blockButton.folder = kaitouArray[indexPath.row]!.folder
 
@@ -131,11 +133,14 @@ class TimeLineViewController:
     
     func display() {
         
+        //誰もブロックしていない(キー値blockedで保存された値が無い)場合
         if UserDefaults.standard.object(forKey: "blocked") == nil {
             let XXX = ["XX" : true]
-            UserDefaults.standard.set(XXX, forKey: "blocked")
+            UserDefaults.standard.set(XXX, forKey: "blocked")  //とりあえず初期値を入れておく
         }
-        let blockList:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String:Bool] //事前にUserDefaultsの中身取得
+        
+        //事前にUserDefaultsの中身を取得
+        let blockList:[String:Bool] = UserDefaults.standard.object(forKey: "blocked") as! [String:Bool]
         
           //ログインされていることを確認する
           if let user = Auth.auth().currentUser {
@@ -148,15 +153,20 @@ class TimeLineViewController:
                           print("Error getting documents: \(err)")
                       } else {
                             self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
+                        
                                 for document in querySnapshot!.documents {
 
                                     let data = document.data()
                             
                                         if data["comment1"] != nil {
-                                            if let data_uid = data["uid"] {
-                                                if let blockFlag = blockList["\(data_uid)3"], blockFlag == true {
                                             
-                                                }else{
+                                            //data["uid"]をアンラップ　→　オプショナル型のため
+                                            if let data_uid = data["uid"] {
+                                                
+                                                //key["\(data_uid)1"]で保存された値があり、その値がtrueなら、kaitouArrayに加えない = 何もしない
+                                                if let blockFlag = blockList["\(data_uid)1"], blockFlag == true {
+                                            
+                                                }else{//そうでなければ(ブロックしていなければ)、kaitouArrayに加える。(表示する)
                                                     self.kaitouArray.append(Kaitou(comment: data["comment1"] as! String,
                                                                                             uid: data["uid"] as! String,
                                                                                             userName: data["userName"] as! String,
@@ -224,6 +234,7 @@ class TimeLineViewController:
                               print("Error getting documents: \(err)")
                           } else {
                             self.kaitouArray.removeAll()  //画面遷移時にTLが更新されるように、removeAllしてからまたkaitouArrayにappendする
+                            
                               for document in querySnapshot!.documents {
 
                                   let data = document.data()
