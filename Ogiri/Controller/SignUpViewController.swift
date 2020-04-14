@@ -58,6 +58,10 @@ class SignUpViewController:
                 self.defaultOdaiImageAdd()  //コンパイルエラーを防ぐために、とりあえずお題の画像にデフォルトのものを保存しておく
             }
             
+            //UserDefaultsに登録したアドレスとパスを保存。次回に簡単にログインできるように
+            UserDefaults.standard.set(self.emailTextField.text, forKey: "email")
+            UserDefaults.standard.set(self.passwordTextField.text, forKey: "password")
+            
             //navigationControllerで画面遷移
             let UserNameVC = self.storyboard?.instantiateViewController(withIdentifier: "unvc")  as! UserNameViewController
             

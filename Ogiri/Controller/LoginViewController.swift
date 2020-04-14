@@ -24,6 +24,15 @@ class LoginViewController:
         
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        if (UserDefaults.standard.object(forKey: "email") != nil){
+            if (UserDefaults.standard.object(forKey: "password") != nil){
+            
+            self.emailTextField.text = (UserDefaults.standard.object(forKey: "email") as! String)
+            self.passwordTextField.text = (UserDefaults.standard.object(forKey: "password") as! String)
+            self.loginButton.isEnabled = true
+            }
+        }
     }
     
 
