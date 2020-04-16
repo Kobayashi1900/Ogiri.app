@@ -365,7 +365,7 @@ class PlayViewController: UIViewController {
         let dt = Date()
         let dateFormatter = DateFormatter()
         //日付の書式＆日本時間にする
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMMdHm", options: 0, locale: Locale(identifier: "ja_JP"))
+        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yMMddHHmm", options: 0, locale: Locale(identifier: "ja_JP"))
         
         let date = dateFormatter.string(from: dt)
         
