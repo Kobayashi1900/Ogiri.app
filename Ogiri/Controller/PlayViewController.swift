@@ -17,6 +17,7 @@ import FirebaseFirestore
 class PlayViewController: UIViewController {
     
     @IBOutlet weak var odaiLabel: UILabel!
+    @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
@@ -29,6 +30,7 @@ class PlayViewController: UIViewController {
     private var odaiNumber = 1                //何題目のお題なのか
     var commentNumber = 0                     //それぞれの大喜利の回答をstroageのそれぞれのフォルダに保存するため
     var odaiImageNumber = 0                   //それぞれのお題画像をstroageのそれぞれのフォルダに保存するため
+    var changeCount = 0
     private var screenShotImagae1 = UIImage() //スクショを入れる変数
     private var screenShotImagae2 = UIImage()
     private var screenShotImagae3 = UIImage()
@@ -59,6 +61,10 @@ class PlayViewController: UIViewController {
         commentTextView.delegate = self
         odaiLabel.text = "\(odaiNumber)題目"       //何題目なのか表示
         tabBarController?.tabBar.isHidden = true  //tabBarを非表示
+        coverView.frame = CGRect(x: 0,
+                                 y: 0,
+                                 width: view.frame.size.width,
+                                 height: view.frame.size.height)
     }
     
     
@@ -396,6 +402,17 @@ class PlayViewController: UIViewController {
         }
     }
     
+    @IBAction func changeAction(_ sender: Any) {
+        
+        changeCount += 1
+        getPixabayImages()
+        count = 31
+        timer.invalidate()
+        
+        if changeCount == 2 {
+           changeButton.isEnabled = false
+        }
+    }
     
     @IBAction func next(_ sender: Any) {
         
