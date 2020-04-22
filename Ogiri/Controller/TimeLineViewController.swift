@@ -148,7 +148,8 @@ class TimeLineViewController:
               if user.isAnonymous == true {  //カレントユーザーが匿名ユーザーなら
                                   
                   //コレクションusersから全ての匿名ユーザーのドキュメントを取得し、各フィールドを配列kaitouArrayに格納
-                  db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
+//                  db.collection("users").whereField("userName", isEqualTo: "匿名ユーザー").limit(to: 10).getDocuments() { (querySnapshot, err) in
+                db.collection("users").order(by: "postedAt",descending: true).limit(to: 10).getDocuments() { (querySnapshot, err) in
                       if let err = err {
                           print("Error getting documents: \(err)")
                       } else {
