@@ -107,7 +107,7 @@ class PlayViewController: UIViewController {
     }
     
     
-    // APIをコールする
+    // APIをコールする (Alamofireを使ってHTTPリクエスト)
     private func fire(params: [String: Any], headers: [String: String]) {
         Alamofire.request(self.baseUrl,
                           method: .get,

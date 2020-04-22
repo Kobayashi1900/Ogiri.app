@@ -138,7 +138,7 @@ class SignUpViewController:
                 alertLabel.isHidden = false  //アラートを出す
                 self.nextButton.isEnabled = false
         }
-}
+    }
     
     
     func validateEmail(candidate: String) -> Bool {
