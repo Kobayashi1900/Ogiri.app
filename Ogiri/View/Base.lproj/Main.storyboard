@@ -468,18 +468,21 @@
                                                 </view>
                                                 <blurEffect style="regular"/>
                                             </visualEffectView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="次々に流れてくる4題のお題の画像に、各題30秒以内に回答してください。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbK-Z5-yn3">
-                                                <rect key="frame" x="34" y="144" width="307" height="166"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbK-Z5-yn3">
+                                                <rect key="frame" x="34" y="144" width="307" height="289"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="307" id="XSW-Cq-g4D"/>
-                                                    <constraint firstAttribute="height" constant="166" id="oIL-KT-NyM"/>
+                                                    <constraint firstAttribute="height" constant="289" id="oIL-KT-NyM"/>
                                                 </constraints>
+                                                <string key="text">次々に流れてくる4題のお題の画像に、各題30秒以内に回答してください。
+
+各題2回まで画像をチェンジすることができます。</string>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ioi-8X-RJU">
-                                                <rect key="frame" x="89.666666666666686" y="360" width="196" height="35"/>
+                                                <rect key="frame" x="89.666666666666686" y="483" width="196" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="196" id="8ew-1f-abE"/>
                                                     <constraint firstAttribute="height" constant="35" id="TBM-zy-KNO"/>
@@ -551,7 +554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hG3-PV-w4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="680.79999999999995" y="827.58620689655174"/>
+            <point key="canvasLocation" x="679.71014492753625" y="827.00892857142856"/>
         </scene>
         <!--マイページ-->
         <scene sceneID="Irp-V7-PXd">

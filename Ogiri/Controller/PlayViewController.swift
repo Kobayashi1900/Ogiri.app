@@ -420,6 +420,8 @@ class PlayViewController: UIViewController {
         odaiImageNumberIncrement()
         commentNumberIncrement()
         count = 31                        //カウントを31に設定し直す
+        changeCount = 0
+        changeButton.isEnabled = true     //changeButtonを有効にする
         timer.invalidate()                //現在のタイマーを無効にする
         commentAdd()                      //ドキュメントに回答を保存
         odaiImageAdd()                    //storageにお題画像を保存
