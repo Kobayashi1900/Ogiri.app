@@ -492,6 +492,11 @@
                                                     <action selector="nextButton_coverView:" destination="Qhz-ur-UIP" eventType="touchUpInside" id="nai-kb-3GS"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Kw-RJ-GJF" customClass="GADBannerView">
+                                                <rect key="frame" x="34" y="748" width="333" height="64"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="0.68145340679999999" blue="0.25071611999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -543,6 +548,7 @@
                     <tabBarItem key="tabBarItem" title="遊ぶ" id="7wn-zh-pQ6"/>
                     <navigationItem key="navigationItem" id="0Dn-Im-dzo"/>
                     <connections>
+                        <outlet property="bannerView" destination="6Kw-RJ-GJF" id="ACE-SQ-oRm"/>
                         <outlet property="changeButton" destination="lYU-9X-qS6" id="j3n-yu-j41"/>
                         <outlet property="commentTextView" destination="BCW-fd-9cn" id="AQ2-0f-brW"/>
                         <outlet property="coverView" destination="jd4-eM-3yW" id="TOh-BF-16h"/>

@@ -8,6 +8,11 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.3)
   - Firebase (6.9.0):
     - Firebase/Core (= 6.9.0)
+  - Firebase/AdMob (6.9.0):
+    - Firebase/CoreOnly
+    - Google-Mobile-Ads-SDK (~> 7.49)
+  - Firebase/Analytics (6.9.0):
+    - Firebase/Core
   - Firebase/Auth (6.9.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.2.3)
@@ -95,6 +100,8 @@ PODS:
   - FirebaseUI/Storage (8.1.0):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
+  - Google-Mobile-Ads-SDK (7.56.0):
+    - GoogleAppMeasurement (~> 6.0)
   - GoogleAppMeasurement (6.1.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -152,13 +159,12 @@ PODS:
   - SDWebImage/Core (5.2.2)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.0)
-  - TwitterCore (3.2.0)
-  - TwitterKit (3.4.2):
-    - TwitterCore (>= 3.2.0)
 
 DEPENDENCIES:
   - Alamofire
   - Firebase
+  - Firebase/AdMob
+  - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -166,10 +172,10 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/Storage
   - FirebaseUI/Storage
+  - Google-Mobile-Ads-SDK
   - SDWebImage
   - SVProgressHUD
   - SwiftyJSON
-  - TwitterKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -189,6 +195,7 @@ SPEC REPOS:
     - FirebaseMessaging
     - FirebaseStorage
     - FirebaseUI
+    - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -202,8 +209,6 @@ SPEC REPOS:
     - SDWebImage
     - SVProgressHUD
     - SwiftyJSON
-    - TwitterCore
-    - TwitterKit
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
@@ -222,6 +227,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: b22b949cc45c14da01e60404dd7bffc78956380c
   FirebaseStorage: b7c6d00997bc21d4465453bdcc5cc65513110fed
   FirebaseUI: 41e06c5f7f6e34a8f430862d67637e36e4aa696c
+  Google-Mobile-Ads-SDK: 65e335fadc97c5a91a9d4546214bfd3a2fb11047
   GoogleAppMeasurement: 0ae90be1cc4dad40f4a27fc767ef59fa032ec87b
   GoogleDataTransport: c8617c00e4f3eb9418e42ac0e8ac5241a9d555dd
   GoogleDataTransportCCTSupport: 9f352523e8785a71f6754f51eeff09f49ec19268
@@ -235,9 +241,7 @@ SPEC CHECKSUMS:
   SDWebImage: 5fcdb02cc35e05fc35791ec514b191d27189f872
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
-  TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 05a47ddce295de979d67c7dc11ffd5a8b0999bd1
+PODFILE CHECKSUM: 2fa19303cbbefee9387747270f22b90cc5cfea61
 
 COCOAPODS: 1.7.5

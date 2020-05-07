@@ -13,8 +13,9 @@ import SDWebImage
 import Photos
 import Firebase
 import FirebaseFirestore
+import GoogleMobileAds
 
-class PlayViewController: UIViewController {
+class PlayViewController: UIViewController, GADBannerViewDelegate {
     
     @IBOutlet weak var odaiLabel: UILabel!
     @IBOutlet weak var changeButton: UIButton!
@@ -22,6 +23,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var odaiImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var bannerView: GADBannerView!
     
     private var tempCommentText: String? = "未回答またはタイムオーバー"      //commentTextView.textを代入する
     private let wordsList = WordsList()       //インスタンス生成、語群にアクセスできる
@@ -65,6 +67,11 @@ class PlayViewController: UIViewController {
                                  y: 0,
                                  width: view.frame.size.width,
                                  height: view.frame.size.height)
+        
+        bannerView.adUnitID = "ca-app-pub-7052185310302163/9479281189"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
     }
     
     
